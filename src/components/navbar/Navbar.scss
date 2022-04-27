@@ -1,0 +1,35 @@
+@import "../../styles/config";
+.navbar {
+  display: flex;
+  background-color: wheat;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    color: $black;
+  }
+  .navbar-categories {
+    display: flex;
+    flex-direction: row;
+    .navbar-ul {
+      list-style: none;
+      margin-left: 1.5vw;
+      .navbar-li {
+        text-transform: capitalize;
+      }
+    }
+  }
+  .navbar-logo {
+    color: $black;
+    text-decoration: none;
+  }
+  .navbar-cart-currency {
+    display: flex;
+    flex-direction: row;
+    margin-right: 1vw;
+    .navbar-currency {
+      margin-right: 1vw;
+    }
+    .navbar-cart {
+    }
+  }
+}
