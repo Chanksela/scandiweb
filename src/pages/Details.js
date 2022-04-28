@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-export default class Details extends Component {
+import services from "../services/services";
+class Details extends Component {
   render() {
-    return <h1>Details</h1>;
+    const id = this.props.params.id;
+    return (
+      <div>
+        <h1>Product ID: {id}</h1>
+      </div>
+    );
   }
 }
+export default services.withRouter(Details);

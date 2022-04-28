@@ -2,11 +2,11 @@ import { Component } from "react";
 
 import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
-import Services from "../../services/service";
+import GQL from "../../services/GQL";
 export default class Links extends Component {
   render() {
     return (
-      <Query query={Services.NAVBAR}>
+      <Query query={GQL.NAVBAR}>
         {({ error, loading, data }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;

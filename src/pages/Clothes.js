@@ -1,7 +1,7 @@
 import { Component } from "react";
 
 import Navbar from "../components/navbar/Navbar";
-import Services from "../services/service";
+import GQL from "../services/GQL";
 import ProductCard from "../components/Products/ProductCard";
 
 export default class Clothes extends Component {
@@ -9,7 +9,7 @@ export default class Clothes extends Component {
     return (
       <div>
         <Navbar />
-        <ProductCard category={Services.CLOTHES} />
+        <ProductCard category={GQL.CLOTHES} />
       </div>
     );
   }
