@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-// GQL requests
+// GQL requests for category  pages
 const NAVBAR = gql`
   {
     categories {
@@ -8,9 +8,9 @@ const NAVBAR = gql`
     }
   }
 `;
-const ALL = gql`
-  {
-    category(input: { title: "all" }) {
+const PRODUCTS = gql`
+  query Query($input: CategoryInput) {
+    category(input: $input) {
       name
       products {
         id
@@ -27,43 +27,25 @@ const ALL = gql`
     }
   }
 `;
-const TECH = gql`
-  {
-    category(input: { title: "tech" }) {
+
+// Details page GQL
+const DETAILS = gql`
+  query Query($productId: String!) {
+    product(id: $productId) {
+      id
       name
-      products {
-        id
-        name
-        gallery
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
+      gallery
+      description
+      brand
+      prices {
+        currency {
+          label
+          symbol
         }
+        amount
       }
     }
   }
 `;
-const CLOTHES = gql`
-  {
-    category(input: { title: "clothes" }) {
-      name
-      products {
-        id
-        name
-        gallery
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
-        }
-      }
-    }
-  }
-`;
-const exports = { NAVBAR, ALL, CLOTHES, TECH };
+const exports = { NAVBAR, PRODUCTS, DETAILS };
 export default exports;

@@ -10,7 +10,7 @@ export default class All extends Component {
       <div>
         <Navbar />
         <div>
-          <ProductCard category={GQL.ALL} />
+          <ProductCard category={GQL.PRODUCTS} sample="all" />
         </div>
       </div>
     );

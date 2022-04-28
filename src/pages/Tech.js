@@ -8,7 +8,7 @@ export default class Tech extends Component {
     return (
       <div>
         <Navbar />
-        <ProductCard category={GQL.TECH} />
+        <ProductCard category={GQL.PRODUCTS} sample="tech" />
       </div>
     );
   }

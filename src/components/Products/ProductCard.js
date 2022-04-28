@@ -6,7 +6,10 @@ export default class ProductCard extends Component {
   render() {
     return (
       <div>
-        <Query query={this.props.category}>
+        <Query
+          query={this.props.category}
+          variables={{ input: { title: this.props.sample } }}
+        >
           {({ error, loading, data }) => {
             if (error) return `Error ${error.message}`;
             if (loading) return loading;
