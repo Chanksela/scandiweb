@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import services from "../services/services";
 import GQL from "../services/GQL";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import { Mutation } from "@apollo/client/react/components";
 
 class Details extends Component {
   render() {
