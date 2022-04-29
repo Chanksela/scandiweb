@@ -3,7 +3,6 @@ import services from "../services/services";
 import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
 import Navbar from "../components/Navbar/Navbar";
-import CartItem from "../components/Navbar/CartItem";
 
 class Details extends Component {
   constructor() {
@@ -34,15 +33,25 @@ class Details extends Component {
             if (error) return `Error ${error.message}`;
             if (loading) return loading;
             const { product } = data;
+            const images = product.gallery.map((img) => img);
+            console.log(images);
             return (
               <div>
                 <h2>{product.name}</h2>
                 <h4>{product.brand}</h4>
-                <img
-                  alt="product-img"
-                  src={product.gallery[0]}
-                  style={{ width: "100px", height: "100px" }}
-                />
+                {images.map((img, index) => {
+                  console.log(index);
+                  return (
+                    <div key={index}>
+                      {" "}
+                      <img
+                        className="images"
+                        src={img}
+                        style={{ width: "50px" }}
+                      />
+                    </div>
+                  );
+                })}
                 <p>
                   {product.prices[0].amount}
                   {product.prices[0].currency.symbol}
