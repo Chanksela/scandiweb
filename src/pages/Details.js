@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import services from "../services/services";
 import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
+import Navbar from "../components/Navbar/Navbar";
 
 class Details extends Component {
   render() {
@@ -10,6 +11,7 @@ class Details extends Component {
 
     return (
       <div>
+        <Navbar />
         <h1>Product ID: {id}</h1>
         <Query query={GQL.DETAILS} variables={{ productId: id }}>
           {({ error, loading, data }) => {

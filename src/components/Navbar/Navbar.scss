@@ -1,7 +1,7 @@
 @import "../../styles/config";
 .navbar {
   display: flex;
-  background-color: wheat;
+  background-color: $white;
   justify-content: space-between;
   a {
     text-decoration: none;
@@ -30,7 +30,21 @@
       margin-right: 1vw;
     }
     .navbar-cart {
+      position: relative;
       color: $green;
+      .dropdown-cart {
+        position: absolute;
+        right: 0;
+        top: calc(3vh + 1rem);
+        background-color: $white;
+        width: 10vw;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+        li {
+          list-style: none;
+        }
+      }
     }
   }
 }

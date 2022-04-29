@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import GQL from "../services/GQL";
 import ProductCard from "../components/Products/ProductCard";
 
