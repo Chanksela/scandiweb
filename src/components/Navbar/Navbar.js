@@ -33,13 +33,12 @@ export default class Navbar extends Component {
             <button>Currency</button>
           </div>
           <div className="navbar-cart">
-            <button onClick={this.handleCart.bind(this)}>Cart</button>
-            {!this.state.cart && (
+            <button onClick={this.handleCart.bind(this)}>
+              Cart {this.props.counter}
+            </button>
+            {this.state.cart && (
               <div className="dropdown-cart">
-                <ul>
-                  <li>Item 1</li>
-                  <li>Item 2</li>
-                </ul>
+                <div>{this.props.test?.map((v) => v)}</div>
                 <button>Shop</button>
               </div>
             )}
