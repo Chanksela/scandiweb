@@ -3,29 +3,31 @@ import services from "../services/services";
 import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
 import Navbar from "../components/Navbar/Navbar";
+import CartItem from "../components/Navbar/CartItem";
 
 class Details extends Component {
   constructor() {
     super();
-    this.state = { addedItems: [], counter: "" };
+    this.state = { addedItem: "", counter: "" };
   }
 
   addToCart(e) {
-    this.state.addedItems.push(e.target.id);
-    console.log(this.state.addedItems.length);
-    this.setState({ counter: this.state.addedItems.length });
-    console.log(this.state.counter);
+    // this.state.addedItem.push(e.target.id);
+    this.setState({ addedItem: e.target.id });
+    console.log(this.state.addedItem);
+    // this.setState({ counter: this.state.addedItem.length });
+    // console.log(this.state.counter);
   }
+
   render() {
     const id = this.props.params.id;
 
     return (
       <div>
         <Navbar
-          test={this.state.addedItems}
-          counter={this.state.addedItems.length}
+          test={this.state.addedItem}
+          // counter={this.state.addedItem.length}
         />
-
         <h1>Product ID: {id}</h1>
         <Query query={GQL.DETAILS} variables={{ productId: id }}>
           {({ error, loading, data }) => {

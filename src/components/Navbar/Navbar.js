@@ -1,8 +1,10 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+
 import Links from "./Links";
 
 import "./Navbar.css";
+import CartItem from "./CartItem";
 
 export default class Navbar extends Component {
   constructor() {
@@ -38,7 +40,7 @@ export default class Navbar extends Component {
             </button>
             {this.state.cart && (
               <div className="dropdown-cart">
-                <div>{this.props.test?.map((v) => v)}</div>
+                <CartItem id={this.props.test} />
                 <button>Shop</button>
               </div>
             )}
