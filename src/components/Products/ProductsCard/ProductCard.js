@@ -1,14 +1,14 @@
 import { Component } from "react";
 import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
-
+import "./ProductCard.css";
 export default class ProductCard extends Component {
   render() {
     return (
-      <div>
+      <div className="main-container">
         <Query
-          query={this.props.category}
-          variables={{ input: { title: this.props.sample } }}
+          query={this.props.gql}
+          variables={{ input: { title: this.props.category } }}
         >
           {({ error, loading, data }) => {
             if (error) return `Error ${error.message}`;
@@ -16,7 +16,7 @@ export default class ProductCard extends Component {
             const { category } = data;
             console.log(category);
             return category.products.map((info) => (
-              <div key={info.id}>
+              <div key={info.id} className="items-container">
                 <Link to={`/details/${info.id}`}>
                   {" "}
                   <img

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Query } from "@apollo/client/react/components";
-import GQL from "../../services/GQL";
+import GQL from "../../../services/GQL";
 export default class CartItem extends Component {
   render() {
     return (
@@ -12,7 +12,7 @@ export default class CartItem extends Component {
             const { product } = data;
             return (
               <div>
-                {product != null && (
+                {product != null ? (
                   <div>
                     <p>{product.name}</p>
                     <img
@@ -25,6 +25,8 @@ export default class CartItem extends Component {
                       {product.prices[0].currency.symbol}
                     </p>
                   </div>
+                ) : (
+                  "No Items"
                 )}
               </div>
             );

@@ -2,32 +2,18 @@ import React, { Component } from "react";
 import services from "../services/services";
 import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
-import Navbar from "../components/Navbar/Navbar";
 
 class Details extends Component {
-  constructor() {
-    super();
-    this.state = { addedItem: "", counter: "" };
-  }
-
-  addToCart(e) {
-    // this.state.addedItem.push(e.target.id);
-    this.setState({ addedItem: e.target.id });
-    console.log(this.state.addedItem);
-    // this.setState({ counter: this.state.addedItem.length });
-    // console.log(this.state.counter);
-  }
-
   render() {
     const id = this.props.params.id;
 
     return (
       <div>
-        <Navbar
+        {/* <Navbar
           test={this.state.addedItem}
           // counter={this.state.addedItem.length}
-        />
-        <h1>Product ID: {id}</h1>
+        /> */}
+
         <Query query={GQL.DETAILS} variables={{ productId: id }}>
           {({ error, loading, data }) => {
             if (error) return `Error ${error.message}`;
@@ -46,6 +32,7 @@ class Details extends Component {
                       {" "}
                       <img
                         className="images"
+                        alt="img"
                         src={img}
                         style={{ width: "50px" }}
                       />
@@ -57,7 +44,7 @@ class Details extends Component {
                   {product.prices[0].currency.symbol}
                 </p>
                 <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
-                <button id={product.id} onClick={this.addToCart.bind(this)}>
+                <button id={product.id} onClick={console.log("clicked")}>
                   Add to Cart
                 </button>
               </div>

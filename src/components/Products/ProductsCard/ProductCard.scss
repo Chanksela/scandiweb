@@ -1,0 +1,17 @@
+@import "../../../styles/config";
+
+.main-container {
+  border: 1px salmon solid;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+
+  .items-container {
+    margin-top: 0;
+    width: 10vw;
+    height: 30vh;
+    border: 1px limegreen solid;
+    padding: 10px 50px;
+  }
+}

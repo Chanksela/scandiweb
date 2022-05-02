@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
-import Links from "./Links";
+import Links from "./Links/Links";
 
 import "./Navbar.css";
-import CartItem from "./CartItem";
+
+import Cart from "./Cart/Cart";
 
 export default class Navbar extends Component {
   constructor() {
@@ -34,17 +35,10 @@ export default class Navbar extends Component {
           <div className="navbar-currency">
             <button>Currency</button>
           </div>
-          <div className="navbar-cart">
-            <button onClick={this.handleCart.bind(this)}>
-              Cart {this.props.counter}
-            </button>
-            {this.state.cart && (
-              <div className="dropdown-cart">
-                <CartItem id={this.props.test} />
-                <button>Shop</button>
-              </div>
-            )}
-          </div>
+          <Cart
+            handleCart={this.handleCart.bind(this)}
+            cart={this.state.cart}
+          />
         </div>
       </div>
     );

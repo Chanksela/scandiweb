@@ -2,7 +2,7 @@ import { Component } from "react";
 
 import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
-import GQL from "../../services/GQL";
+import GQL from "../../../services/GQL";
 export default class Links extends Component {
   render() {
     return (

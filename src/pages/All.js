@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 
-import Navbar from "../components/Navbar/Navbar";
 import GQL from "../services/GQL";
-import ProductCard from "../components/Products/ProductCard";
-
+import ProductCard from "../components/Products/ProductsCard/ProductCard";
 export default class All extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <div>
-          <ProductCard category={GQL.PRODUCTS} sample="all" />
+          <ProductCard gql={GQL.PRODUCTS} category="all" />
         </div>
       </div>
     );
