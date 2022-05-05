@@ -14,8 +14,18 @@ export default class Links extends Component {
 
           return categories.map((v) => (
             <ul className="navbar-ul" key={v.name}>
+              {console.log(this.props.categories)}{" "}
               <li className="navbar-li">
-                <Link to={`/${v.name}`}>{v.name}</Link>
+                <Link
+                  id={v.name}
+                  to="/"
+                  onClick={(e) => {
+                    this.props.selectCategory(e.target.id);
+                    console.log(this.props.categories);
+                  }}
+                >
+                  {v.name}
+                </Link>
               </li>
             </ul>
           ));

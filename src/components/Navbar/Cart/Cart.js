@@ -11,7 +11,7 @@ export default class Cart extends Component {
         </button>
         {this.props.cart && (
           <div className="dropdown-cart">
-            <CartItem id="" />
+            <CartItem itemID={this.props.itemID} />
             <Link to={"/cartitems"}>Shop</Link>
           </div>
         )}

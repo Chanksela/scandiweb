@@ -9,11 +9,7 @@ class Details extends Component {
 
     return (
       <div>
-        {/* <Navbar
-          test={this.state.addedItem}
-          // counter={this.state.addedItem.length}
-        /> */}
-
+        <h3>ID: {this.props.id}</h3>
         <Query query={GQL.DETAILS} variables={{ productId: id }}>
           {({ error, loading, data }) => {
             if (error) return `Error ${error.message}`;
@@ -44,7 +40,13 @@ class Details extends Component {
                   {product.prices[0].currency.symbol}
                 </p>
                 <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
-                <button id={product.id} onClick={console.log("clicked")}>
+                <button
+                  id={product.id}
+                  onClick={(e) => {
+                    this.props.addToCart(e.target.id);
+                    console.log(this.props.id);
+                  }}
+                >
                   Add to Cart
                 </button>
               </div>

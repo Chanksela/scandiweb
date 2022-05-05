@@ -5,13 +5,14 @@ export default class CartItem extends Component {
   render() {
     return (
       <div>
-        <Query query={GQL.DETAILS} variables={{ productId: this.props.id }}>
+        <Query query={GQL.DETAILS} variables={{ productId: this.props.itemID }}>
           {({ error, loading, data }) => {
             if (error) return `Error ${error.message}`;
             if (loading) return loading;
             const { product } = data;
             return (
               <div>
+                {console.log(product)}
                 {product != null ? (
                   <div>
                     <p>{product.name}</p>

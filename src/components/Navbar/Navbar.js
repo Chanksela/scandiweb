@@ -26,7 +26,10 @@ export default class Navbar extends Component {
       <div className="navbar">
         <div className="navbar-categories">
           {" "}
-          <Links />
+          <Links
+            categories={this.props.categories}
+            selectCategory={this.props.selectCategory}
+          />
         </div>
         <div className="navbar-logo">
           <Link to="/">Logo</Link>
@@ -38,6 +41,8 @@ export default class Navbar extends Component {
           <Cart
             handleCart={this.handleCart.bind(this)}
             cart={this.state.cart}
+            itemID={this.props.itemID}
+            counter={this.props.counter}
           />
         </div>
       </div>
