@@ -10,7 +10,9 @@ export default class CartItem extends Component {
             if (error) return `Error ${error.message}`;
             if (loading) return loading;
             const { product } = data;
-            this.props.cartArray(product);
+
+            product != null && this.props.cartArray(product);
+
             console.log(this.props.itemArray.length);
             return (
               <div>
