@@ -16,13 +16,11 @@ class Details extends Component {
             if (loading) return loading;
             const { product } = data;
             const images = product.gallery.map((img) => img);
-            console.log(images);
             return (
               <div>
                 <h2>{product.name}</h2>
                 <h4>{product.brand}</h4>
                 {images.map((img, index) => {
-                  console.log(index);
                   return (
                     <div key={index}>
                       {" "}
@@ -43,8 +41,7 @@ class Details extends Component {
                 <button
                   id={product.id}
                   onClick={(e) => {
-                    this.props.addToCart(e.target.id);
-                    console.log(this.props.id);
+                    this.props.getID(e.target.id);
                   }}
                 >
                   Add to Cart

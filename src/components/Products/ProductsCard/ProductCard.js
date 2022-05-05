@@ -14,7 +14,6 @@ export default class ProductCard extends Component {
             if (error) return `Error ${error.message}`;
             if (loading) return loading;
             const { category } = data;
-            console.log(category);
             return category.products.map((info) => (
               <div key={info.id} className="items-container">
                 <Link to={`/details/${info.id}`}>

@@ -18,7 +18,6 @@ export default class Navbar extends Component {
       console.log(curState);
       return { cart: !curState.cart };
     });
-    console.log(this.state.cart);
   }
 
   render() {
@@ -26,10 +25,7 @@ export default class Navbar extends Component {
       <div className="navbar">
         <div className="navbar-categories">
           {" "}
-          <Links
-            categories={this.props.categories}
-            selectCategory={this.props.selectCategory}
-          />
+          <Links selectCategory={this.props.selectCategory} />
         </div>
         <div className="navbar-logo">
           <Link to="/">Logo</Link>
@@ -39,10 +35,12 @@ export default class Navbar extends Component {
             <button>Currency</button>
           </div>
           <Cart
+            itemID={this.props.itemID}
+            itemArray={this.props.itemArray}
             handleCart={this.handleCart.bind(this)}
             cart={this.state.cart}
-            itemID={this.props.itemID}
             counter={this.props.counter}
+            cartArray={this.props.cartArray}
           />
         </div>
       </div>
