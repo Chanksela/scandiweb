@@ -35,12 +35,15 @@ export default class Navbar extends Component {
             <button>Currency</button>
           </div>
           <Cart
+            clearCart={this.props.clearCart}
+            testArray={this.props.testArray}
             itemID={this.props.itemID}
             itemArray={this.props.itemArray}
             handleCart={this.handleCart.bind(this)}
             cart={this.state.cart}
             counter={this.props.counter}
             cartArray={this.props.cartArray}
+            test={this.props.test}
           />
         </div>
       </div>
