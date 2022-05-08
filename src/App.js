@@ -78,7 +78,10 @@ class App extends Component {
                   />
                 }
               />
-              <Route path="/cartitems" element={<CartList />} />
+              <Route
+                path="/cartitems"
+                element={<CartList testArray={this.state.testArray} />}
+              />
             </Routes>
           </BrowserRouter>
         </ApolloProvider>
