@@ -4,9 +4,8 @@ export default class CartItem extends Component {
   render() {
     return (
       <div>
-        {console.log(this.props.testArray)}
-        {this.props.testArray.length > 0 &&
-          this.props.testArray.map((product, index) => (
+        {this.props.itemsArray.length > 0 &&
+          this.props.itemsArray.map((product, index) => (
             <ul key={index}>
               <li>
                 <p>{product.name}</p>
@@ -21,12 +20,15 @@ export default class CartItem extends Component {
                 </p>
                 <div>
                   <button>-</button>
+                  <p>{this.props.counter}</p>
                   <button onClick={() => this.props.test(product)}>+</button>
                 </div>
               </li>
             </ul>
           ))}
-        <button onClick={this.props.clearCart}>Clear All</button>
+        {this.props.itemsArray.length > 0 && (
+          <button onClick={this.props.clearCart}>Clear All</button>
+        )}
       </div>
     );
   }

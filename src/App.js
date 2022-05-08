@@ -7,7 +7,6 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Navbar from "./components/Navbar/Navbar";
 import CartList from "./pages/CartList";
 import { ProductProvider } from "./services/contex";
-import { argsToArgsConfig } from "graphql/type/definition";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -17,18 +16,28 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      testArray: [],
+      itemsArray: [],
       addedItem: "",
-      itemArray: [],
-      counter: "",
+      counter: 1,
       categories: "",
-      amount: [],
     };
   }
-  // get item id from details page
-  getID(arg) {
-    this.setState({ addedItem: arg });
-    this.setState({ counter: this.state.addedItem.length });
+  // get item id from details page and add it to the itemsArray
+  addItem(arg1, arg2, prevState) {
+    this.setState({ addedItem: arg1 });
+
+    const exist =
+      this.state.itemsArray.length > 0 &&
+      this.state.itemsArray.find((x) => x.id === arg2.id);
+    console.log(exist);
+    if (exist) {
+      this.setState({ counter: this.state.counter + 1 });
+      console.log(this.state.counter);
+    } else {
+      this.state.itemsArray.push(arg2);
+    }
+
+    this.state.itemsArray.find((x) => x.id === arg1 && console.log("it works"));
   }
   // get category from navbar links to display relevant products
   selectCategory(arg) {
@@ -36,16 +45,13 @@ class App extends Component {
   }
   // create an array of added items
   cartArray(arg) {
-    this.state.itemArray.push(arg);
-    console.log(this.state.itemArray);
+    this.state.itemsArray.push(arg);
+    console.log(this.state.itemsArray);
     // this.setState({ addedItem: "" });
   }
   // clear all items from cart
   clearCart() {
-    this.setState({ testArray: [] });
-  }
-  test(arg) {
-    console.log((arg.prices[0].amount += arg.prices[0].amount));
+    this.setState({ itemsArray: [] });
   }
 
   render() {
@@ -55,13 +61,11 @@ class App extends Component {
           <BrowserRouter>
             <Navbar
               clearCart={this.clearCart.bind(this)}
-              testArray={this.state.testArray}
+              itemsArray={this.state.itemsArray}
               itemID={this.state.addedItem}
-              itemArray={this.state.itemArray}
               counter={this.state.counter}
               selectCategory={this.selectCategory.bind(this)}
               cartArray={this.cartArray.bind(this)}
-              test={this.test.bind(this)}
             />
             <Routes>
               <Route
@@ -72,15 +76,20 @@ class App extends Component {
                 path="/details/:id"
                 element={
                   <Details
-                    testArray={this.state.testArray}
+                    itemsArray={this.state.itemsArray}
                     id={this.state.addedItem}
-                    getID={this.getID.bind(this)}
+                    addItem={this.addItem.bind(this)}
                   />
                 }
               />
               <Route
                 path="/cartitems"
-                element={<CartList testArray={this.state.testArray} />}
+                element={
+                  <CartList
+                    itemsArray={this.state.itemsArray}
+                    clearCart={this.clearCart.bind(this)}
+                  />
+                }
               />
             </Routes>
           </BrowserRouter>

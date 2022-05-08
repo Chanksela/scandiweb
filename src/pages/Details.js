@@ -41,9 +41,7 @@ class Details extends Component {
                 <button
                   id={product.id}
                   onClick={(e) => {
-                    this.props.getID(e.target.id);
-                    this.props.testArray.push(product);
-                    console.log(this.props.testArray);
+                    this.props.addItem(e.target.id, product);
                   }}
                 >
                   Add to Cart

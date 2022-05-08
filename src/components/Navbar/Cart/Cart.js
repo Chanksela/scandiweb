@@ -7,15 +7,15 @@ export default class Cart extends Component {
     return (
       <div className="navbar-cart">
         <button onClick={this.props.handleCart}>
-          Cart {this.props.testArray.length}
+          Cart {this.props.itemsArray.length}
         </button>
         {this.props.cart && (
           <div className="dropdown-cart">
             <CartItem
               itemID={this.props.itemID}
               clearCart={this.props.clearCart}
-              testArray={this.props.testArray}
-              itemArray={this.props.itemArray}
+              itemsArray={this.props.itemsArray}
+              counter={this.props.counter}
               cartArray={this.props.cartArray}
               test={this.props.test}
             />
