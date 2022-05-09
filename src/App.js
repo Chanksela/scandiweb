@@ -23,9 +23,8 @@ class App extends Component {
     };
   }
   // get item id from details page and add it to the itemsArray
-  addItem(arg1, arg2, prevState) {
+  addItem(arg1, arg2) {
     this.setState({ addedItem: arg1 });
-
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
@@ -51,15 +50,28 @@ class App extends Component {
   }
   // clear all items from cart
   clearCart() {
-    this.setState({ itemsArray: [] });
+    this.setState({ itemsArray: [], counter: 1 });
   }
-
+  // functions to increase amount of items in cart by 1
+  increaseItem() {
+    this.setState({ counter: this.state.counter + 1 });
+  }
+  // functions to decrease amount of items in cart by 1
+  decreaseItem() {
+    console.log(this.state.counter);
+    if (this.state.counter === 1) {
+      console.log("it's zero");
+    }
+    this.setState({ counter: this.state.counter - 1 });
+  }
   render() {
     return (
-      <ProductProvider value={(this.state.categories, this.state.addedItem)}>
+      <ProductProvider value={{ ...this.state, addItem: this.addItem }}>
         <ApolloProvider client={client}>
           <BrowserRouter>
             <Navbar
+              increaseItem={this.increaseItem.bind(this)}
+              decreaseItem={this.decreaseItem.bind(this)}
               clearCart={this.clearCart.bind(this)}
               itemsArray={this.state.itemsArray}
               itemID={this.state.addedItem}
@@ -74,13 +86,7 @@ class App extends Component {
               />
               <Route
                 path="/details/:id"
-                element={
-                  <Details
-                    itemsArray={this.state.itemsArray}
-                    id={this.state.addedItem}
-                    addItem={this.addItem.bind(this)}
-                  />
-                }
+                element={<Details addItem={this.addItem.bind(this)} />}
               />
               <Route
                 path="/cartitems"

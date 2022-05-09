@@ -15,13 +15,13 @@ export default class CartItem extends Component {
                   style={{ width: "50px" }}
                 />
                 <p>
-                  {product.prices[0].amount}
+                  {product.prices[0].amount * this.props.counter}
                   {product.prices[0].currency.symbol}
                 </p>
                 <div>
-                  <button>-</button>
+                  <button onClick={this.props.decreaseItem}>-</button>
                   <p>{this.props.counter}</p>
-                  <button onClick={() => this.props.test(product)}>+</button>
+                  <button onClick={this.props.increaseItem}>+</button>
                 </div>
               </li>
             </ul>

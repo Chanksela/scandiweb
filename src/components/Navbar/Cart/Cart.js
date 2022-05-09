@@ -12,6 +12,8 @@ export default class Cart extends Component {
         {this.props.cart && (
           <div className="dropdown-cart">
             <CartItem
+              increaseItem={this.props.increaseItem}
+              decreaseItem={this.props.decreaseItem}
               itemID={this.props.itemID}
               clearCart={this.props.clearCart}
               itemsArray={this.props.itemsArray}

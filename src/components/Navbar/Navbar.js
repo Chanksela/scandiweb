@@ -35,6 +35,8 @@ export default class Navbar extends Component {
             <button>Currency</button>
           </div>
           <Cart
+            increaseItem={this.props.increaseItem}
+            decreaseItem={this.props.decreaseItem}
             clearCart={this.props.clearCart}
             testArray={this.props.testArray}
             itemID={this.props.itemID}
