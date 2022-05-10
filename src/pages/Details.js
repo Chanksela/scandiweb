@@ -34,8 +34,8 @@ class Details extends Component {
                   );
                 })}
                 <p>
-                  {product.prices[0].amount}
-                  {product.prices[0].currency.symbol}
+                  {this.props.currency}
+                  {product.prices[this.props.amount].amount}
                 </p>
                 <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
                 <button

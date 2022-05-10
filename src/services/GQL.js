@@ -47,5 +47,15 @@ const DETAILS = gql`
     }
   }
 `;
-const exports = { NAVBAR, PRODUCTS, DETAILS };
+
+// Currencies from GQL
+const CURRENCIES = gql`
+  query Query {
+    currencies {
+      label
+      symbol
+    }
+  }
+`;
+const exports = { NAVBAR, PRODUCTS, DETAILS, CURRENCIES };
 export default exports;

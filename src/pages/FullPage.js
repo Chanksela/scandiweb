@@ -7,7 +7,12 @@ export default class All extends Component {
     return (
       <div>
         <div>
-          <ProductCard gql={GQL.PRODUCTS} category={this.props.categories} />
+          <ProductCard
+            amount={this.props.amount}
+            gql={GQL.PRODUCTS}
+            category={this.props.categories}
+            currency={this.props.currency}
+          />
         </div>
       </div>
     );

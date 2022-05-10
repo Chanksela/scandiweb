@@ -15,8 +15,9 @@ export default class CartItem extends Component {
                   style={{ width: "50px" }}
                 />
                 <p>
-                  {product.prices[0].amount * this.props.counter}
-                  {product.prices[0].currency.symbol}
+                  {product.prices[this.props.amount].amount *
+                    this.props.counter}
+                  {this.props.currency}
                 </p>
                 <div>
                   <button onClick={this.props.decreaseItem}>-</button>

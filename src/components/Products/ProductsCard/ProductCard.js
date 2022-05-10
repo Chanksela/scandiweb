@@ -3,6 +3,16 @@ import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 export default class ProductCard extends Component {
+  constructor() {
+    super();
+    this.state = { test: [] };
+  }
+  // componentDidMount() {
+  //   console.log("componentDidMount");
+  // }
+  // componentDidUpdate() {
+  //   console.log("componentDidUpdate");
+  // }
   render() {
     return (
       <div className="main-container">
@@ -14,6 +24,7 @@ export default class ProductCard extends Component {
             if (error) return `Error ${error.message}`;
             if (loading) return loading;
             const { category } = data;
+
             return category.products.map((info) => (
               <div key={info.id} className="items-container">
                 <Link to={`/details/${info.id}`}>
@@ -24,11 +35,10 @@ export default class ProductCard extends Component {
                     style={{ width: "75px", height: "75px" }}
                   />
                 </Link>
-
                 <p>{info.name}</p>
                 <p>
-                  {info.prices[0].amount}
-                  {info.prices[0].currency.symbol}
+                  {this.props.currency}
+                  {info.prices[this.props.amount].amount}
                 </p>
               </div>
             ));

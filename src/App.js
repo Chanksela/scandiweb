@@ -20,7 +20,26 @@ class App extends Component {
       addedItem: "",
       counter: 1,
       categories: "",
+      currency: "$",
+      amount: 0,
+      cart: false,
     };
+  }
+  // handleCart
+  handleCart() {
+    console.log("clicked");
+    this.setState((curState) => {
+      console.log(curState);
+      return { cart: !curState.cart };
+    });
+  }
+  // function for gettin currency and relevant price
+  currencyChange(arg1, arg2) {
+    this.setState({ currency: arg1.target.value }, () => {
+      this.setState({
+        amount: arg2.findIndex((x) => x.symbol === this.state.currency),
+      });
+    });
   }
   // get item id from details page and add it to the itemsArray
   addItem(arg1, arg2) {
@@ -70,29 +89,55 @@ class App extends Component {
         <ApolloProvider client={client}>
           <BrowserRouter>
             <Navbar
-              increaseItem={this.increaseItem.bind(this)}
-              decreaseItem={this.decreaseItem.bind(this)}
-              clearCart={this.clearCart.bind(this)}
+              // states
+              cart={this.state.cart}
+              amount={this.state.amount}
+              currency={this.state.currency}
               itemsArray={this.state.itemsArray}
               itemID={this.state.addedItem}
               counter={this.state.counter}
+              // functions
+              handleCart={this.handleCart.bind(this)}
+              currencyChange={this.currencyChange.bind(this)}
+              increaseItem={this.increaseItem.bind(this)}
+              decreaseItem={this.decreaseItem.bind(this)}
+              clearCart={this.clearCart.bind(this)}
               selectCategory={this.selectCategory.bind(this)}
               cartArray={this.cartArray.bind(this)}
             />
             <Routes>
               <Route
                 path="/"
-                element={<FullPage categories={this.state.categories} />}
+                element={
+                  <FullPage
+                    // states
+                    amount={this.state.amount}
+                    categories={this.state.categories}
+                    currency={this.state.currency}
+                  />
+                }
               />
               <Route
                 path="/details/:id"
-                element={<Details addItem={this.addItem.bind(this)} />}
+                element={
+                  <Details
+                    // states
+                    amount={this.state.amount}
+                    currency={this.state.currency}
+                    // functions
+                    addItem={this.addItem.bind(this)}
+                  />
+                }
               />
               <Route
                 path="/cartitems"
                 element={
                   <CartList
+                    // states
+                    amount={this.state.amount}
+                    currency={this.state.currency}
                     itemsArray={this.state.itemsArray}
+                    // functions
                     clearCart={this.clearCart.bind(this)}
                   />
                 }

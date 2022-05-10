@@ -2,23 +2,23 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 import Links from "./Links/Links";
-
+import Currency from "./Currency/Currency";
+import Cart from "./Cart/Cart";
 import "./Navbar.css";
 
-import Cart from "./Cart/Cart";
-
 export default class Navbar extends Component {
-  constructor() {
-    super();
-    this.state = { cart: false };
-  }
-  handleCart() {
-    console.log("clicked");
-    this.setState((curState) => {
-      console.log(curState);
-      return { cart: !curState.cart };
-    });
-  }
+  // constructor() {
+  //   super();
+  //   this.state = { cart: false, test: "" };
+  // }
+
+  // handleCart() {
+  //   console.log("clicked");
+  //   this.setState((curState) => {
+  //     console.log(curState);
+  //     return { cart: !curState.cart };
+  //   });
+  // }
 
   render() {
     return (
@@ -32,20 +32,25 @@ export default class Navbar extends Component {
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">
-            <button>Currency</button>
+            <Currency currencyChange={this.props.currencyChange} />
           </div>
           <Cart
-            increaseItem={this.props.increaseItem}
-            decreaseItem={this.props.decreaseItem}
-            clearCart={this.props.clearCart}
+            // states
+
             testArray={this.props.testArray}
             itemID={this.props.itemID}
             itemsArray={this.props.itemsArray}
-            handleCart={this.handleCart.bind(this)}
-            cart={this.state.cart}
+            cart={this.props.cart}
             counter={this.props.counter}
-            cartArray={this.props.cartArray}
             test={this.props.test}
+            currency={this.props.currency}
+            amount={this.props.amount}
+            // functions
+            increaseItem={this.props.increaseItem}
+            decreaseItem={this.props.decreaseItem}
+            clearCart={this.props.clearCart}
+            cartArray={this.props.cartArray}
+            handleCart={this.props.handleCart}
           />
         </div>
       </div>

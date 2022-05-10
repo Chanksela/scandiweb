@@ -12,14 +12,18 @@ export default class Cart extends Component {
         {this.props.cart && (
           <div className="dropdown-cart">
             <CartItem
-              increaseItem={this.props.increaseItem}
-              decreaseItem={this.props.decreaseItem}
+              // states
+              amount={this.props.amount}
+              currency={this.props.currency}
               itemID={this.props.itemID}
-              clearCart={this.props.clearCart}
               itemsArray={this.props.itemsArray}
               counter={this.props.counter}
-              cartArray={this.props.cartArray}
               test={this.props.test}
+              // functions
+              increaseItem={this.props.increaseItem}
+              decreaseItem={this.props.decreaseItem}
+              clearCart={this.props.clearCart}
+              cartArray={this.props.cartArray}
             />
             <Link to={"/cartitems"}>Shop</Link>
           </div>

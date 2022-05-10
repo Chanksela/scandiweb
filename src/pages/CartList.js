@@ -16,8 +16,8 @@ export default class CartList extends Component {
                       style={{ width: "50px" }}
                     />
                     <p>
-                      {product.prices[0].amount}
-                      {product.prices[0].currency.symbol}
+                      {this.props.currency}
+                      {product.prices[this.props.amount].amount}
                     </p>
                     <div>
                       <button>-</button>
