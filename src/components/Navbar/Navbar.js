@@ -36,7 +36,6 @@ export default class Navbar extends Component {
           </div>
           <Cart
             // states
-
             testArray={this.props.testArray}
             itemID={this.props.itemID}
             itemsArray={this.props.itemsArray}
@@ -46,10 +45,10 @@ export default class Navbar extends Component {
             currency={this.props.currency}
             amount={this.props.amount}
             // functions
+            addItem={this.props.addItem}
             increaseItem={this.props.increaseItem}
             decreaseItem={this.props.decreaseItem}
             clearCart={this.props.clearCart}
-            cartArray={this.props.cartArray}
             handleCart={this.props.handleCart}
           />
         </div>

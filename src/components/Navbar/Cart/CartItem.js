@@ -1,28 +1,43 @@
 import React, { Component } from "react";
 
 export default class CartItem extends Component {
+  constructor() {
+    super();
+    this.state = { itemQty: 0 };
+  }
   render() {
     return (
       <div>
+        {console.log(this.props.itemsArray.name)}
         {this.props.itemsArray.length > 0 &&
           this.props.itemsArray.map((product, index) => (
             <ul key={index}>
               <li>
-                <p>{product.name}</p>
                 <img
                   alt="item-img"
                   src={product.gallery[0]}
                   style={{ width: "50px" }}
                 />
                 <p>
-                  {product.prices[this.props.amount].amount *
-                    this.props.counter}
+                  {product.prices[this.props.amount].amount * product.qty}
                   {this.props.currency}
                 </p>
                 <div>
-                  <button onClick={this.props.decreaseItem}>-</button>
-                  <p>{this.props.counter}</p>
-                  <button onClick={this.props.increaseItem}>+</button>
+                  <button
+                    id={product.id}
+                    onClick={(e) =>
+                      this.props.decreaseItem(e.target.id, product)
+                    }
+                  >
+                    -
+                  </button>
+                  <p>{product.qty}</p>
+                  <button
+                    id={product.id}
+                    onClick={(e) => this.props.addItem(e.target.id, product)}
+                  >
+                    +
+                  </button>
                 </div>
               </li>
             </ul>

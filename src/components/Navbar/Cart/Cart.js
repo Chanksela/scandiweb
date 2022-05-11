@@ -21,9 +21,9 @@ export default class Cart extends Component {
               test={this.props.test}
               // functions
               increaseItem={this.props.increaseItem}
+              addItem={this.props.addItem}
               decreaseItem={this.props.decreaseItem}
               clearCart={this.props.clearCart}
-              cartArray={this.props.cartArray}
             />
             <Link to={"/cartitems"}>Shop</Link>
           </div>

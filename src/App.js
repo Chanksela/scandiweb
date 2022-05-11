@@ -25,11 +25,55 @@ class App extends Component {
       cart: false,
     };
   }
+  // get item id from details page and add it to the itemsArray
+  addItem(arg1, arg2) {
+    this.setState({ addedItem: arg1 });
+    const exist =
+      this.state.itemsArray.length > 0 &&
+      this.state.itemsArray.find((x) => x.id === arg2.id);
+    console.log(exist);
+    if (exist) {
+      this.setState({ counter: this.state.counter + 1 });
+      this.setState({
+        itemsArray: this.state.itemsArray.map((x) =>
+          x.id === arg2.id ? { ...exist, qty: exist.qty + 1 } : x
+        ),
+      });
+    } else {
+      this.setState({
+        itemsArray: [...this.state.itemsArray, { ...arg2, qty: 1 }],
+      });
+    }
+    console.log(this.state.itemsArray);
+    console.log(exist);
+  }
+  // functions to decrease amount of items in cart by 1
+  decreaseItem(arg1, arg2) {
+    this.setState({ addedItem: arg1 });
+    const exist =
+      this.state.itemsArray.length > 0 &&
+      this.state.itemsArray.find((x) => x.id === arg2.id);
+    console.log(exist);
+    if (exist) {
+      this.setState({ counter: this.state.counter + 1 });
+      this.setState({
+        itemsArray: this.state.itemsArray.map((x) =>
+          x.id === arg2.id ? { ...exist, qty: exist.qty - 1 } : x
+        ),
+      });
+    } else {
+      this.setState({
+        itemsArray: [...this.state.itemsArray, { ...arg2, qty: 1 }],
+      });
+    }
+
+    console.log(this.state.itemsArray);
+    console.log(exist);
+  }
   // handleCart
   handleCart() {
     console.log("clicked");
     this.setState((curState) => {
-      console.log(curState);
       return { cart: !curState.cart };
     });
   }
@@ -41,51 +85,20 @@ class App extends Component {
       });
     });
   }
-  // get item id from details page and add it to the itemsArray
-  addItem(arg1, arg2) {
-    this.setState({ addedItem: arg1 });
-    const exist =
-      this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((x) => x.id === arg2.id);
-    console.log(exist);
-    if (exist) {
-      this.setState({ counter: this.state.counter + 1 });
-      console.log(this.state.counter);
-    } else {
-      this.state.itemsArray.push(arg2);
-    }
 
-    this.state.itemsArray.find((x) => x.id === arg1 && console.log("it works"));
-  }
   // get category from navbar links to display relevant products
   selectCategory(arg) {
     this.setState({ categories: arg });
   }
-  // create an array of added items
-  cartArray(arg) {
-    this.state.itemsArray.push(arg);
-    console.log(this.state.itemsArray);
-    // this.setState({ addedItem: "" });
-  }
+
   // clear all items from cart
   clearCart() {
     this.setState({ itemsArray: [], counter: 1 });
   }
-  // functions to increase amount of items in cart by 1
-  increaseItem() {
-    this.setState({ counter: this.state.counter + 1 });
-  }
-  // functions to decrease amount of items in cart by 1
-  decreaseItem() {
-    console.log(this.state.counter);
-    if (this.state.counter === 1) {
-      console.log("it's zero");
-    }
-    this.setState({ counter: this.state.counter - 1 });
-  }
+
   render() {
     return (
-      <ProductProvider value={{ ...this.state, addItem: this.addItem }}>
+      <ProductProvider>
         <ApolloProvider client={client}>
           <BrowserRouter>
             <Navbar
@@ -96,14 +109,14 @@ class App extends Component {
               itemsArray={this.state.itemsArray}
               itemID={this.state.addedItem}
               counter={this.state.counter}
+              qty={this.state.qty}
               // functions
+              addItem={this.addItem.bind(this)}
               handleCart={this.handleCart.bind(this)}
               currencyChange={this.currencyChange.bind(this)}
-              increaseItem={this.increaseItem.bind(this)}
               decreaseItem={this.decreaseItem.bind(this)}
               clearCart={this.clearCart.bind(this)}
               selectCategory={this.selectCategory.bind(this)}
-              cartArray={this.cartArray.bind(this)}
             />
             <Routes>
               <Route

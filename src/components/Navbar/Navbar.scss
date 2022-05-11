@@ -1,8 +1,11 @@
 @import "../../styles/config";
 .navbar {
+  height: 5vh;
+  width: auto;
+  background-color: transparent;
   display: flex;
-  background-color: $white;
   justify-content: space-between;
+  align-items: center;
   a {
     text-decoration: none;
     color: $black;
@@ -27,11 +30,30 @@
     flex-direction: row;
     margin-right: 1vw;
     .navbar-currency {
+      .currency-select {
+        width: 2.5vw;
+        border: none;
+        background-color: transparent;
+        height: 5vh;
+        text-align: center;
+      }
       margin-right: 1vw;
+      border: none solid transparent;
+      border-color: #fff transparent transparent transparent;
     }
     .navbar-cart {
       position: relative;
       color: $black;
+      button {
+        width: 5vw;
+        height: 5vh;
+        background: none;
+        border: none;
+        background-color: transparent;
+        &:hover {
+          cursor: pointer;
+        }
+      }
       .dropdown-cart {
         position: absolute;
         right: 0;

@@ -2,8 +2,15 @@ import React, { Component } from "react";
 import services from "../services/services";
 import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
-
+import "./Details.css";
 class Details extends Component {
+  constructor() {
+    super();
+    this.state = { selectedImg: 0 };
+  }
+  onSelect(arg) {
+    this.setState({ selectedImg: arg.target.id });
+  }
   render() {
     const id = this.props.params.id;
 
@@ -17,22 +24,30 @@ class Details extends Component {
             const { product } = data;
             const images = product.gallery.map((img) => img);
             return (
-              <div>
+              <div className="main">
                 <h2>{product.name}</h2>
                 <h4>{product.brand}</h4>
-                {images.map((img, index) => {
-                  return (
-                    <div key={index}>
-                      {" "}
-                      <img
-                        className="images"
-                        alt="img"
-                        src={img}
-                        style={{ width: "50px" }}
-                      />
-                    </div>
-                  );
-                })}
+                <div className="img-gallery">
+                  <img
+                    className="img-main"
+                    src={images[this.state.selectedImg]}
+                  />
+                  <div className="img-picker">
+                    {images.map((img, index) => {
+                      return (
+                        <div key={index}>
+                          <img
+                            id={index}
+                            onClick={(e) => this.onSelect(e)}
+                            className="imgs"
+                            alt="img"
+                            src={img}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
                 <p>
                   {this.props.currency}
                   {product.prices[this.props.amount].amount}

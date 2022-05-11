@@ -14,6 +14,7 @@ export default class Navbar extends Component {
 
           return (
             <select
+              className="currency-select"
               name="currencies"
               id="currency"
               onChange={(e) => this.props.currencyChange(e, currencies)}

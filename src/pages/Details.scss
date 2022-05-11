@@ -1,0 +1,16 @@
+.img-gallery {
+  .img-main {
+    height: 60%;
+    width: auto;
+  }
+  .img-picker {
+    display: flex;
+    flex-direction: row;
+    .imgs {
+      width: 50px;
+    }
+    .imgs:hover {
+      cursor: pointer;
+    }
+  }
+}
