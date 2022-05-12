@@ -31,7 +31,7 @@ class App extends Component {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
-    console.log(exist);
+    // console.log(exist);
     if (exist) {
       this.setState({ counter: this.state.counter + 1 });
       this.setState({
@@ -44,8 +44,8 @@ class App extends Component {
         itemsArray: [...this.state.itemsArray, { ...arg2, qty: 1 }],
       });
     }
-    console.log(this.state.itemsArray);
-    console.log(exist);
+    // console.log(this.state.itemsArray);
+    // console.log(exist);
   }
   // functions to decrease amount of items in cart by 1
   decreaseItem(arg1, arg2) {
@@ -53,26 +53,33 @@ class App extends Component {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
-    console.log(exist);
+    // console.log(exist);
+
     if (exist) {
-      this.setState({ counter: this.state.counter + 1 });
+      console.log(exist.qty);
+
       this.setState({
-        itemsArray: this.state.itemsArray.map((x) =>
-          x.id === arg2.id ? { ...exist, qty: exist.qty - 1 } : x
-        ),
+        itemsArray: this.state.itemsArray.map((x) => {
+          if (exist.qty > 0) {
+            return x.id === arg2.id ? { ...exist, qty: exist.qty - 1 } : x;
+          } else {
+            console.log("Test");
+          }
+        }),
       });
-    } else {
-      this.setState({
-        itemsArray: [...this.state.itemsArray, { ...arg2, qty: 1 }],
-      });
+      if (exist.qty < 2) {
+        const filteredArray = this.state.itemsArray.filter(
+          (x) => x.id !== arg2.id
+        );
+        console.log("Zero", filteredArray, exist);
+      }
     }
 
-    console.log(this.state.itemsArray);
-    console.log(exist);
+    // console.log(this.state.itemsArray);
+    // console.log(exist);
   }
   // handleCart
   handleCart() {
-    console.log("clicked");
     this.setState((curState) => {
       return { cart: !curState.cart };
     });
@@ -98,7 +105,7 @@ class App extends Component {
 
   render() {
     return (
-      <ProductProvider>
+      <ProductProvider value="test">
         <ApolloProvider client={client}>
           <BrowserRouter>
             <Navbar
@@ -152,6 +159,8 @@ class App extends Component {
                     itemsArray={this.state.itemsArray}
                     // functions
                     clearCart={this.clearCart.bind(this)}
+                    addItem={this.addItem.bind(this)}
+                    decreaseItem={this.decreaseItem.bind(this)}
                   />
                 }
               />

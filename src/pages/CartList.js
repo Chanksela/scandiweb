@@ -16,12 +16,25 @@ export default class CartList extends Component {
                       style={{ width: "50px" }}
                     />
                     <p>
+                      {product.prices[this.props.amount].amount * product.qty}
                       {this.props.currency}
-                      {product.prices[this.props.amount].amount}
                     </p>
                     <div>
-                      <button>-</button>
-                      <button onClick={() => this.props.test(product)}>
+                      <button
+                        id={product.id}
+                        onClick={(e) =>
+                          this.props.decreaseItem(e.target.id, product)
+                        }
+                      >
+                        -
+                      </button>
+                      <p>{product.qty}</p>
+                      <button
+                        id={product.id}
+                        onClick={(e) =>
+                          this.props.addItem(e.target.id, product)
+                        }
+                      >
                         +
                       </button>
                     </div>
