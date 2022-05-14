@@ -15,8 +15,7 @@ class Details extends Component {
     const id = this.props.params.id;
 
     return (
-      <div>
-        <h3>ID: {this.props.id}</h3>
+      <div className="main-container">
         <Query query={GQL.DETAILS} variables={{ productId: id }}>
           {({ error, loading, data }) => {
             if (error) return `Error ${error.message}`;
@@ -24,7 +23,7 @@ class Details extends Component {
             const { product } = data;
             const images = product.gallery.map((img) => img);
             return (
-              <div className="main">
+              <div className="content">
                 <h2>{product.name}</h2>
                 <h4>{product.brand}</h4>
                 <div className="img-gallery">

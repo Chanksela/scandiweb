@@ -1,1 +1,1 @@
-.main-container{border:1px salmon solid;width:100vw;height:100vh;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.main-container .items-container{margin-top:0;width:10vw;height:30vh;border:1px limegreen solid;padding:10px 50px}
+.main-container{width:100vw;height:100vh;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.main-container .items-container{margin-top:0;width:10vw;height:30vh;border:1px limegreen solid;padding:10px 50px}

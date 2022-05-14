@@ -28,7 +28,11 @@ export default class Navbar extends Component {
           <Links selectCategory={this.props.selectCategory} />
         </div>
         <div className="navbar-logo">
-          <Link to="/">Logo</Link>
+          {/* აუცილებელი არ არის, 
+        წაშლა და უბრალოდ ლოგოთი ჩანაცვლება მგონი უკეთესია */}
+          <Link to="" onClick={() => this.props.selectCategory("all")}>
+            Logo
+          </Link>
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">

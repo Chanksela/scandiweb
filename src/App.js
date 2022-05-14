@@ -19,7 +19,7 @@ class App extends Component {
       itemsArray: [],
       addedItem: "",
       counter: 1,
-      categories: "",
+      categories: "all",
       currency: "$",
       amount: 0,
       cart: false,
@@ -31,7 +31,7 @@ class App extends Component {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
-    // console.log(exist);
+
     if (exist) {
       this.setState({ counter: this.state.counter + 1 });
       this.setState({
@@ -44,8 +44,6 @@ class App extends Component {
         itemsArray: [...this.state.itemsArray, { ...arg2, qty: 1 }],
       });
     }
-    // console.log(this.state.itemsArray);
-    // console.log(exist);
   }
   // functions to decrease amount of items in cart by 1
   decreaseItem(arg1, arg2) {
@@ -53,30 +51,18 @@ class App extends Component {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
-    // console.log(exist);
 
     if (exist) {
-      console.log(exist.qty);
-
-      this.setState({
-        itemsArray: this.state.itemsArray.map((x) => {
-          if (exist.qty > 0) {
-            return x.id === arg2.id ? { ...exist, qty: exist.qty - 1 } : x;
-          } else {
-            console.log("Test");
-          }
-        }),
-      });
-      if (exist.qty < 2) {
-        const filteredArray = this.state.itemsArray.filter(
-          (x) => x.id !== arg2.id
-        );
-        console.log("Zero", filteredArray, exist);
-      }
+      exist.qty > 1
+        ? this.setState({
+            itemsArray: this.state.itemsArray.map((x) =>
+              x.id === arg2.id ? { ...exist, qty: exist.qty - 1 } : x
+            ),
+          })
+        : this.setState({
+            itemsArray: this.state.itemsArray.filter((x) => x.id !== arg1),
+          });
     }
-
-    // console.log(this.state.itemsArray);
-    // console.log(exist);
   }
   // handleCart
   handleCart() {
