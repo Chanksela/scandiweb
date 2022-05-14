@@ -32,11 +32,22 @@ const PRODUCTS = gql`
 const DETAILS = gql`
   query Query($productId: String!) {
     product(id: $productId) {
+      category
       id
       name
       gallery
       description
       brand
+      attributes {
+        id
+        name
+        type
+        items {
+          displayValue
+          value
+          id
+        }
+      }
       prices {
         currency {
           label

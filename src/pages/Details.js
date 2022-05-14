@@ -24,6 +24,9 @@ class Details extends Component {
             const images = product.gallery.map((img) => img);
             return (
               <div className="content">
+                {console.log(product)}
+                {console.log(product?.attributes)}
+                {console.log(product?.attributes[0]?.items)}
                 <h2>{product.name}</h2>
                 <h4>{product.brand}</h4>
                 <div className="img-gallery">
@@ -47,6 +50,19 @@ class Details extends Component {
                     })}
                   </div>
                 </div>
+                {product.category === "clothes" &&
+                  product?.attributes[0].items.map((size) => size.value)}
+                {product.category === "tech" &&
+                  product.attributes.map((attribute) => {
+                    return (
+                      <div>
+                        {attribute.name}
+                        {attribute.items.map((x) => {
+                          return <p>{x.value}</p>;
+                        })}
+                      </div>
+                    );
+                  })}
                 <p>
                   {this.props.currency}
                   {product.prices[this.props.amount].amount}

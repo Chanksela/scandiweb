@@ -12,6 +12,7 @@ export default class CartItem extends Component {
           ? this.props.itemsArray.map((product, index) => (
               <ul key={index}>
                 {console.log(this.props.itemsArray.length)}
+                {console.log(product)}
                 <li>
                   <img
                     alt="item-img"
