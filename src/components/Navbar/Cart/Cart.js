@@ -25,7 +25,6 @@ export default class Cart extends Component {
               decreaseItem={this.props.decreaseItem}
               clearCart={this.props.clearCart}
             />
-            <Link to={"/cartitems"}>Shop</Link>
           </div>
         )}
       </div>

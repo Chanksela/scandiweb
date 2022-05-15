@@ -1,3 +1,4 @@
+import GQL from "../../../services/GQL";
 import { Component } from "react";
 import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
@@ -17,7 +18,7 @@ export default class ProductCard extends Component {
     return (
       <div className="main-container">
         <Query
-          query={this.props.gql}
+          query={GQL.PRODUCTS}
           variables={{ input: { title: this.props.category } }}
         >
           {({ error, loading, data }) => {

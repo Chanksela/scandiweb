@@ -65,7 +65,7 @@ class App extends Component {
     }
   }
   // handleCart
-  handleCart() {
+  handleCart(arg) {
     this.setState((curState) => {
       return { cart: !curState.cart };
     });
@@ -91,7 +91,7 @@ class App extends Component {
 
   render() {
     return (
-      <ProductProvider value="test">
+      <ProductProvider value={this.state}>
         <ApolloProvider client={client}>
           <BrowserRouter>
             <Navbar

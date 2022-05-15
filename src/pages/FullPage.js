@@ -9,7 +9,6 @@ export default class All extends Component {
         <div>
           <ProductCard
             amount={this.props.amount}
-            gql={GQL.PRODUCTS}
             category={this.props.categories}
             currency={this.props.currency}
           />
