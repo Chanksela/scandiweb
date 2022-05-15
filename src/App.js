@@ -16,18 +16,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      test: this.test,
+      add: this.onAdd,
       itemsArray: [],
       addedItem: "",
       counter: 1,
       categories: "all",
       currency: "$",
       amount: 0,
-      cart: false,
     };
   }
+  test(arg, arg2) {
+    console.log(arg, arg2);
+  }
   // get item id from details page and add it to the itemsArray
-  addItem(arg1, arg2) {
-    this.setState({ addedItem: arg1 });
+  onAdd(arg1, arg2) {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
@@ -46,12 +49,11 @@ class App extends Component {
     }
   }
   // functions to decrease amount of items in cart by 1
-  decreaseItem(arg1, arg2) {
-    this.setState({ addedItem: arg1 });
+  onRemove(arg1, arg2) {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg2.id);
-
+    console.log(arg1, arg2.id);
     if (exist) {
       exist.qty > 1
         ? this.setState({
@@ -60,16 +62,11 @@ class App extends Component {
             ),
           })
         : this.setState({
-            itemsArray: this.state.itemsArray.filter((x) => x.id !== arg1),
+            itemsArray: this.state.itemsArray.filter((x) => x.id !== arg2.id),
           });
     }
   }
-  // handleCart
-  handleCart(arg) {
-    this.setState((curState) => {
-      return { cart: !curState.cart };
-    });
-  }
+
   // function for gettin currency and relevant price
   currencyChange(arg1, arg2) {
     this.setState({ currency: arg1.target.value }, () => {
@@ -96,18 +93,11 @@ class App extends Component {
           <BrowserRouter>
             <Navbar
               // states
-              cart={this.state.cart}
-              amount={this.state.amount}
-              currency={this.state.currency}
               itemsArray={this.state.itemsArray}
-              itemID={this.state.addedItem}
-              counter={this.state.counter}
-              qty={this.state.qty}
               // functions
-              addItem={this.addItem.bind(this)}
-              handleCart={this.handleCart.bind(this)}
+              onAdd={this.onAdd.bind(this)}
               currencyChange={this.currencyChange.bind(this)}
-              decreaseItem={this.decreaseItem.bind(this)}
+              onRemove={this.onRemove.bind(this)}
               clearCart={this.clearCart.bind(this)}
               selectCategory={this.selectCategory.bind(this)}
             />
@@ -131,7 +121,7 @@ class App extends Component {
                     amount={this.state.amount}
                     currency={this.state.currency}
                     // functions
-                    addItem={this.addItem.bind(this)}
+                    onAdd={this.onAdd.bind(this)}
                   />
                 }
               />
@@ -145,8 +135,8 @@ class App extends Component {
                     itemsArray={this.state.itemsArray}
                     // functions
                     clearCart={this.clearCart.bind(this)}
-                    addItem={this.addItem.bind(this)}
-                    decreaseItem={this.decreaseItem.bind(this)}
+                    onAdd={this.onAdd.bind(this)}
+                    onRemove={this.onRemove.bind(this)}
                   />
                 }
               />

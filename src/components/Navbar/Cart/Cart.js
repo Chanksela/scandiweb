@@ -1,33 +1,38 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { ProductConsumer } from "../../../services/contex";
 
 import CartItem from "./CartItem";
 export default class Cart extends Component {
+  constructor() {
+    super();
+    this.state = { test: false };
+  }
+  handleTest() {
+    this.setState((curState) => {
+      return { test: !curState.test };
+    });
+  }
   render() {
     return (
-      <div className="navbar-cart">
-        <button onClick={this.props.handleCart}>
-          Cart {this.props.itemsArray.length}
-        </button>
-        {this.props.cart && (
-          <div className="dropdown-cart">
-            <CartItem
-              // states
-              amount={this.props.amount}
-              currency={this.props.currency}
-              itemID={this.props.itemID}
-              itemsArray={this.props.itemsArray}
-              counter={this.props.counter}
-              test={this.props.test}
-              // functions
-              increaseItem={this.props.increaseItem}
-              addItem={this.props.addItem}
-              decreaseItem={this.props.decreaseItem}
-              clearCart={this.props.clearCart}
-            />
+      <ProductConsumer>
+        {(state) => (
+          <div className="navbar-cart">
+            <button onClick={() => this.handleTest()}>
+              Cart {state.itemsArray.length}
+            </button>
+            {this.state.test && (
+              <div className="dropdown-cart">
+                <CartItem
+                  // functions
+                  onAdd={this.props.onAdd}
+                  onRemove={this.props.onRemove}
+                  clearCart={this.props.clearCart}
+                />
+              </div>
+            )}
           </div>
         )}
-      </div>
+      </ProductConsumer>
     );
   }
 }

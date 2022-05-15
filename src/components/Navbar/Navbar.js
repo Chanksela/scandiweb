@@ -7,19 +7,6 @@ import Cart from "./Cart/Cart";
 import "./Navbar.css";
 
 export default class Navbar extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = { cart: false, test: "" };
-  // }
-
-  // handleCart() {
-  //   console.log("clicked");
-  //   this.setState((curState) => {
-  //     console.log(curState);
-  //     return { cart: !curState.cart };
-  //   });
-  // }
-
   render() {
     return (
       <div className="navbar">
@@ -40,18 +27,11 @@ export default class Navbar extends Component {
           </div>
           <Cart
             // states
-            testArray={this.props.testArray}
-            itemID={this.props.itemID}
             itemsArray={this.props.itemsArray}
-            cart={this.props.cart}
-            counter={this.props.counter}
-            test={this.props.test}
-            currency={this.props.currency}
-            amount={this.props.amount}
             // functions
             addItem={this.props.addItem}
-            increaseItem={this.props.increaseItem}
-            decreaseItem={this.props.decreaseItem}
+            onAdd={this.props.onAdd}
+            onRemove={this.props.onRemove}
             clearCart={this.props.clearCart}
             handleCart={this.props.handleCart}
           />
