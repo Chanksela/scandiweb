@@ -5,7 +5,7 @@ import Details from "./pages/Details";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Navbar from "./components/Navbar/Navbar";
-import CartList from "./pages/CartList";
+import CartPage from "./pages/CartPage";
 import { ProductProvider } from "./services/contex";
 
 const client = new ApolloClient({
@@ -16,8 +16,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      test: this.test,
-      add: this.onAdd,
       itemsArray: [],
       addedItem: "",
       counter: 1,
@@ -26,14 +24,12 @@ class App extends Component {
       amount: 0,
     };
   }
-  test(arg, arg2) {
-    console.log(arg, arg2);
-  }
+
   // get item id from details page and add it to the itemsArray
   onAdd(arg1, arg2) {
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((x) => x.id === arg2.id);
+      this.state.itemsArray.find((x) => x.id === arg1);
 
     if (exist) {
       this.setState({ counter: this.state.counter + 1 });
@@ -52,8 +48,7 @@ class App extends Component {
   onRemove(arg1, arg2) {
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((x) => x.id === arg2.id);
-    console.log(arg1, arg2.id);
+      this.state.itemsArray.find((x) => x.id === arg1);
     if (exist) {
       exist.qty > 1
         ? this.setState({
@@ -92,8 +87,6 @@ class App extends Component {
         <ApolloProvider client={client}>
           <BrowserRouter>
             <Navbar
-              // states
-              itemsArray={this.state.itemsArray}
               // functions
               onAdd={this.onAdd.bind(this)}
               currencyChange={this.currencyChange.bind(this)}
@@ -102,17 +95,7 @@ class App extends Component {
               selectCategory={this.selectCategory.bind(this)}
             />
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <FullPage
-                    // states
-                    amount={this.state.amount}
-                    categories={this.state.categories}
-                    currency={this.state.currency}
-                  />
-                }
-              />
+              <Route path="/" element={<FullPage />} />
               <Route
                 path="/details/:id"
                 element={
@@ -128,7 +111,7 @@ class App extends Component {
               <Route
                 path="/cartitems"
                 element={
-                  <CartList
+                  <CartPage
                     // states
                     amount={this.state.amount}
                     currency={this.state.currency}

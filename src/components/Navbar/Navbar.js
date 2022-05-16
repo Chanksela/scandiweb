@@ -23,11 +23,12 @@ export default class Navbar extends Component {
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">
-            <Currency currencyChange={this.props.currencyChange} />
+            <Currency
+              // function
+              currencyChange={this.props.currencyChange}
+            />
           </div>
           <Cart
-            // states
-            itemsArray={this.props.itemsArray}
             // functions
             addItem={this.props.addItem}
             onAdd={this.props.onAdd}

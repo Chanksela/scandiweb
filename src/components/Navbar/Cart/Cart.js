@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ProductConsumer } from "../../../services/contex";
 
-import CartItem from "./CartItem";
+import CartItem from "./CartItems";
 export default class Cart extends Component {
   constructor() {
     super();

@@ -29,6 +29,7 @@ class Details extends Component {
                 <h4>{product.brand}</h4>
                 <div className="img-gallery">
                   <img
+                    alt="main-img"
                     className="img-main"
                     src={images[this.state.selectedImg]}
                   />

@@ -8,7 +8,6 @@ export default class CartItem extends Component {
         {(state) => {
           return state.itemsArray.length > 0 ? (
             <div>
-              {console.log(state.add)}
               {state.itemsArray.map((product, index) => (
                 <div key={index}>
                   <ul>
@@ -34,7 +33,9 @@ export default class CartItem extends Component {
                         <p>{product.qty}</p>
                         <button
                           id={product.id}
-                          onClick={(e) => state.add(e.target.id, product)}
+                          onClick={(e) =>
+                            this.props.onAdd(e.target.id, product)
+                          }
                         >
                           +
                         </button>
