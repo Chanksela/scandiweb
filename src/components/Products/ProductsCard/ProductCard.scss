@@ -1,16 +1,47 @@
 @import "../../../styles/config";
-
-.main-container {
-  width: 100vw;
-  height: 100vh;
+h1 {
   display: flex;
+  justify-content: flex-start;
+  margin: 0 15px;
+  text-transform: capitalize;
+}
+.main-container {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  align-content: flex-start;
 
   .items-container {
-    margin-top: 0;
-    width: 10vw;
-    height: 30vh;
-    border: 1px limegreen solid;
-    padding: 10px 50px;
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      height: 100%;
+      width: 50%;
+    }
+  }
+  .product-specifics {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: $black;
+      transition: 1s;
+      transition-timing-function: ease;
+      &:hover {
+        font-size: large;
+        font-weight: bolder;
+      }
+    }
+    p {
+      margin: 0 15px;
+    }
   }
 }

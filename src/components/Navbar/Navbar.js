@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 
 import Links from "./Links/Links";
 import Currency from "./Currency/Currency";
@@ -11,15 +10,14 @@ export default class Navbar extends Component {
     return (
       <div className="navbar">
         <div className="navbar-categories">
-          {" "}
           <Links selectCategory={this.props.selectCategory} />
         </div>
         <div className="navbar-logo">
           {/* აუცილებელი არ არის, 
         წაშლა და უბრალოდ ლოგოთი ჩანაცვლება მგონი უკეთესია */}
-          <Link to="" onClick={() => this.props.selectCategory("all")}>
-            Logo
-          </Link>
+          <h3 to="" onClick={() => this.props.selectCategory("all")}>
+            Scandiweb
+          </h3>
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">

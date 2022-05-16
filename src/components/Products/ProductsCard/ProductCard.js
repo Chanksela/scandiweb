@@ -14,36 +14,36 @@ export default class ProductCard extends Component {
       <ProductConsumer>
         {(state) => {
           return (
-            <div className="main-container">
-              <Query
-                query={GQL.PRODUCTS}
-                variables={{ input: { title: state.categories } }}
-              >
-                {({ error, loading, data }) => {
-                  if (error) return `Error ${error.message}`;
-                  if (loading) return loading;
-                  const { category } = data;
+            <Query
+              query={GQL.PRODUCTS}
+              variables={{ input: { title: state.categories } }}
+            >
+              {({ error, loading, data }) => {
+                if (error) return `Error ${error.message}`;
+                if (loading) return loading;
+                const { category } = data;
 
-                  return category.products.map((info) => (
-                    <div key={info.id} className="items-container">
-                      <Link to={`/details/${info.id}`}>
-                        {" "}
-                        <img
-                          alt="product-img"
-                          src={info.gallery[0]}
-                          style={{ width: "75px", height: "75px" }}
-                        />
-                      </Link>
-                      <p>{info.name}</p>
-                      <p>
-                        {state.currency}
-                        {info.prices[state.amount].amount}
-                      </p>
+                return (
+                  <>
+                    <h1>{state.categories}</h1>
+                    <div className="main-container">
+                      {category.products.map((info) => (
+                        <div key={info.id} className="items-container">
+                          <img alt="product-img" src={info.gallery[0]} />
+                          <div className="product-specifics">
+                            <Link to={`/details/${info.id}`}>{info.name}</Link>
+                            <p>
+                              {state.currency}
+                              {info.prices[state.amount].amount}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ));
-                }}
-              </Query>
-            </div>
+                  </>
+                );
+              }}
+            </Query>
           );
         }}
       </ProductConsumer>
