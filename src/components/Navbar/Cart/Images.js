@@ -48,8 +48,7 @@ export default class CartItem extends Component {
               Prev
             </button>
             <p>
-              {this.props.product.prices[this.props.state.amount].amount *
-                this.props.product.qty}
+              {this.props.product.prices[this.props.state.amount].amount}
               {this.props.state.currency}
             </p>
             <div>
@@ -61,13 +60,7 @@ export default class CartItem extends Component {
               >
                 -
               </button>
-              {console.log(
-                this.props.state.itemsArray
-                  .map((x) => x.prices[this.props.state.amount].amount * x.qty)
-                  .reduce((cur, item) => {
-                    return cur + item;
-                  }, 0)
-              )}
+
               <p>{this.props.product.qty}</p>
               <button
                 id={this.props.product.id}
