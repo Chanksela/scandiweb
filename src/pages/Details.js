@@ -4,6 +4,7 @@ import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
 import "./Details.css";
 import { ProductConsumer } from "../services/contex";
+
 class Details extends Component {
   constructor() {
     super();
@@ -16,23 +17,16 @@ class Details extends Component {
     const id = this.props.params.id;
 
     return (
-      <div className="main-container">
-        <Query query={GQL.DETAILS} variables={{ productId: id }}>
-          {({ error, loading, data }) => {
-            if (error) return `Error ${error.message}`;
-            if (loading) return loading;
-            const { product } = data;
-            const images = product.gallery.map((img) => img);
-            return (
-              <div className="content">
-                <h2>{product.name}</h2>
-                <h4>{product.brand}</h4>
+      <Query query={GQL.DETAILS} variables={{ productId: id }}>
+        {({ error, loading, data }) => {
+          if (error) return `Error ${error.message}`;
+          if (loading) return loading;
+          const { product } = data;
+          const images = product.gallery.map((img) => img);
+          return (
+            <div className="content">
+              <div className="images">
                 <div className="img-gallery">
-                  <img
-                    alt="main-img"
-                    className="img-main"
-                    src={images[this.state.selectedImg]}
-                  />
                   <div className="img-picker">
                     {images.map((img, index) => {
                       return (
@@ -47,8 +41,17 @@ class Details extends Component {
                         </div>
                       );
                     })}
-                  </div>
+                  </div>{" "}
+                  <img
+                    alt="main-img"
+                    className="img-main"
+                    src={images[this.state.selectedImg]}
+                  />
                 </div>
+              </div>
+              <div className="info">
+                <h2>{product.name}</h2>
+                <h4>{product.brand}</h4>
                 {product.category === "clothes" &&
                   product?.attributes.map((attribute) => {
                     return (
@@ -97,10 +100,10 @@ class Details extends Component {
                   </ProductConsumer>
                 }
               </div>
-            );
-          }}
-        </Query>
-      </div>
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }

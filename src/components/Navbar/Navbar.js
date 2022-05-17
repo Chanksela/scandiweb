@@ -15,9 +15,7 @@ export default class Navbar extends Component {
         <div className="navbar-logo">
           {/* აუცილებელი არ არის, 
         წაშლა და უბრალოდ ლოგოთი ჩანაცვლება მგონი უკეთესია */}
-          <h3 to="" onClick={() => this.props.selectCategory("all")}>
-            Scandiweb
-          </h3>
+          <h3>Scandiweb</h3>
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">

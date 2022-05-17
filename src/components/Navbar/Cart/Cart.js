@@ -5,7 +5,7 @@ import CartItem from "./CartItems";
 export default class Cart extends Component {
   constructor() {
     super();
-    this.state = { test: false };
+    this.state = { qty: 0 };
   }
   handleTest() {
     this.setState((curState) => {
