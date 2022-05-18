@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { ProductConsumer } from "../../../services/contex";
 
-import CartItem from "./CartItems";
+import CartItems from "./CartItems";
 export default class Cart extends Component {
   constructor() {
     super();
-    this.state = { qty: 0, test: false };
+    this.state = { cart: false };
   }
-  handleTest() {
+  handleCart() {
     this.setState((curState) => {
-      return { test: !curState.test };
+      return { cart: !curState.cart };
     });
   }
   render() {
@@ -17,10 +17,10 @@ export default class Cart extends Component {
       <ProductConsumer>
         {(state) => (
           <div className="navbar-cart">
-            <button onClick={() => this.handleTest()}>
-              Cart {state.itemsArray.length}
+            <button onClick={() => this.handleCart()}>
+              Cart {state.totalQty(state)}
             </button>
-            {this.state.test && <CartItem />}
+            {this.state.cart && <CartItems />}
           </div>
         )}
       </ProductConsumer>

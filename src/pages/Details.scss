@@ -35,5 +35,10 @@
   .info {
     width: 40%;
     border: 1px solid indigo;
+    .colors {
+      border: none;
+      width: 20px;
+      height: 20px;
+    }
   }
 }

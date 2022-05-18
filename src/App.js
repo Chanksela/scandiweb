@@ -26,7 +26,17 @@ class App extends Component {
       onRemove: this.onRemove.bind(this),
       clearCart: this.clearCart.bind(this),
       selectCategory: this.selectCategory.bind(this),
+      totalQty: this.totalQty.bind(this),
+      currencyChange: this.currencyChange.bind(this),
     };
+  }
+  // total qty of added items
+  totalQty(arg) {
+    return arg.itemsArray
+      .map((x) => x.qty)
+      .reduce((cur, item) => {
+        return cur + item;
+      }, 0);
   }
 
   // get item id from details page and add it to the itemsArray

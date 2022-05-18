@@ -22,10 +22,7 @@ export default class Navbar extends Component {
               currencyChange={this.props.currencyChange}
             />
           </div>
-          <Cart
-            // functions
-            handleCart={this.props.handleCart}
-          />
+          <Cart />
         </div>
       </div>
     );

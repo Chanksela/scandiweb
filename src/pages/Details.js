@@ -12,6 +12,9 @@ class Details extends Component {
   onSelect(arg) {
     this.setState({ selectedImg: arg.target.id });
   }
+  test(arg) {
+    console.log(arg.target.id);
+  }
   render() {
     const id = this.props.params.id;
 
@@ -57,7 +60,15 @@ class Details extends Component {
                       <div key={attribute.id}>
                         {attribute.name}
                         {attribute.items.map((size) => {
-                          return <button key={size.id}>{size.value}</button>;
+                          return (
+                            <button
+                              key={size.id}
+                              id={size.id}
+                              onClick={(e) => this.test(e)}
+                            >
+                              {size.value}
+                            </button>
+                          );
                         })}
                       </div>
                     );
@@ -67,9 +78,20 @@ class Details extends Component {
                     return (
                       <div key={attribute.id}>
                         {attribute.name}
-                        {attribute.items.map((x) => {
-                          return <button key={x.id}>{x.value}</button>;
-                        })}
+                        {attribute.name === "Color"
+                          ? attribute.items.map((v, index) => (
+                              <button
+                                onClick={() => console.log(v.displayValue)}
+                                className="colors"
+                                key={index}
+                                style={{
+                                  backgroundColor: v.value,
+                                }}
+                              ></button>
+                            ))
+                          : attribute.items.map((x) => {
+                              return <button key={x.id}>{x.value}</button>;
+                            })}
                       </div>
                     );
                   })}

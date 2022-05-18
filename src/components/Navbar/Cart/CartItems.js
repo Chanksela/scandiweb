@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../../../services/contex";
-import Images from "./Images";
-export default class CartItem extends Component {
+import Images from "./CartImages";
+import CartInfo from "./CartInfo";
+export default class CartItems extends Component {
   constructor() {
     super();
     this.state = { index: 0 };
     this.slide = this.slide.bind(this);
   }
+  // sums the price of items
   total(arg) {
     return arg.itemsArray
       .map((x) => x.prices[arg.amount].amount * x.qty)
@@ -15,6 +17,7 @@ export default class CartItem extends Component {
         return cur + item;
       }, 0);
   }
+  // function for image slider
   slide(arg, arg2) {
     if (arg === "next") {
       this.setState({ index: this.state.index + 1 });
@@ -38,33 +41,12 @@ export default class CartItem extends Component {
               {state.itemsArray.map((product, index) => (
                 <div key={index}>
                   <Images product={product} />
-                  <>
-                    {" "}
-                    <p>
-                      {product.prices[state.amount].amount}
-                      {state.currency}
-                    </p>
-                    <div>
-                      <button
-                        id={product.id}
-                        onClick={(e) => state.onRemove(e.target.id, product)}
-                      >
-                        -
-                      </button>
-
-                      <p>{product.qty}</p>
-                      <button
-                        id={product.id}
-                        onClick={(e) => state.onAdd(e.target.id, product)}
-                      >
-                        +
-                      </button>
-                    </div>
-                  </>
+                  <CartInfo product={product} state={state} />
                 </div>
               ))}{" "}
               {/* adds total price of added items */}
               <p>Total: {`${this.total(state)} ${state.currency}`}</p>
+              <p>Amount: {state.totalQty(state)}</p>
               <p>Tax: {`${this.total(state) * 0.21} ${state.currency}`}</p>
               <button onClick={state.clearCart}>Clear All</button>
               <Link to={"/cartitems"}>Shop</Link>
