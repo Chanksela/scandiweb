@@ -22,6 +22,10 @@ class App extends Component {
       categories: "all",
       currency: "$",
       amount: 0,
+      onAdd: this.onAdd.bind(this),
+      onRemove: this.onRemove.bind(this),
+      clearCart: this.clearCart.bind(this),
+      selectCategory: this.selectCategory.bind(this),
     };
   }
 
@@ -88,11 +92,7 @@ class App extends Component {
           <BrowserRouter>
             <Navbar
               // functions
-              onAdd={this.onAdd.bind(this)}
               currencyChange={this.currencyChange.bind(this)}
-              onRemove={this.onRemove.bind(this)}
-              clearCart={this.clearCart.bind(this)}
-              selectCategory={this.selectCategory.bind(this)}
             />
             <Routes>
               <Route path="/" element={<FullPage />} />
@@ -108,21 +108,7 @@ class App extends Component {
                   />
                 }
               />
-              <Route
-                path="/cartitems"
-                element={
-                  <CartPage
-                    // states
-                    amount={this.state.amount}
-                    currency={this.state.currency}
-                    itemsArray={this.state.itemsArray}
-                    // functions
-                    clearCart={this.clearCart.bind(this)}
-                    onAdd={this.onAdd.bind(this)}
-                    onRemove={this.onRemove.bind(this)}
-                  />
-                }
-              />
+              <Route path="/cartitems" element={<CartPage />} />
             </Routes>
           </BrowserRouter>
         </ApolloProvider>

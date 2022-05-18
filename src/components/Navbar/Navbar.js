@@ -13,8 +13,6 @@ export default class Navbar extends Component {
           <Links selectCategory={this.props.selectCategory} />
         </div>
         <div className="navbar-logo">
-          {/* აუცილებელი არ არის, 
-        წაშლა და უბრალოდ ლოგოთი ჩანაცვლება მგონი უკეთესია */}
           <h3>Scandiweb</h3>
         </div>
         <div className="navbar-cart-currency">
@@ -26,10 +24,6 @@ export default class Navbar extends Component {
           </div>
           <Cart
             // functions
-            addItem={this.props.addItem}
-            onAdd={this.props.onAdd}
-            onRemove={this.props.onRemove}
-            clearCart={this.props.clearCart}
             handleCart={this.props.handleCart}
           />
         </div>

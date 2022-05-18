@@ -17,13 +17,13 @@ export default class CartItem extends Component {
   }
   slide(arg, arg2) {
     if (arg === "next") {
-      this.setState({ index: (this.state.index += 1) });
+      this.setState({ index: this.state.index + 1 });
       if (this.state.index >= arg2.length) {
         this.setState({ index: 0 });
       }
     }
     if (arg === "prev") {
-      this.setState({ index: (this.state.index -= 1) });
+      this.setState({ index: this.state.index - 1 });
       if (this.state.index <= 0) {
         this.setState({ index: arg2.length - 1 });
       }
@@ -34,25 +34,43 @@ export default class CartItem extends Component {
       <ProductConsumer>
         {(state) => {
           return state.itemsArray.length > 0 ? (
-            <div>
+            <div className="dropdown-cart">
               {state.itemsArray.map((product, index) => (
-                <Images
-                  key={index}
-                  product={product}
-                  index={index}
-                  state={state}
-                  onAdd={this.props.onAdd}
-                  onRemove={this.props.onRemove}
-                />
+                <div key={index}>
+                  <Images product={product} />
+                  <>
+                    {" "}
+                    <p>
+                      {product.prices[state.amount].amount}
+                      {state.currency}
+                    </p>
+                    <div>
+                      <button
+                        id={product.id}
+                        onClick={(e) => state.onRemove(e.target.id, product)}
+                      >
+                        -
+                      </button>
+
+                      <p>{product.qty}</p>
+                      <button
+                        id={product.id}
+                        onClick={(e) => state.onAdd(e.target.id, product)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </>
+                </div>
               ))}{" "}
               {/* adds total price of added items */}
               <p>Total: {`${this.total(state)} ${state.currency}`}</p>
               <p>Tax: {`${this.total(state) * 0.21} ${state.currency}`}</p>
-              <button onClick={this.props.clearCart}>Clear All</button>
+              <button onClick={state.clearCart}>Clear All</button>
               <Link to={"/cartitems"}>Shop</Link>
             </div>
           ) : (
-            "Nothing to Show"
+            <p className="empty-cart">Cart is Empty</p>
           );
         }}
       </ProductConsumer>

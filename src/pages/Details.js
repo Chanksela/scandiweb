@@ -3,7 +3,6 @@ import services from "../services/services";
 import GQL from "../services/GQL";
 import { Query } from "@apollo/client/react/components";
 import "./Details.css";
-import { ProductConsumer } from "../services/contex";
 
 class Details extends Component {
   constructor() {
@@ -87,18 +86,6 @@ class Details extends Component {
                 >
                   Add to Cart
                 </button>
-                {
-                  <ProductConsumer>
-                    {(state) => (
-                      <button
-                        id="test"
-                        onClick={(e) => state.test(e.target.id, product)}
-                      >
-                        Test
-                      </button>
-                    )}
-                  </ProductConsumer>
-                }
               </div>
             </div>
           );

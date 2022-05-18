@@ -5,7 +5,7 @@ import CartItem from "./CartItems";
 export default class Cart extends Component {
   constructor() {
     super();
-    this.state = { qty: 0 };
+    this.state = { qty: 0, test: false };
   }
   handleTest() {
     this.setState((curState) => {
@@ -20,16 +20,7 @@ export default class Cart extends Component {
             <button onClick={() => this.handleTest()}>
               Cart {state.itemsArray.length}
             </button>
-            {this.state.test && (
-              <div className="dropdown-cart">
-                <CartItem
-                  // functions
-                  onAdd={this.props.onAdd}
-                  onRemove={this.props.onRemove}
-                  clearCart={this.props.clearCart}
-                />
-              </div>
-            )}
+            {this.state.test && <CartItem />}
           </div>
         )}
       </ProductConsumer>

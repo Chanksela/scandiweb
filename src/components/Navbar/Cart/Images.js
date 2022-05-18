@@ -24,55 +24,23 @@ export default class CartItem extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li>
-            <button
-              id="next"
-              onClick={(e) =>
-                this.slide(e.target.id, this.props.product.gallery)
-              }
-            >
-              Next
-            </button>
-            <img
-              alt="item-img"
-              src={this.props.product.gallery?.[this.state.index]}
-              style={{ width: "50px" }}
-            />
-            <button
-              id="prev"
-              onClick={(e) =>
-                this.slide(e.target.id, this.props.product.gallery)
-              }
-            >
-              Prev
-            </button>
-            <p>
-              {this.props.product.prices[this.props.state.amount].amount}
-              {this.props.state.currency}
-            </p>
-            <div>
-              <button
-                id={this.props.product.id}
-                onClick={(e) =>
-                  this.props.onRemove(e.target.id, this.props.product)
-                }
-              >
-                -
-              </button>
-
-              <p>{this.props.product.qty}</p>
-              <button
-                id={this.props.product.id}
-                onClick={(e) =>
-                  this.props.onAdd(e.target.id, this.props.product)
-                }
-              >
-                +
-              </button>
-            </div>
-          </li>
-        </ul>
+        <button
+          id="next"
+          onClick={(e) => this.slide(e.target.id, this.props.product.gallery)}
+        >
+          Next
+        </button>
+        <img
+          alt="item-img"
+          src={this.props.product.gallery?.[this.state.index]}
+          style={{ width: "50px" }}
+        />
+        <button
+          id="prev"
+          onClick={(e) => this.slide(e.target.id, this.props.product.gallery)}
+        >
+          Prev
+        </button>
       </div>
     );
   }
