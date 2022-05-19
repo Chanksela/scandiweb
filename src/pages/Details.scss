@@ -1,3 +1,4 @@
+@import "../../src//styles/config";
 .content {
   border: 1px solid salmon;
   display: flex;
@@ -35,10 +36,5 @@
   .info {
     width: 40%;
     border: 1px solid indigo;
-    .colors {
-      border: none;
-      width: 20px;
-      height: 20px;
-    }
   }
 }

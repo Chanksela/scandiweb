@@ -4,11 +4,8 @@ import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import { ProductConsumer } from "../../../services/contex";
+import CartIcon from "../../../Icons/shopping-cart.png";
 export default class ProductCard extends Component {
-  constructor() {
-    super();
-    this.state = { test: [] };
-  }
   render() {
     return (
       <ProductConsumer>
@@ -25,13 +22,38 @@ export default class ProductCard extends Component {
 
                 return (
                   <>
+                    {state.product} {console.log(category)}
                     <h1>{state.categories}</h1>
                     <div className="main-container">
                       {category.products.map((info) => (
                         <div key={info.id} className="items-container">
-                          <img alt="product-img" src={info.gallery[0]} />
+                          <div className="img-container">
+                            <img
+                              id="image"
+                              className={
+                                !info.inStock
+                                  ? "out-of-stock-image"
+                                  : "main-image"
+                              }
+                              alt="product-img"
+                              src={info.gallery[0]}
+                            />{" "}
+                            {!info.inStock && (
+                              <p className="out-of-stock">Out of Stock</p>
+                            )}
+                            <img
+                              alt="cart-icon"
+                              className="cart-icon"
+                              src={CartIcon}
+                              onClick={() => {
+                                state.onAdd(info.id, info);
+                              }}
+                            />
+                          </div>
+
                           <div className="product-specifics">
                             <Link to={`/details/${info.id}`}>{info.name}</Link>
+
                             <p>
                               {state.currency}
                               {info.prices[state.amount].amount}

@@ -15,7 +15,31 @@ h1 {
     margin: 5px 5px;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 32%;
+    .img-container {
+      position: relative;
+      text-align: center;
+      color: white;
+      .cart-icon {
+        width: 60px;
+        height: 60px;
+        background-color: $green;
+        border-radius: 50px;
+      }
+      .out-of-stock-image {
+        background: black;
+        opacity: 0.5;
+      }
+      .out-of-stock {
+        user-select: none;
+        font-size: large;
+        color: gray;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
 
     img {
       display: block;

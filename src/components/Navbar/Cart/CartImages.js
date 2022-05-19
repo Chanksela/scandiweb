@@ -24,23 +24,28 @@ export default class CartItem extends Component {
   render() {
     return (
       <div>
-        <button
-          id="next"
-          onClick={(e) => this.slide(e.target.id, this.props.product.gallery)}
-        >
-          Next
-        </button>
+        {this.props.product.gallery.length > 1 && (
+          <button
+            id="next"
+            onClick={(e) => this.slide(e.target.id, this.props.product.gallery)}
+          >
+            Next
+          </button>
+        )}
+
         <img
           alt="item-img"
           src={this.props.product.gallery?.[this.state.index]}
           style={{ width: "50px" }}
         />
-        <button
-          id="prev"
-          onClick={(e) => this.slide(e.target.id, this.props.product.gallery)}
-        >
-          Prev
-        </button>
+        {this.props.product.gallery.length > 1 && (
+          <button
+            id="prev"
+            onClick={(e) => this.slide(e.target.id, this.props.product.gallery)}
+          >
+            Prev
+          </button>
+        )}
       </div>
     );
   }

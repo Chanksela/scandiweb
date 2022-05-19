@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Attributes from "../../Products/ProductsCard/Details/Attributes";
 
 export default class CartInfo extends Component {
   render() {

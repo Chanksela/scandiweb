@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ProductConsumer } from "../../../services/contex";
-
+import CartIcon from "../../../Icons/shopping-cart.png";
 import CartItems from "./CartItems";
 export default class Cart extends Component {
   constructor() {
@@ -17,9 +17,15 @@ export default class Cart extends Component {
       <ProductConsumer>
         {(state) => (
           <div className="navbar-cart">
-            <button onClick={() => this.handleCart()}>
-              Cart {state.totalQty(state)}
-            </button>
+            <img
+              alt="cart-icon"
+              className="cart-icon"
+              src={CartIcon}
+              onClick={() => this.handleCart()}
+            />
+            {state.itemsArray.length > 0 && (
+              <p className="cart-badge">{state.totalQty(state)}</p>
+            )}
             {this.state.cart && <CartItems />}
           </div>
         )}

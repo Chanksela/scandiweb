@@ -23,6 +23,18 @@ const PRODUCTS = gql`
           }
           amount
         }
+        inStock
+        category
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
       }
     }
   }

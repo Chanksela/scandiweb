@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../../../services/contex";
-import Images from "./CartImages";
+import CartImages from "./CartImages";
 import CartInfo from "./CartInfo";
 export default class CartItems extends Component {
   constructor() {
@@ -12,7 +12,7 @@ export default class CartItems extends Component {
   // sums the price of items
   total(arg) {
     return arg.itemsArray
-      .map((x) => x.prices[arg.amount].amount * x.qty)
+      .map((item) => item.prices[arg.amount].amount * item.qty)
       .reduce((cur, item) => {
         return cur + item;
       }, 0);
@@ -40,7 +40,8 @@ export default class CartItems extends Component {
             <div className="dropdown-cart">
               {state.itemsArray.map((product, index) => (
                 <div key={index}>
-                  <Images product={product} />
+                  {console.log(product)}
+                  <CartImages product={product} />
                   <CartInfo product={product} state={state} />
                 </div>
               ))}{" "}

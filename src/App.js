@@ -16,19 +16,40 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      id: "",
+      product: [],
       itemsArray: [],
-      addedItem: "",
-      counter: 1,
       categories: "all",
       currency: "$",
       amount: 0,
+      size: 0,
+      itemColor: "",
+      capacity: "",
+      withKeyboard: "",
       onAdd: this.onAdd.bind(this),
       onRemove: this.onRemove.bind(this),
       clearCart: this.clearCart.bind(this),
       selectCategory: this.selectCategory.bind(this),
       totalQty: this.totalQty.bind(this),
       currencyChange: this.currencyChange.bind(this),
+      getID: this.getID.bind(this),
     };
+  }
+  getID(arg) {
+    this.setState({ id: arg.target.id });
+    console.log(this.state.id);
+  }
+  // chosen color
+  onCapacityPick(arg) {
+    this.setState({ capacity: arg.target.id });
+    console.log(arg.target.id);
+    console.log(this.state.itemColor);
+  }
+  // chosen color
+  onColorPick(arg) {
+    this.setState({ itemColor: arg.target.id });
+    console.log(arg.target.id);
+    console.log(this.state.capacity);
   }
   // total qty of added items
   totalQty(arg) {
@@ -46,7 +67,6 @@ class App extends Component {
       this.state.itemsArray.find((x) => x.id === arg1);
 
     if (exist) {
-      this.setState({ counter: this.state.counter + 1 });
       this.setState({
         itemsArray: this.state.itemsArray.map((x) =>
           x.id === arg2.id ? { ...exist, qty: exist.qty + 1 } : x
@@ -100,10 +120,7 @@ class App extends Component {
       <ProductProvider value={this.state}>
         <ApolloProvider client={client}>
           <BrowserRouter>
-            <Navbar
-              // functions
-              currencyChange={this.currencyChange.bind(this)}
-            />
+            <Navbar />
             <Routes>
               <Route path="/" element={<FullPage />} />
               <Route
@@ -113,7 +130,12 @@ class App extends Component {
                     // states
                     amount={this.state.amount}
                     currency={this.state.currency}
+                    itemColor={this.state.itemColor}
+                    capacity={this.state.capacity}
+                    product={this.state.product}
                     // functions
+                    onColorPick={this.onColorPick.bind(this)}
+                    onCapacityPick={this.onCapacityPick.bind(this)}
                     onAdd={this.onAdd.bind(this)}
                   />
                 }
