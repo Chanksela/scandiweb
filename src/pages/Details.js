@@ -69,6 +69,7 @@ class Details extends Component {
                   onClick={() => {
                     this.props.onAdd(product.id, product);
                   }}
+                  disabled={!product.inStock}
                 >
                   Add to Cart
                 </button>

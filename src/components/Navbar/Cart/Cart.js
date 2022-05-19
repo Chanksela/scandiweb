@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ProductConsumer } from "../../../services/contex";
-import CartIcon from "../../../Icons/shopping-cart.png";
+import CartIcon from "../../../Icons/Vector.svg";
 import CartItems from "./CartItems";
 export default class Cart extends Component {
   constructor() {
