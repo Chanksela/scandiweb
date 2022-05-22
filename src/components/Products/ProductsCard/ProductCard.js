@@ -21,7 +21,7 @@ export default class ProductCard extends Component {
                 const { category } = data;
 
                 return (
-                  <>
+                  <div className="main-container">
                     {state.product} {console.log(category)}
                     <h1>{state.categories}</h1>
                     {category.products.map((info) => (
@@ -62,7 +62,7 @@ export default class ProductCard extends Component {
                         </div>
                       </div>
                     ))}
-                  </>
+                  </div>
                 );
               }}
             </Query>

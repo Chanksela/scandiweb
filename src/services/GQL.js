@@ -67,6 +67,7 @@ const DETAILS = gql`
         }
         amount
       }
+      inStock
     }
   }
 `;

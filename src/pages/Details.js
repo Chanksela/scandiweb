@@ -27,7 +27,6 @@ class Details extends Component {
           const images = product.gallery.map((img) => img);
           return (
             <div className="content">
-              {console.log(product)}
               <div className="images">
                 <div className="img-gallery">
                   <div className="img-picker">
@@ -57,22 +56,51 @@ class Details extends Component {
                   itemColor={this.props.itemColor}
                   capacity={this.props.capacity}
                   product={product}
+                  size={this.props.size}
+                  onSizePick={this.props.onSizePick}
                   onColorPick={this.props.onColorPick}
                   onCapacityPick={this.props.onCapacityPick}
                 />{" "}
-                <p>
-                  {this.props.currency}
-                  {product.prices[this.props.amount].amount}
-                </p>
-                <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
-                <button
-                  onClick={() => {
-                    this.props.onAdd(product.id, product);
-                  }}
-                  disabled={!product.inStock}
-                >
-                  Add to Cart
-                </button>
+                {/* {this.props.itemColor} */}
+                {product.category === "clothes" ? (
+                  <>
+                    {" "}
+                    <p>
+                      {this.props.currency}
+                      {product.prices[this.props.amount].amount}
+                    </p>
+                    <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
+                    <button
+                      onClick={() => {
+                        this.props.onAdd(product.id, product, this.props.size);
+                      }}
+                      disabled={!product.inStock}
+                    >
+                      Add Clothes to Cart
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <p>
+                      {this.props.currency}
+                      {product.prices[this.props.amount].amount}
+                    </p>
+                    <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
+                    <button
+                      onClick={() => {
+                        this.props.onAdd(
+                          product.id,
+                          product,
+                          this.props.itemColor
+                        );
+                      }}
+                      disabled={!product.inStock}
+                    >
+                      Add Tech to Cart
+                    </button>{" "}
+                  </>
+                )}
               </div>
             </div>
           );

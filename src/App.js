@@ -22,7 +22,7 @@ class App extends Component {
       categories: "all",
       currency: "$",
       amount: 0,
-      size: 0,
+      size: "",
       itemColor: "",
       capacity: "",
       withKeyboard: "",
@@ -33,11 +33,17 @@ class App extends Component {
       totalQty: this.totalQty.bind(this),
       currencyChange: this.currencyChange.bind(this),
       getID: this.getID.bind(this),
+      onColorPick: this.onColorPick.bind(this),
     };
   }
   getID(arg) {
     this.setState({ id: arg.target.id });
     console.log(this.state.id);
+  }
+  onSizePick(arg) {
+    this.setState({ size: arg.target.id });
+    console.log(arg.target.id);
+    console.log(this.state.size);
   }
   // chosen color
   onCapacityPick(arg) {
@@ -61,12 +67,26 @@ class App extends Component {
   }
 
   // get item id from details page and add it to the itemsArray
-  onAdd(arg1, arg2) {
+  onAdd(arg1, arg2, arg3) {
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find((x) => x.id === arg1);
-
-    if (exist) {
+    // conditions to add an item
+    if (!arg2.inStock) {
+      alert("Sorry, this item is out of stock");
+    } else if (
+      arg2.category === "clothes" &&
+      arg2.attributes.length > 0 &&
+      arg3 === ""
+    ) {
+      alert("choose size");
+    } else if (
+      arg2.category === "tech" &&
+      arg2.attributes.length > 0 &&
+      arg3 === ""
+    ) {
+      alert("choose a color");
+    } else if (exist) {
       this.setState({
         itemsArray: this.state.itemsArray.map((x) =>
           x.id === arg2.id ? { ...exist, qty: exist.qty + 1 } : x
@@ -74,9 +94,20 @@ class App extends Component {
       });
     } else {
       this.setState({
-        itemsArray: [...this.state.itemsArray, { ...arg2, qty: 1 }],
+        itemsArray: [
+          ...this.state.itemsArray,
+          {
+            ...arg2,
+            qty: 1,
+            size: this.state.size,
+            color: this.state.itemColor,
+          },
+        ],
       });
+      this.setState({ itemColor: "" });
+      this.setState({ size: "" });
     }
+    console.log(this.state.itemsArray);
   }
   // functions to decrease amount of items in cart by 1
   onRemove(arg1, arg2) {
@@ -132,8 +163,11 @@ class App extends Component {
                     currency={this.state.currency}
                     itemColor={this.state.itemColor}
                     capacity={this.state.capacity}
+                    size={this.state.size}
                     product={this.state.product}
+                    itemsArray={this.state.itemsArray}
                     // functions
+                    onSizePick={this.onSizePick.bind(this)}
                     onColorPick={this.onColorPick.bind(this)}
                     onCapacityPick={this.onCapacityPick.bind(this)}
                     onAdd={this.onAdd.bind(this)}

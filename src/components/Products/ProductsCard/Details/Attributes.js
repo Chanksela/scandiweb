@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./Attributes.css";
+import ClothesAttributes from "./ClothesAttributes";
+import TechAttributes from "./TechAttributes";
 export default class Attributes extends Component {
   render() {
     return (
@@ -9,64 +11,24 @@ export default class Attributes extends Component {
         {this.props.product.category === "clothes" &&
           this.props.product?.attributes.map((attribute) => {
             return (
-              <div key={attribute.id}>
-                {attribute.name}
-                {console.log(attribute)}
-                {attribute.items.map((size, index) => {
-                  return (
-                    <button
-                      key={size.id}
-                      id={index}
-                      onClick={(e) => console.log(e.target.id)}
-                      className={
-                        this.props.capacity === size.id ? "picked-size" : "size"
-                      }
-                    >
-                      {size.value}
-                    </button>
-                  );
-                })}
-              </div>
+              <ClothesAttributes
+                product={this.props.product}
+                attribute={attribute}
+                onSizePick={this.props.onSizePick}
+                size={this.props.size}
+              />
             );
           })}
         {this.props.product.category === "tech" &&
           this.props.product.attributes.map((attribute) => {
             return (
-              <div key={attribute.id}>
-                {attribute.name}
-                {attribute.name === "Color"
-                  ? attribute.items.map((v, index) => (
-                      <button
-                        id={v.id}
-                        onClick={(e) => this.props.onColorPick(e)}
-                        className={
-                          this.props.itemColor === v.id
-                            ? "picked-color"
-                            : "color"
-                        }
-                        key={index}
-                        style={{
-                          backgroundColor: v.value,
-                        }}
-                      ></button>
-                    ))
-                  : attribute.items.map((x) => {
-                      return (
-                        <button
-                          id={x.id}
-                          key={x.id}
-                          onClick={(e) => this.props.onCapacityPick(e)}
-                          className={
-                            this.props.capacity === x.id
-                              ? "picked-capacity"
-                              : "capacity"
-                          }
-                        >
-                          {x.value}
-                        </button>
-                      );
-                    })}
-              </div>
+              <TechAttributes
+                itemColor={this.props.itemColor}
+                capacity={this.props.capacity}
+                attribute={attribute}
+                onCapacityPick={this.props.onCapacityPick}
+                onColorPick={this.props.onColorPick}
+              />
             );
           })}
       </>
