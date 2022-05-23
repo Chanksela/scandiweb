@@ -61,7 +61,6 @@ class Details extends Component {
                   onColorPick={this.props.onColorPick}
                   onCapacityPick={this.props.onCapacityPick}
                 />{" "}
-                {/* {this.props.itemColor} */}
                 {product.category === "clothes" ? (
                   <>
                     {" "}

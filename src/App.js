@@ -70,7 +70,7 @@ class App extends Component {
   onAdd(arg1, arg2, arg3) {
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((x) => x.id === arg1);
+      this.state.itemsArray.find((v) => v.id === arg1 && v.size === arg3);
     // conditions to add an item
     if (!arg2.inStock) {
       alert("Sorry, this item is out of stock");
@@ -88,8 +88,14 @@ class App extends Component {
       alert("choose a color");
     } else if (exist) {
       this.setState({
-        itemsArray: this.state.itemsArray.map((x) =>
-          x.id === arg2.id ? { ...exist, qty: exist.qty + 1 } : x
+        itemsArray: this.state.itemsArray.map((v) =>
+          v.id === arg2.id && v.size === arg3
+            ? {
+                ...exist,
+                qty: exist.qty + 1,
+                size: v.size,
+              }
+            : v
         ),
       });
     } else {
@@ -100,29 +106,31 @@ class App extends Component {
             ...arg2,
             qty: 1,
             size: this.state.size,
-            color: this.state.itemColor,
+            // color: this.state.itemColor,
+            // capacity: this.state.capacity,
           },
         ],
       });
-      this.setState({ itemColor: "" });
-      this.setState({ size: "" });
     }
+    // this.setState({ itemColor: "", size: "" });
     console.log(this.state.itemsArray);
   }
   // functions to decrease amount of items in cart by 1
-  onRemove(arg1, arg2) {
+  onRemove(arg1, arg2, arg3) {
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((x) => x.id === arg1);
+      this.state.itemsArray.find((v) => v.id === arg1 && v.size === arg3);
     if (exist) {
       exist.qty > 1
         ? this.setState({
-            itemsArray: this.state.itemsArray.map((x) =>
-              x.id === arg2.id ? { ...exist, qty: exist.qty - 1 } : x
+            itemsArray: this.state.itemsArray.map((v) =>
+              v.id === arg2.id && v.size === arg3
+                ? { ...exist, qty: exist.qty - 1, size: v.size }
+                : v
             ),
           })
         : this.setState({
-            itemsArray: this.state.itemsArray.filter((x) => x.id !== arg2.id),
+            itemsArray: this.state.itemsArray.filter((v) => v.size !== arg3),
           });
     }
   }
