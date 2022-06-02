@@ -5,7 +5,7 @@ export default class Attributes extends Component {
   render() {
     return (
       <>
-        {this.props.product?.attributes.map((v, index) => {
+        {this.props.product.attributes.map((v, index) => {
           return (
             <div className="main-content" key={index}>
               <div className="attributes">

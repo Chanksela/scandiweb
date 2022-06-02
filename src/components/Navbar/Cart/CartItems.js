@@ -46,7 +46,7 @@ export default class CartItems extends Component {
                   <CartInfo product={product} state={state} />
                 </div>
               ))}{" "}
-              {console.log(state)}
+              {/* {console.log(state)} */}
               {/* adds total price of added items */}
               <p>Total: {`${this.total(state)} ${state.currency}`}</p>
               <Link to={"/cartitems"}>Shop</Link>

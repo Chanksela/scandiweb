@@ -4,7 +4,6 @@ export default class CartInfo extends Component {
   render() {
     return (
       <div>
-        {console.log(this.props.product)}
         <p>
           {this.props.product.prices[this.props.state.amount].amount}
           {this.props.state.currency}
@@ -25,7 +24,6 @@ export default class CartInfo extends Component {
           >
             -
           </button>
-          {console.log(this.props.product.category)}
           {this.props.product.size && <p>Size: {this.props.product.size}</p>}
           {this.props.product.itemColor && (
             <>
@@ -44,7 +42,7 @@ export default class CartInfo extends Component {
             <p>Touch ID: {this.props.product.touchID}</p>
           )}
           <p>{this.props.product.qty}</p>
-
+          {console.log(this.props.product.capacity)}
           <button
             id={this.props.product.id}
             onClick={() =>

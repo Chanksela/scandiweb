@@ -48,24 +48,24 @@ class App extends Component {
   onAttributePick(arg1, arg2) {
     if (arg1.name === "Color") {
       this.setState({ itemColor: arg2.value });
-      console.log(this.state.itemColor);
+      // console.log(this.state.itemColor);
     }
     if (arg1.name === "Capacity") {
       this.setState({ capacity: arg2.value });
-      console.log(arg2);
-      console.log(this.state.capacity);
+      // console.log(arg2);
+      // console.log(this.state.capacity);
     }
     if (arg1.name === "Size") {
       this.setState({ size: arg2.value });
-      console.log(this.state.size);
+      // console.log(this.state.size);
     }
     if (arg1.name === "With USB 3 ports") {
       this.setState({ usb: arg2.value });
-      console.log(this.state.usb);
+      // console.log(this.state.usb);
     }
     if (arg1.name === "Touch ID in keyboard") {
       this.setState({ touchID: arg2.value });
-      console.log(this.state.touchID);
+      // console.log(this.state.touchID);
     }
   }
 
@@ -80,70 +80,142 @@ class App extends Component {
 
   // get item id from details page and add it to the itemsArray
   onAdd(product, size, itemColor, capacity, usb, touchID) {
-    console.log(product);
-    console.log(this.state.itemsArray);
+    // console.log(product);
+    // console.log(this.state.itemsArray);
+    // console.log(product, size, itemColor, capacity, usb, touchID);
+
     const exist =
       this.state.itemsArray.length > 0 &&
       this.state.itemsArray.find(
-        (v) =>
-          (v.id === product.id && v.size === size) ||
-          (v.id === product.id &&
-            v.itemColor === itemColor &&
-            v.capacity === capacity) ||
-          (v.id === product.id &&
-            v.capacity === capacity &&
-            v.usb === usb &&
-            v.touchID === touchID)
+        (v) => v.id === product.id && v.size === size
+        // ||
+        // (v.id === product.id &&
+        //   v.itemColor === itemColor &&
+        //   v.capacity === capacity) ||
+        // (v.id === product.id &&
+        //   v.capacity === capacity &&
+        //   v.usb === usb &&
+        //   v.touchID === touchID)
       );
-
+    console.log(exist);
     if (exist) {
       product.attributes.length === 1 &&
         this.setState({
           itemsArray: this.state.itemsArray.map((v) =>
             v.id === product.id && v.size === size
-              ? {
+              ? // ||
+                // (v.id === product.id &&
+                //   v.itemColor === itemColor &&
+                //   v.capacity === capacity) ||
+                // (v.id === product.id &&
+                //   v.usb === usb &&
+                //   v.capacity === capacity &&
+                //   v.touchID === touchID)
+                {
                   ...exist,
                   qty: exist.qty + 1,
+                  size: exist.size,
                 }
               : v
           ),
         });
-      product.attributes.length === 2 &&
-        this.setState({
-          itemsArray: this.state.itemsArray.map((v) =>
-            v.id === product.id &&
-            v.itemColor === itemColor &&
-            v.capacity === capacity
-              ? {
-                  ...exist,
-                  qty: exist.qty + 1,
-                }
-              : v
-          ),
-        });
-      product.attributes.length === 3 &&
-        this.setState({
-          itemsArray: this.state.itemsArray.map((v) =>
-            v.id === product.id
-              ? {
-                  ...exist,
-                  qty: exist.qty + 1,
-                }
-              : v
-          ),
-        });
+      // product.attributes.length === 1 &&
+      //   this.setState({
+      //     itemsArray: this.state.itemsArray.map((v) =>
+      //       v.id === product.id && v.size === size
+      //         ? {
+      //             ...exist,
+      //             qty: exist.qty + 1,
+      //           }
+      //         : v
+      //     ),
+      //   });
+      // product.attributes.length === 2 &&
+      //   this.setState({
+      //     itemsArray: this.state.itemsArray.map((v) =>
+      //       v.id === product.id &&
+      //       v.itemColor === itemColor &&
+      //       v.capacity === capacity
+      //         ? {
+      //             ...exist,
+      //             qty: exist.qty + 1,
+      //           }
+      //         : v
+      //     ),
+      //   });
+      // product.attributes.length === 3 &&
+      //   this.setState({
+      //     itemsArray: this.state.itemsArray.map((v) =>
+      //       v.id === product.id
+      //         ? {
+      //             ...exist,
+      //             qty: exist.qty + 1,
+      //           }
+      //         : v
+      //     ),
+      //   });
     } else if (!exist) {
-      product.attributes.length === 1 &&
-        this.setState({
-          itemsArray: [
-            ...this.state.itemsArray,
-            {
-              ...product,
-              qty: 1,
-              size: this.state.size,
-            },
-          ],
-        });
+      // product.attributes.length === 1 &&
+      this.setState({
+        itemsArray: [
+          ...this.state.itemsArray,
+          {
+            ...product,
+            qty: 1,
+            size: this.state.size,
+          },
+        ],
+      });
+      // product.attributes.length === 2 &&
+      //   this.setState({
+      //     itemsArray: [
+      //       ...this.state.itemsArray,
+      //       {
+      //         ...product,
+      //         qty: 1,
+      //         itemColor: this.state.itemColor,
+      //         capacity: this.state.capacity,
+      //       },
+      //     ],
+      //   });
+      // product.attributes.length === 3 &&
+      //   this.setState({
+      //     itemsArray: [
+      //       ...this.state.itemsArray,
+      //       {
+      //         ...product,
+      //         qty: 1,
+      //         capacity: this.state.capacity,
+      //         usb: this.state.usb,
+      //         touchID: this.state.touchID,
+      //       },
+      //     ],
+      //   });
+    }
+    const techExist =
+      this.state.itemsArray.length > 0 &&
+      this.state.itemsArray.find(
+        (v) =>
+          v.id === product.id &&
+          v.itemColor === itemColor &&
+          v.capacity === capacity
+      );
+    if (techExist) {
+      this.setState({
+        itemsArray: this.state.itemsArray.map((v) =>
+          v.id === product.id &&
+          v.itemColor === itemColor &&
+          v.capacity === capacity
+            ? {
+                ...techExist,
+                qty: techExist.qty + 1,
+                itemColor: techExist.itemColor,
+                capacity: techExist.capacity,
+              }
+            : v
+        ),
+      });
+    } else if (!techExist) {
       product.attributes.length === 2 &&
         this.setState({
           itemsArray: [
@@ -156,56 +228,35 @@ class App extends Component {
             },
           ],
         });
-      product.attributes.length === 3 &&
-        this.setState({
-          itemsArray: [
-            ...this.state.itemsArray,
-            {
-              ...product,
-              qty: 1,
-              capacity: this.state.capacity,
-              usb: this.state.usb,
-              touchID: this.state.touchID,
-            },
-          ],
-        });
     }
     // this.setState({ size: "", itemColor: "" });
-    console.log(this.state.size, this.state.itemColor);
-    console.log(exist);
+    // console.log(this.state.size, this.state.itemColor);
+    // console.log(exist);
   }
   // functions to decrease amount of items in cart by 1
-  onRemove(product, identifier) {
+  onRemove(product, size, itemColor, capacity, usb, touchID) {
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find(
-        (v) =>
-          (v.id === product.id && v.size === identifier) ||
-          (v.id === product.id && v.itemColor === identifier)
-      );
+      this.state.itemsArray.find((v) => v.id === product.id && v.size === size);
     console.log(exist);
     if (exist) {
-      exist.qty > 1
-        ? this.setState({
-            itemsArray: this.state.itemsArray.map((v) =>
-              (v.id === product.id && v.size === identifier) ||
-              (v.id === product.id && v.itemColor === identifier)
-                ? {
-                    ...exist,
-                    qty: exist.qty - 1,
-                    size: exist.size,
-                    color: exist.color,
-                  }
-                : v
-            ),
-          })
-        : this.setState({
-            itemsArray: this.state.itemsArray.filter(
-              (v) =>
-                (v.id !== product.id && v.size !== identifier) ||
-                (v.id !== product.id && v.itemColor !== identifier)
-            ),
-          });
+      if (exist.qty > 1) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.id === product.id && v.size === size
+              ? {
+                  ...exist,
+                  qty: exist.qty - 1,
+                  size: exist.size,
+                }
+              : v
+          ),
+        });
+      } else {
+        this.setState({
+          itemsArray: this.state.itemsArray.filter((v) => v.size !== size),
+        });
+      }
     }
   }
 

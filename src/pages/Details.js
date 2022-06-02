@@ -56,8 +56,6 @@ class Details extends Component {
                 <h2>{product.name}</h2>
                 <h4>{product.brand}</h4>
                 <Attributes
-                  itemColor={this.props.itemColor}
-                  capacity={this.props.capacity}
                   product={product}
                   size={this.props.size}
                   onAttributePick={this.props.onAttributePick}
