@@ -47,7 +47,7 @@ export default class ProductCard extends Component {
                               alt="cart-icon"
                               src={CartIcon}
                               onClick={() => {
-                                state.onAdd(info.id, info);
+                                state.onAdd(info);
                               }}
                             />
                           </div>

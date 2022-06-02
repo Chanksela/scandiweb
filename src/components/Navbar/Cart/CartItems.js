@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { ProductConsumer } from "../../../services/contex";
 import CartImages from "./CartImages";
 import CartInfo from "./CartInfo";
+import ClearButton from "../../Button/ClearButton";
 export default class CartItems extends Component {
   constructor() {
     super();
     this.state = { index: 0 };
     this.slide = this.slide.bind(this);
+    this.total = this.total.bind(this);
   }
   // sums the price of items
   total(arg) {
@@ -40,17 +42,15 @@ export default class CartItems extends Component {
             <div className="dropdown-cart">
               {state.itemsArray.map((product, index) => (
                 <div key={index}>
-                  {console.log(product)}
                   <CartImages product={product} />
                   <CartInfo product={product} state={state} />
                 </div>
               ))}{" "}
+              {console.log(state)}
               {/* adds total price of added items */}
               <p>Total: {`${this.total(state)} ${state.currency}`}</p>
-              <p>Amount: {state.totalQty(state)}</p>
-              <p>Tax: {`${this.total(state) * 0.21} ${state.currency}`}</p>
-              <button onClick={state.clearCart}>Clear All</button>
               <Link to={"/cartitems"}>Shop</Link>
+              <ClearButton />
             </div>
           ) : (
             <p className="empty-cart">Cart is Empty</p>

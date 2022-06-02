@@ -1,17 +1,28 @@
-.color {
-  border: none;
-  width: 30px;
-  height: 30px;
-}
-.picked-color {
-  border: 3px solid black;
-  width: 30px;
-  height: 30px;
-}
-.capacity {
-  border: none;
-  background-color: white;
-}
-.picked-capacity {
-  border: 3px solid black;
+.main-content {
+  .attributes {
+    display: flex;
+    margin: 10px 0px;
+    .attr-name {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-right: 10px;
+    }
+    .attr {
+      margin-right: 1px;
+      width: 60px;
+      text-align: center;
+      background-color: gainsboro;
+      box-shadow: 2px 2px rgba(0, 0, 0, 0.542);
+      border: none;
+      &:hover {
+        border: 2px solid black;
+        cursor: pointer;
+      }
+    }
+
+    .clicked {
+      border: 4px black solid;
+    }
+  }
 }

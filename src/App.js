@@ -22,10 +22,13 @@ class App extends Component {
       categories: "all",
       currency: "$",
       amount: 0,
+      // attributes
       size: "",
       itemColor: "",
       capacity: "",
-      withKeyboard: "",
+      usb: "",
+      touchID: "",
+      //functions
       onAdd: this.onAdd.bind(this),
       onRemove: this.onRemove.bind(this),
       clearCart: this.clearCart.bind(this),
@@ -33,30 +36,39 @@ class App extends Component {
       totalQty: this.totalQty.bind(this),
       currencyChange: this.currencyChange.bind(this),
       getID: this.getID.bind(this),
-      onColorPick: this.onColorPick.bind(this),
+      onAttributePick: this.onAttributePick.bind(this),
     };
   }
   getID(arg) {
     this.setState({ id: arg.target.id });
     console.log(this.state.id);
   }
-  onSizePick(arg) {
-    this.setState({ size: arg.target.id });
-    console.log(arg.target.id);
-    console.log(this.state.size);
+  // test for one functions for all attributes,
+  //setState-ის მეორე პარამეტრის გადახედვაა საჭიწრო
+  onAttributePick(arg1, arg2) {
+    if (arg1.name === "Color") {
+      this.setState({ itemColor: arg2.value });
+      console.log(this.state.itemColor);
+    }
+    if (arg1.name === "Capacity") {
+      this.setState({ capacity: arg2.value });
+      console.log(arg2);
+      console.log(this.state.capacity);
+    }
+    if (arg1.name === "Size") {
+      this.setState({ size: arg2.value });
+      console.log(this.state.size);
+    }
+    if (arg1.name === "With USB 3 ports") {
+      this.setState({ usb: arg2.value });
+      console.log(this.state.usb);
+    }
+    if (arg1.name === "Touch ID in keyboard") {
+      this.setState({ touchID: arg2.value });
+      console.log(this.state.touchID);
+    }
   }
-  // chosen color
-  onCapacityPick(arg) {
-    this.setState({ capacity: arg.target.id });
-    console.log(arg.target.id);
-    console.log(this.state.itemColor);
-  }
-  // chosen color
-  onColorPick(arg) {
-    this.setState({ itemColor: arg.target.id });
-    console.log(arg.target.id);
-    console.log(this.state.capacity);
-  }
+
   // total qty of added items
   totalQty(arg) {
     return arg.itemsArray
@@ -67,70 +79,132 @@ class App extends Component {
   }
 
   // get item id from details page and add it to the itemsArray
-  onAdd(arg1, arg2, arg3) {
+  onAdd(product, size, itemColor, capacity, usb, touchID) {
+    console.log(product);
+    console.log(this.state.itemsArray);
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((v) => v.id === arg1 && v.size === arg3);
-    // conditions to add an item
-    if (!arg2.inStock) {
-      alert("Sorry, this item is out of stock");
-    } else if (
-      arg2.category === "clothes" &&
-      arg2.attributes.length > 0 &&
-      arg3 === ""
-    ) {
-      alert("choose size");
-    } else if (
-      arg2.category === "tech" &&
-      arg2.attributes.length > 0 &&
-      arg3 === ""
-    ) {
-      alert("choose a color");
-    } else if (exist) {
-      this.setState({
-        itemsArray: this.state.itemsArray.map((v) =>
-          v.id === arg2.id && v.size === arg3
-            ? {
-                ...exist,
-                qty: exist.qty + 1,
-                size: v.size,
-              }
-            : v
-        ),
-      });
-    } else {
-      this.setState({
-        itemsArray: [
-          ...this.state.itemsArray,
-          {
-            ...arg2,
-            qty: 1,
-            size: this.state.size,
-            // color: this.state.itemColor,
-            // capacity: this.state.capacity,
-          },
-        ],
-      });
+      this.state.itemsArray.find(
+        (v) =>
+          (v.id === product.id && v.size === size) ||
+          (v.id === product.id &&
+            v.itemColor === itemColor &&
+            v.capacity === capacity) ||
+          (v.id === product.id &&
+            v.capacity === capacity &&
+            v.usb === usb &&
+            v.touchID === touchID)
+      );
+
+    if (exist) {
+      product.attributes.length === 1 &&
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.id === product.id && v.size === size
+              ? {
+                  ...exist,
+                  qty: exist.qty + 1,
+                }
+              : v
+          ),
+        });
+      product.attributes.length === 2 &&
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.id === product.id &&
+            v.itemColor === itemColor &&
+            v.capacity === capacity
+              ? {
+                  ...exist,
+                  qty: exist.qty + 1,
+                }
+              : v
+          ),
+        });
+      product.attributes.length === 3 &&
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.id === product.id
+              ? {
+                  ...exist,
+                  qty: exist.qty + 1,
+                }
+              : v
+          ),
+        });
+    } else if (!exist) {
+      product.attributes.length === 1 &&
+        this.setState({
+          itemsArray: [
+            ...this.state.itemsArray,
+            {
+              ...product,
+              qty: 1,
+              size: this.state.size,
+            },
+          ],
+        });
+      product.attributes.length === 2 &&
+        this.setState({
+          itemsArray: [
+            ...this.state.itemsArray,
+            {
+              ...product,
+              qty: 1,
+              itemColor: this.state.itemColor,
+              capacity: this.state.capacity,
+            },
+          ],
+        });
+      product.attributes.length === 3 &&
+        this.setState({
+          itemsArray: [
+            ...this.state.itemsArray,
+            {
+              ...product,
+              qty: 1,
+              capacity: this.state.capacity,
+              usb: this.state.usb,
+              touchID: this.state.touchID,
+            },
+          ],
+        });
     }
-    // this.setState({ itemColor: "", size: "" });
-    console.log(this.state.itemsArray);
+    // this.setState({ size: "", itemColor: "" });
+    console.log(this.state.size, this.state.itemColor);
+    console.log(exist);
   }
   // functions to decrease amount of items in cart by 1
-  onRemove(arg1, arg2, arg3) {
+  onRemove(product, identifier) {
     const exist =
       this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((v) => v.id === arg1 && v.size === arg3);
+      this.state.itemsArray.find(
+        (v) =>
+          (v.id === product.id && v.size === identifier) ||
+          (v.id === product.id && v.itemColor === identifier)
+      );
+    console.log(exist);
     if (exist) {
       exist.qty > 1
         ? this.setState({
             itemsArray: this.state.itemsArray.map((v) =>
-              v.id === arg2.id && v.size === arg3
-                ? { ...exist, qty: exist.qty - 1, size: v.size }
+              (v.id === product.id && v.size === identifier) ||
+              (v.id === product.id && v.itemColor === identifier)
+                ? {
+                    ...exist,
+                    qty: exist.qty - 1,
+                    size: exist.size,
+                    color: exist.color,
+                  }
                 : v
             ),
           })
         : this.setState({
-            itemsArray: this.state.itemsArray.filter((v) => v.size !== arg3),
+            itemsArray: this.state.itemsArray.filter(
+              (v) =>
+                (v.id !== product.id && v.size !== identifier) ||
+                (v.id !== product.id && v.itemColor !== identifier)
+            ),
           });
     }
   }
@@ -169,16 +243,17 @@ class App extends Component {
                     // states
                     amount={this.state.amount}
                     currency={this.state.currency}
-                    itemColor={this.state.itemColor}
-                    capacity={this.state.capacity}
                     size={this.state.size}
+                    capacity={this.state.capacity}
+                    itemColor={this.state.itemColor}
+                    usb={this.state.usb}
+                    touchID={this.state.touchID}
                     product={this.state.product}
                     itemsArray={this.state.itemsArray}
+                    arg={this.props.arg}
                     // functions
-                    onSizePick={this.onSizePick.bind(this)}
-                    onColorPick={this.onColorPick.bind(this)}
-                    onCapacityPick={this.onCapacityPick.bind(this)}
                     onAdd={this.onAdd.bind(this)}
+                    onAttributePick={this.onAttributePick.bind(this)}
                   />
                 }
               />

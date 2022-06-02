@@ -26,7 +26,6 @@ export default class Navbar extends Component {
                     {currencies.map((v) => (
                       <option key={v.label} value={v.symbol}>
                         {v.symbol}
-                        {v.label}
                       </option>
                     ))}
                   </select>

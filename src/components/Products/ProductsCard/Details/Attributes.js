@@ -1,39 +1,31 @@
 import React, { Component } from "react";
 import "./Attributes.css";
-import ClothesAttributes from "./ClothesAttributes";
-import TechAttributes from "./TechAttributes";
+
 export default class Attributes extends Component {
   render() {
     return (
       <>
-        <h2>{this.props.product.name}</h2>
-        <h4>{this.props.product.brand}</h4>
-        {this.props.product.category === "clothes" &&
-          this.props.product?.attributes.map((attribute, index) => {
-            return (
-              <ClothesAttributes
-                key={index}
-                index={index}
-                product={this.props.product}
-                attribute={attribute}
-                onSizePick={this.props.onSizePick}
-                size={this.props.size}
-              />
-            );
-          })}
-        {this.props.product.category === "tech" &&
-          this.props.product.attributes.map((attribute, index) => {
-            return (
-              <TechAttributes
-                index={index}
-                itemColor={this.props.itemColor}
-                capacity={this.props.capacity}
-                attribute={attribute}
-                onCapacityPick={this.props.onCapacityPick}
-                onColorPick={this.props.onColorPick}
-              />
-            );
-          })}
+        {this.props.product?.attributes.map((v, index) => {
+          return (
+            <div className="main-content" key={index}>
+              <div className="attributes">
+                <p className="attr-name">{v.name}</p>
+                {v.items.map((attr, index) => (
+                  <button
+                    style={{
+                      backgroundColor: attr.value,
+                    }}
+                    className="attr"
+                    key={index}
+                    onClick={() => this.props.onAttributePick(v, attr)}
+                  >
+                    {v.name !== "Color" && attr.displayValue}
+                  </button>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </>
     );
   }

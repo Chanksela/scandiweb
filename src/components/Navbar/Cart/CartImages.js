@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class CartItem extends Component {
+export default class CartImages extends Component {
   constructor() {
     super();
     this.state = { index: 0 };
