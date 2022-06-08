@@ -17,7 +17,9 @@ export default class Attributes extends Component {
                     }}
                     className="attr"
                     key={index}
-                    onClick={() => this.props.onAttributePick(v, attr)}
+                    onClick={() =>
+                      this.props.onAttributePick(v, attr, this.props.product)
+                    }
                   >
                     {v.name !== "Color" && attr.displayValue}
                   </button>

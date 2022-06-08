@@ -11,20 +11,16 @@ export default class CartInfo extends Component {
         <div>
           <button
             id={this.props.product.id}
-            onClick={() =>
-              this.props.state.onRemove(
-                this.props.product,
-                this.props.product.size,
-                this.props.product.itemColor,
-                this.props.product.capacity,
-                this.props.product.usb,
-                this.props.product.touchID
-              )
-            }
+            onClick={() => this.props.state.onRemove(this.props.product)}
           >
             -
           </button>
-          {this.props.product.size && <p>Size: {this.props.product.size}</p>}
+          {this.props.product.shoeSize && (
+            <p>Shoe Size: {this.props.product.shoeSize}</p>
+          )}
+          {this.props.product.clothesSize && (
+            <p>Clothes Size: {this.props.product.clothesSize}</p>
+          )}
           {this.props.product.itemColor && (
             <>
               Color:
@@ -42,19 +38,10 @@ export default class CartInfo extends Component {
             <p>Touch ID: {this.props.product.touchID}</p>
           )}
           <p>{this.props.product.qty}</p>
-          {console.log(this.props.product.capacity)}
+
           <button
             id={this.props.product.id}
-            onClick={() =>
-              this.props.state.onAdd(
-                this.props.product,
-                this.props.product.size,
-                this.props.product.itemColor,
-                this.props.product.capacity,
-                this.props.product.usb,
-                this.props.product.touchID
-              )
-            }
+            onClick={() => this.props.state.onAdd(this.props.product)}
           >
             +
           </button>

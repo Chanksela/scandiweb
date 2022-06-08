@@ -22,7 +22,8 @@ export default class ProductCard extends Component {
 
                 return (
                   <div className="main-container">
-                    {state.product} {console.log(category)}
+                    {console.log(category)}
+                    {state.product}
                     <h1>{state.categories}</h1>
                     {category.products.map((info) => (
                       <div key={info.id} className="items-container">
@@ -37,6 +38,7 @@ export default class ProductCard extends Component {
                             alt="product-img"
                             src={info.gallery[0]}
                           />{" "}
+                          {/* {console.log(info)} */}
                           {!info.inStock && (
                             <p className="out-of-stock">Out of Stock</p>
                           )}

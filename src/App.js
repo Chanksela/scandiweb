@@ -23,7 +23,8 @@ class App extends Component {
       currency: "$",
       amount: 0,
       // attributes
-      size: "",
+      shoeSize: "",
+      clothesSize: "",
       itemColor: "",
       capacity: "",
       usb: "",
@@ -41,11 +42,11 @@ class App extends Component {
   }
   getID(arg) {
     this.setState({ id: arg.target.id });
-    console.log(this.state.id);
+    // console.log(this.state.id);
   }
   // test for one functions for all attributes,
   //setState-ის მეორე პარამეტრის გადახედვაა საჭიწრო
-  onAttributePick(arg1, arg2) {
+  onAttributePick(arg1, arg2, arg3) {
     if (arg1.name === "Color") {
       this.setState({ itemColor: arg2.value });
       // console.log(this.state.itemColor);
@@ -56,8 +57,17 @@ class App extends Component {
       // console.log(this.state.capacity);
     }
     if (arg1.name === "Size") {
-      this.setState({ size: arg2.value });
-      // console.log(this.state.size);
+      if (Number.isInteger(parseInt(arg2.displayValue)) === true) {
+        this.setState({ shoeSize: arg2.displayValue });
+      } else {
+        this.setState({ clothesSize: arg2.displayValue });
+      }
+
+      // console.log(Number.isInteger(parseInt(arg2.displayValue)));
+      // console.log(arg1);
+      // console.log(this.state.clothesSize);
+      // console.log(this.state.shoeSize);
+      // console.log(arg3);
     }
     if (arg1.name === "With USB 3 ports") {
       this.setState({ usb: arg2.value });
@@ -79,185 +89,291 @@ class App extends Component {
   }
 
   // get item id from details page and add it to the itemsArray
-  onAdd(product, size, itemColor, capacity, usb, touchID) {
-    // console.log(product);
-    // console.log(this.state.itemsArray);
-    // console.log(product, size, itemColor, capacity, usb, touchID);
+  onAdd(productInfo) {
+    // console.log(productInfo);
 
-    const exist =
-      this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find(
-        (v) => v.id === product.id && v.size === size
-        // ||
-        // (v.id === product.id &&
-        //   v.itemColor === itemColor &&
-        //   v.capacity === capacity) ||
-        // (v.id === product.id &&
-        //   v.capacity === capacity &&
-        //   v.usb === usb &&
-        //   v.touchID === touchID)
-      );
-    console.log(exist);
-    if (exist) {
-      product.attributes.length === 1 &&
+    // items with no attributes
+    if (productInfo.attributes.length === 0) {
+      const exist =
+        this.state.itemsArray.length > 0 &&
+        this.state.itemsArray.find((item) => item.id === productInfo.id);
+      if (!exist) {
         this.setState({
-          itemsArray: this.state.itemsArray.map((v) =>
-            v.id === product.id && v.size === size
-              ? // ||
-                // (v.id === product.id &&
-                //   v.itemColor === itemColor &&
-                //   v.capacity === capacity) ||
-                // (v.id === product.id &&
-                //   v.usb === usb &&
-                //   v.capacity === capacity &&
-                //   v.touchID === touchID)
-                {
+          itemsArray: [...this.state.itemsArray, { ...productInfo, qty: 1 }],
+        });
+      } else if (exist) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id
+              ? {
                   ...exist,
                   qty: exist.qty + 1,
-                  size: exist.size,
                 }
-              : v
+              : product
           ),
         });
-      // product.attributes.length === 1 &&
-      //   this.setState({
-      //     itemsArray: this.state.itemsArray.map((v) =>
-      //       v.id === product.id && v.size === size
-      //         ? {
-      //             ...exist,
-      //             qty: exist.qty + 1,
-      //           }
-      //         : v
-      //     ),
-      //   });
-      // product.attributes.length === 2 &&
-      //   this.setState({
-      //     itemsArray: this.state.itemsArray.map((v) =>
-      //       v.id === product.id &&
-      //       v.itemColor === itemColor &&
-      //       v.capacity === capacity
-      //         ? {
-      //             ...exist,
-      //             qty: exist.qty + 1,
-      //           }
-      //         : v
-      //     ),
-      //   });
-      // product.attributes.length === 3 &&
-      //   this.setState({
-      //     itemsArray: this.state.itemsArray.map((v) =>
-      //       v.id === product.id
-      //         ? {
-      //             ...exist,
-      //             qty: exist.qty + 1,
-      //           }
-      //         : v
-      //     ),
-      //   });
-    } else if (!exist) {
-      // product.attributes.length === 1 &&
-      this.setState({
-        itemsArray: [
-          ...this.state.itemsArray,
-          {
-            ...product,
-            qty: 1,
-            size: this.state.size,
-          },
-        ],
-      });
-      // product.attributes.length === 2 &&
-      //   this.setState({
-      //     itemsArray: [
-      //       ...this.state.itemsArray,
-      //       {
-      //         ...product,
-      //         qty: 1,
-      //         itemColor: this.state.itemColor,
-      //         capacity: this.state.capacity,
-      //       },
-      //     ],
-      //   });
-      // product.attributes.length === 3 &&
-      //   this.setState({
-      //     itemsArray: [
-      //       ...this.state.itemsArray,
-      //       {
-      //         ...product,
-      //         qty: 1,
-      //         capacity: this.state.capacity,
-      //         usb: this.state.usb,
-      //         touchID: this.state.touchID,
-      //       },
-      //     ],
-      //   });
+      }
     }
-    const techExist =
-      this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find(
-        (v) =>
-          v.id === product.id &&
-          v.itemColor === itemColor &&
-          v.capacity === capacity
-      );
-    if (techExist) {
-      this.setState({
-        itemsArray: this.state.itemsArray.map((v) =>
-          v.id === product.id &&
-          v.itemColor === itemColor &&
-          v.capacity === capacity
-            ? {
-                ...techExist,
-                qty: techExist.qty + 1,
-                itemColor: techExist.itemColor,
-                capacity: techExist.capacity,
-              }
-            : v
-        ),
-      });
-    } else if (!techExist) {
-      product.attributes.length === 2 &&
+
+    // items with 1 attributes
+    // shoes
+    if (productInfo.attributes.length === 1 && this.state.shoeSize !== "") {
+      const exist =
+        this.state.itemsArray.length > 0 &&
+        this.state.itemsArray.find(
+          (item) =>
+            item.id === productInfo.id && item.shoeSize === this.state.shoeSize
+        );
+
+      if (!exist) {
         this.setState({
           itemsArray: [
             ...this.state.itemsArray,
             {
-              ...product,
+              ...productInfo,
               qty: 1,
-              itemColor: this.state.itemColor,
-              capacity: this.state.capacity,
+              shoeSize: this.state.shoeSize,
             },
           ],
         });
-    }
-    // this.setState({ size: "", itemColor: "" });
-    // console.log(this.state.size, this.state.itemColor);
-    // console.log(exist);
-  }
-  // functions to decrease amount of items in cart by 1
-  onRemove(product, size, itemColor, capacity, usb, touchID) {
-    const exist =
-      this.state.itemsArray.length > 0 &&
-      this.state.itemsArray.find((v) => v.id === product.id && v.size === size);
-    console.log(exist);
-    if (exist) {
-      if (exist.qty > 1) {
+      } else if (exist) {
         this.setState({
-          itemsArray: this.state.itemsArray.map((v) =>
-            v.id === product.id && v.size === size
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id &&
+            product.shoeSize === this.state.shoeSize
               ? {
                   ...exist,
-                  qty: exist.qty - 1,
-                  size: exist.size,
+                  qty: exist.qty + 1,
+                  shoeSize: exist.shoeSize,
+                }
+              : product
+          ),
+        });
+      }
+    }
+    // clothes
+    if (productInfo.attributes.length === 1 && this.state.clothesSize !== "") {
+      const exist =
+        this.state.itemsArray.length > 0 &&
+        this.state.itemsArray.find(
+          (item) =>
+            item.id === productInfo.id &&
+            item.clothesSize === this.state.clothesSize
+        );
+
+      if (!exist) {
+        this.setState({
+          itemsArray: [
+            ...this.state.itemsArray,
+            {
+              ...productInfo,
+              qty: 1,
+              clothesSize: this.state.clothesSize,
+            },
+          ],
+        });
+      } else if (exist) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id &&
+            product.clothesSize === this.state.clothesSize
+              ? {
+                  ...exist,
+                  qty: exist.qty + 1,
+                  clothesSize: exist.clothesSize,
+                }
+              : product
+          ),
+        });
+      }
+    }
+    // items with 2 attributes
+    if (
+      productInfo.attributes.length === 2 &&
+      this.state.capacity !== "" &&
+      this.state.itemColor !== ""
+    ) {
+      const exist =
+        this.state.itemsArray.length > 0 &&
+        this.state.itemsArray.find(
+          (item) =>
+            item.id === productInfo.id &&
+            item.capacity === this.state.capacity &&
+            item.itemColor === this.state.itemColor
+        );
+      if (!exist) {
+        this.setState({
+          itemsArray: [
+            ...this.state.itemsArray,
+            {
+              ...productInfo,
+              qty: 1,
+              capacity: this.state.capacity,
+              itemColor: this.state.itemColor,
+            },
+          ],
+        });
+      } else if (exist) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id &&
+            product.capacity === this.state.capacity &&
+            product.itemColor === this.state.itemColor
+              ? {
+                  ...exist,
+                  qty: exist.qty + 1,
+                  capacity: exist.capacity,
+                  itemColor: exist.itemColor,
+                }
+              : product
+          ),
+        });
+      }
+    }
+    // items with 3 attributes
+    if (
+      productInfo.attributes.length === 3 &&
+      this.state.capacity !== "" &&
+      this.state.usb !== "" &&
+      this.state.touchID !== ""
+    ) {
+      const exist =
+        this.state.itemsArray.length > 0 &&
+        this.state.itemsArray.find(
+          (item) =>
+            item.id === productInfo.id &&
+            item.capacity === this.state.capacity &&
+            item.usb === this.state.usb &&
+            item.touchID === this.state.touchID
+        );
+      if (!exist) {
+        this.setState({
+          itemsArray: [
+            ...this.state.itemsArray,
+            {
+              ...productInfo,
+              qty: 1,
+              capacity: this.state.capacity,
+              usb: this.state.usb,
+              touchID: this.state.touchID,
+            },
+          ],
+        });
+      } else if (exist) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id &&
+            product.capacity === this.state.capacity &&
+            product.usb === this.state.usb &&
+            product.touchID === this.state.touchID
+              ? {
+                  ...exist,
+                  qty: exist.qty + 1,
+                  capacity: exist.capacity,
+                  usb: exist.usb,
+                  touchID: exist.touchID,
+                }
+              : product
+          ),
+        });
+      }
+    }
+
+    // console.log(this.state.itemsArray);
+  }
+  // functions to decrease amount of items in cart by 1
+  onRemove(productInfo) {
+    // items with 0 attributes
+    if (productInfo.attributes.length === 0) {
+      if (productInfo && productInfo.qty > 1) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.id === productInfo.id
+              ? {
+                  ...productInfo,
+                  qty: v.qty - 1,
                 }
               : v
           ),
         });
       } else {
         this.setState({
-          itemsArray: this.state.itemsArray.filter((v) => v.size !== size),
+          itemsArray: this.state.itemsArray.filter(
+            (v) => v.id !== productInfo.id
+          ),
         });
       }
     }
+    // items with 1 attribute
+    // shoes
+    if (
+      productInfo.attributes.length === 1 &&
+      productInfo.shoeSize !== undefined
+    ) {
+      if (productInfo.qty > 1) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.id === productInfo.id && v.shoeSize === productInfo.shoeSize
+              ? {
+                  ...productInfo,
+                  qty: productInfo.qty - 1,
+                }
+              : v
+          ),
+        });
+      } else {
+        this.setState({
+          itemsArray: this.state.itemsArray.filter(
+            (v) => v.shoeSize !== productInfo.shoeSize
+          ),
+        });
+      }
+    } // clothes
+    if (
+      productInfo.attributes.length === 1 &&
+      productInfo.clothesSize !== undefined
+    ) {
+      if (productInfo.qty > 1) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.clothesSize === productInfo.clothesSize
+              ? { ...productInfo, qty: v.qty - 1 }
+              : v
+          ),
+        });
+      } else {
+        this.setState({
+          itemsArray: this.state.itemsArray.filter(
+            (v) => v.clothesSize !== productInfo.clothesSize
+          ),
+        });
+      }
+    }
+    // items with 2 attributes
+    // if (
+    //   productInfo.attributes.length === 2 &&
+    //   productInfo.capacity !== "" &&
+    //   productInfo.itemColor !== ""
+    // ) {
+    //   if (productInfo.qty > 1) {
+    //     this.setState({
+    //       itemsArray: this.state.itemsArray.map((v) =>
+    //         v.capacity === productInfo.capacity &&
+    //         v.itemColor === productInfo.itemColor
+    //           ? { ...productInfo, qty: v.qty - 1 }
+    //           : v
+    //       ),
+    //     });
+    //   } else {
+    //     this.setState({
+    //       iemsArray: this.state.itemsArray.filter(
+    //         (v) =>
+    //           v.itemColor !== productInfo.itemColor &&
+    //           v.capacity !== productInfo.capacity
+    //       ),
+    //     });
+    //   }
+    // }
   }
 
   // function for gettin currency and relevant price
@@ -276,7 +392,7 @@ class App extends Component {
 
   // clear all items from cart
   clearCart() {
-    this.setState({ itemsArray: [], counter: 1 });
+    this.setState({ itemsArray: [] });
   }
 
   render() {
@@ -294,11 +410,6 @@ class App extends Component {
                     // states
                     amount={this.state.amount}
                     currency={this.state.currency}
-                    size={this.state.size}
-                    capacity={this.state.capacity}
-                    itemColor={this.state.itemColor}
-                    usb={this.state.usb}
-                    touchID={this.state.touchID}
                     product={this.state.product}
                     itemsArray={this.state.itemsArray}
                     arg={this.props.arg}

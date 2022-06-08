@@ -57,7 +57,6 @@ class Details extends Component {
                 <h4>{product.brand}</h4>
                 <Attributes
                   product={product}
-                  size={this.props.size}
                   onAttributePick={this.props.onAttributePick}
                 />{" "}
                 <>
@@ -68,14 +67,7 @@ class Details extends Component {
                   <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
                   <button
                     onClick={() => {
-                      this.props.onAdd(
-                        product,
-                        this.props.size,
-                        this.props.itemColor,
-                        this.props.capacity,
-                        this.props.usb,
-                        this.props.touchID
-                      );
+                      this.props.onAdd(product);
                     }}
                     disabled={!product.inStock}
                   >
