@@ -23,8 +23,7 @@ class App extends Component {
       currency: "$",
       amount: 0,
       // attributes
-      shoeSize: "",
-      clothesSize: "",
+      size: "",
       itemColor: "",
       capacity: "",
       usb: "",
@@ -46,35 +45,24 @@ class App extends Component {
   }
   // test for one functions for all attributes,
   //setState-ის მეორე პარამეტრის გადახედვაა საჭიწრო
-  onAttributePick(arg1, arg2, arg3) {
+  onAttributePick(arg1, arg2) {
     if (arg1.name === "Color") {
       this.setState({ itemColor: arg2.value });
       // console.log(this.state.itemColor);
     }
     if (arg1.name === "Capacity") {
-      this.setState({ capacity: arg2.value });
-      // console.log(arg2);
+      this.setState({ capacity: arg2.displayValue });
       // console.log(this.state.capacity);
     }
     if (arg1.name === "Size") {
-      if (Number.isInteger(parseInt(arg2.displayValue)) === true) {
-        this.setState({ shoeSize: arg2.displayValue });
-      } else {
-        this.setState({ clothesSize: arg2.displayValue });
-      }
-
-      // console.log(Number.isInteger(parseInt(arg2.displayValue)));
-      // console.log(arg1);
-      // console.log(this.state.clothesSize);
-      // console.log(this.state.shoeSize);
-      // console.log(arg3);
+      this.setState({ size: arg2.displayValue });
     }
     if (arg1.name === "With USB 3 ports") {
-      this.setState({ usb: arg2.value });
+      this.setState({ usb: arg2.displayValue });
       // console.log(this.state.usb);
     }
     if (arg1.name === "Touch ID in keyboard") {
-      this.setState({ touchID: arg2.value });
+      this.setState({ touchID: arg2.displayValue });
       // console.log(this.state.touchID);
     }
   }
@@ -90,7 +78,8 @@ class App extends Component {
 
   // get item id from details page and add it to the itemsArray
   onAdd(productInfo) {
-    // console.log(productInfo);
+    console.log(productInfo);
+    console.log(this.state.size);
 
     // items with no attributes
     if (productInfo.attributes.length === 0) {
@@ -116,13 +105,11 @@ class App extends Component {
     }
 
     // items with 1 attributes
-    // shoes
-    if (productInfo.attributes.length === 1 && this.state.shoeSize !== "") {
+    if (productInfo.attributes.length === 1 && this.state.size !== "") {
       const exist =
         this.state.itemsArray.length > 0 &&
         this.state.itemsArray.find(
-          (item) =>
-            item.id === productInfo.id && item.shoeSize === this.state.shoeSize
+          (item) => item.id === productInfo.id && item.size === this.state.size
         );
 
       if (!exist) {
@@ -132,61 +119,25 @@ class App extends Component {
             {
               ...productInfo,
               qty: 1,
-              shoeSize: this.state.shoeSize,
+              size: this.state.size,
             },
           ],
         });
       } else if (exist) {
         this.setState({
           itemsArray: this.state.itemsArray.map((product) =>
-            product.id === productInfo.id &&
-            product.shoeSize === this.state.shoeSize
+            product.id === productInfo.id && product.size === this.state.size
               ? {
                   ...exist,
                   qty: exist.qty + 1,
-                  shoeSize: exist.shoeSize,
+                  size: exist.size,
                 }
               : product
           ),
         });
       }
     }
-    // clothes
-    if (productInfo.attributes.length === 1 && this.state.clothesSize !== "") {
-      const exist =
-        this.state.itemsArray.length > 0 &&
-        this.state.itemsArray.find(
-          (item) =>
-            item.id === productInfo.id &&
-            item.clothesSize === this.state.clothesSize
-        );
 
-      if (!exist) {
-        this.setState({
-          itemsArray: [
-            ...this.state.itemsArray,
-            {
-              ...productInfo,
-              qty: 1,
-              clothesSize: this.state.clothesSize,
-            },
-          ],
-        });
-      } else if (exist) {
-        this.setState({
-          itemsArray: this.state.itemsArray.map((product) =>
-            product.id === productInfo.id &&
-            product.clothesSize === this.state.clothesSize
-              ? {
-                  ...exist,
-                  qty: exist.qty + 1,
-                  clothesSize: exist.clothesSize,
-                }
-              : product
-          ),
-        });
-      }
-    }
     // items with 2 attributes
     if (
       productInfo.attributes.length === 2 &&
@@ -278,11 +229,18 @@ class App extends Component {
         });
       }
     }
-
+    // this.setState({
+    //   size: "",
+    //   itemColor: "",
+    //   capacity: "",
+    //   usb: "",
+    //   touchID: "",
+    // });
     // console.log(this.state.itemsArray);
   }
   // functions to decrease amount of items in cart by 1
   onRemove(productInfo) {
+    console.log(productInfo);
     // items with 0 attributes
     if (productInfo.attributes.length === 0) {
       if (productInfo && productInfo.qty > 1) {
@@ -305,15 +263,11 @@ class App extends Component {
       }
     }
     // items with 1 attribute
-    // shoes
-    if (
-      productInfo.attributes.length === 1 &&
-      productInfo.shoeSize !== undefined
-    ) {
+    if (productInfo.attributes.length === 1) {
       if (productInfo.qty > 1) {
         this.setState({
           itemsArray: this.state.itemsArray.map((v) =>
-            v.id === productInfo.id && v.shoeSize === productInfo.shoeSize
+            v.id === productInfo.id && v.size === productInfo.size
               ? {
                   ...productInfo,
                   qty: productInfo.qty - 1,
@@ -324,19 +278,24 @@ class App extends Component {
       } else {
         this.setState({
           itemsArray: this.state.itemsArray.filter(
-            (v) => v.shoeSize !== productInfo.shoeSize
+            (v) => v.size !== productInfo.size
           ),
         });
       }
-    } // clothes
+    }
+
+    // items with 2 attributes
     if (
-      productInfo.attributes.length === 1 &&
-      productInfo.clothesSize !== undefined
+      productInfo.attributes.length === 2 &&
+      productInfo.capacity !== "" &&
+      productInfo.itemColor !== ""
     ) {
+      console.log(productInfo.capacity, productInfo.itemColor);
       if (productInfo.qty > 1) {
         this.setState({
           itemsArray: this.state.itemsArray.map((v) =>
-            v.clothesSize === productInfo.clothesSize
+            v.capacity === productInfo.capacity &&
+            v.itemColor === productInfo.itemColor
               ? { ...productInfo, qty: v.qty - 1 }
               : v
           ),
@@ -344,36 +303,41 @@ class App extends Component {
       } else {
         this.setState({
           itemsArray: this.state.itemsArray.filter(
-            (v) => v.clothesSize !== productInfo.clothesSize
+            (v) =>
+              v.itemColor !== productInfo.itemColor ||
+              v.capacity !== productInfo.capacity
           ),
         });
       }
     }
-    // items with 2 attributes
-    // if (
-    //   productInfo.attributes.length === 2 &&
-    //   productInfo.capacity !== "" &&
-    //   productInfo.itemColor !== ""
-    // ) {
-    //   if (productInfo.qty > 1) {
-    //     this.setState({
-    //       itemsArray: this.state.itemsArray.map((v) =>
-    //         v.capacity === productInfo.capacity &&
-    //         v.itemColor === productInfo.itemColor
-    //           ? { ...productInfo, qty: v.qty - 1 }
-    //           : v
-    //       ),
-    //     });
-    //   } else {
-    //     this.setState({
-    //       iemsArray: this.state.itemsArray.filter(
-    //         (v) =>
-    //           v.itemColor !== productInfo.itemColor &&
-    //           v.capacity !== productInfo.capacity
-    //       ),
-    //     });
-    //   }
-    // }
+    // items with 3 attributes
+    if (
+      productInfo.attributes.length === 3 &&
+      productInfo.capacity !== "" &&
+      productInfo.usb !== "" &&
+      productInfo.touchID !== ""
+    ) {
+      if (productInfo.qty > 1) {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((v) =>
+            v.capacity === productInfo.capacity &&
+            v.usb === productInfo.usb &&
+            v.touchID === productInfo.touchID
+              ? { ...productInfo, qty: v.qty - 1 }
+              : v
+          ),
+        });
+      } else {
+        this.setState({
+          itemsArray: this.state.itemsArray.filter(
+            (v) =>
+              v.capacity !== productInfo.capacity ||
+              v.usb !== productInfo.usb ||
+              v.touchID !== productInfo.touchID
+          ),
+        });
+      }
+    }
   }
 
   // function for gettin currency and relevant price

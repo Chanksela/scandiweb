@@ -4,6 +4,7 @@ export default class CartInfo extends Component {
   render() {
     return (
       <div>
+        {console.log(this.props.product)}
         <p>
           {this.props.product.prices[this.props.state.amount].amount}
           {this.props.state.currency}
@@ -15,12 +16,8 @@ export default class CartInfo extends Component {
           >
             -
           </button>
-          {this.props.product.shoeSize && (
-            <p>Shoe Size: {this.props.product.shoeSize}</p>
-          )}
-          {this.props.product.clothesSize && (
-            <p>Clothes Size: {this.props.product.clothesSize}</p>
-          )}
+
+          {this.props.product.size && <p>Size: {this.props.product.size}</p>}
           {this.props.product.itemColor && (
             <>
               Color:
