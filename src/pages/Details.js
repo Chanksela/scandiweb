@@ -66,8 +66,9 @@ class Details extends Component {
                   </p>
                   <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
                   <button
-                    onClick={() => {
-                      this.props.onAdd(product);
+                    id="details-add-btn"
+                    onClick={(e) => {
+                      this.props.onAdd(product, e.target.id);
                     }}
                     disabled={!product.inStock}
                   >

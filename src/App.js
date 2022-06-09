@@ -77,10 +77,8 @@ class App extends Component {
   }
 
   // get item id from details page and add it to the itemsArray
-  onAdd(productInfo) {
-    console.log(productInfo);
-    console.log(this.state.size);
-
+  onAdd(productInfo, id) {
+    console.log(id);
     // items with no attributes
     if (productInfo.attributes.length === 0) {
       const exist =
@@ -109,10 +107,12 @@ class App extends Component {
       const exist =
         this.state.itemsArray.length > 0 &&
         this.state.itemsArray.find(
-          (item) => item.id === productInfo.id && item.size === this.state.size
+          (item) =>
+            (item.id === productInfo.id && item.size === this.state.size) ||
+            (productInfo.id && item.size === productInfo.size)
         );
 
-      if (!exist) {
+      if (!exist && id === "details-add-btn") {
         this.setState({
           itemsArray: [
             ...this.state.itemsArray,
@@ -123,13 +123,24 @@ class App extends Component {
             },
           ],
         });
-      } else if (exist) {
+      } else if (exist && id === "details-add-btn") {
         this.setState({
           itemsArray: this.state.itemsArray.map((product) =>
             product.id === productInfo.id && product.size === this.state.size
               ? {
                   ...exist,
                   qty: exist.qty + 1,
+                }
+              : product
+          ),
+        });
+      } else if (exist && id === "cart-add-btn") {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id && product.size === productInfo.size
+              ? {
+                  ...productInfo,
+                  qty: productInfo.qty + 1,
                 }
               : product
           ),
@@ -147,11 +158,14 @@ class App extends Component {
         this.state.itemsArray.length > 0 &&
         this.state.itemsArray.find(
           (item) =>
-            item.id === productInfo.id &&
-            item.capacity === this.state.capacity &&
-            item.itemColor === this.state.itemColor
+            (item.id === productInfo.id &&
+              item.capacity === this.state.capacity &&
+              item.itemColor === this.state.itemColor) ||
+            (item.id === productInfo.id &&
+              item.capacity === productInfo.capacity &&
+              item.itemColor === productInfo.itemColor)
         );
-      if (!exist) {
+      if (!exist && id === "details-add-btn") {
         this.setState({
           itemsArray: [
             ...this.state.itemsArray,
@@ -163,7 +177,7 @@ class App extends Component {
             },
           ],
         });
-      } else if (exist) {
+      } else if (exist && id === "details-add-btn") {
         this.setState({
           itemsArray: this.state.itemsArray.map((product) =>
             product.id === productInfo.id &&
@@ -174,6 +188,19 @@ class App extends Component {
                   qty: exist.qty + 1,
                   capacity: exist.capacity,
                   itemColor: exist.itemColor,
+                }
+              : product
+          ),
+        });
+      } else if (exist && id === "cart-add-btn") {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id &&
+            product.capacity === productInfo.capacity &&
+            product.itemColor === productInfo.itemColor
+              ? {
+                  ...productInfo,
+                  qty: productInfo.qty + 1,
                 }
               : product
           ),
@@ -191,12 +218,16 @@ class App extends Component {
         this.state.itemsArray.length > 0 &&
         this.state.itemsArray.find(
           (item) =>
-            item.id === productInfo.id &&
-            item.capacity === this.state.capacity &&
-            item.usb === this.state.usb &&
-            item.touchID === this.state.touchID
+            (item.id === productInfo.id &&
+              item.capacity === this.state.capacity &&
+              item.usb === this.state.usb &&
+              item.touchID === this.state.touchID) ||
+            (item.id === productInfo.id &&
+              item.capacity === productInfo.capacity &&
+              item.usb === productInfo.usb &&
+              item.touchID === productInfo.touchID)
         );
-      if (!exist) {
+      if (!exist && id === "details-add-btn") {
         this.setState({
           itemsArray: [
             ...this.state.itemsArray,
@@ -209,7 +240,7 @@ class App extends Component {
             },
           ],
         });
-      } else if (exist) {
+      } else if (exist && id === "details-add-btn") {
         this.setState({
           itemsArray: this.state.itemsArray.map((product) =>
             product.id === productInfo.id &&
@@ -226,16 +257,22 @@ class App extends Component {
               : product
           ),
         });
+      } else if (exist && id === "cart-add-btn") {
+        this.setState({
+          itemsArray: this.state.itemsArray.map((product) =>
+            product.id === productInfo.id &&
+            product.capacity === productInfo.capacity &&
+            product.usb === productInfo.usb &&
+            product.touchID === productInfo.touchID
+              ? {
+                  ...productInfo,
+                  qty: productInfo.qty + 1,
+                }
+              : product
+          ),
+        });
       }
     }
-    // this.setState({
-    //   size: "",
-    //   itemColor: "",
-    //   capacity: "",
-    //   usb: "",
-    //   touchID: "",
-    // });
-    // console.log(this.state.itemsArray);
   }
   // functions to decrease amount of items in cart by 1
   onRemove(productInfo) {
