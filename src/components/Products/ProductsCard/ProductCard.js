@@ -4,7 +4,7 @@ import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import { ProductConsumer } from "../../../services/contex";
-import CartIcon from "../../../Icons/Vector.svg";
+import CartIcon from "../../../Images/Vector.svg";
 export default class ProductCard extends Component {
   render() {
     return (

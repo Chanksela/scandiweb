@@ -37,10 +37,18 @@ export default class CartInfo extends Component {
           <p>{this.props.product.qty}</p>
 
           <button
-            id={this.props.product.id}
-            onClick={() => this.props.state.onAdd(this.props.product)}
+            id={this.props.product.size}
+            onClick={(e) =>
+              this.props.state.onAdd(this.props.product, e.target.id)
+            }
           >
             +
+          </button>
+          <button
+            id={this.props.product.size}
+            onClick={(e) => console.log(e.target.id)}
+          >
+            Test
           </button>
         </div>{" "}
       </div>

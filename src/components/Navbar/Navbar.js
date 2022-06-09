@@ -4,6 +4,7 @@ import Links from "./Links/Links";
 import Currency from "./Currency/Currency";
 import Cart from "./Cart/Cart";
 import "./Navbar.css";
+import Logo from "../../Images/Logo.png";
 
 export default class Navbar extends Component {
   render() {
@@ -13,7 +14,7 @@ export default class Navbar extends Component {
           <Links selectCategory={this.props.selectCategory} />
         </div>
         <div className="navbar-logo">
-          <h3>Scandiweb</h3>
+          <img alt="logo" src={Logo} />
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">

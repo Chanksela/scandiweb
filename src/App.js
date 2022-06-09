@@ -130,7 +130,6 @@ class App extends Component {
               ? {
                   ...exist,
                   qty: exist.qty + 1,
-                  size: exist.size,
                 }
               : product
           ),
