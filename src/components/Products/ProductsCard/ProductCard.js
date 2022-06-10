@@ -4,7 +4,7 @@ import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import { ProductConsumer } from "../../../services/contex";
-import CartIcon from "../../../Images/Vector.svg";
+import CircleIcon from "../../../Images/CircleIcon.png";
 export default class ProductCard extends Component {
   render() {
     return (
@@ -21,50 +21,54 @@ export default class ProductCard extends Component {
                 const { category } = data;
 
                 return (
-                  <div className="main-container">
-                    {console.log(category)}
-                    {state.product}
+                  <>
                     <h1>{state.categories}</h1>
-                    {category.products.map((info) => (
-                      <div key={info.id} className="items-container">
-                        <div className="img-container">
-                          <img
-                            id="image"
-                            className={
-                              !info.inStock
-                                ? "out-of-stock-image"
-                                : "main-image"
-                            }
-                            alt="product-img"
-                            src={info.gallery[0]}
-                          />{" "}
-                          {/* {console.log(info)} */}
-                          {!info.inStock && (
-                            <p className="out-of-stock">Out of Stock</p>
-                          )}
-                        </div>
-                        {info.inStock && (
-                          <div className={"cart-icon"}>
-                            <img
-                              alt="cart-icon"
-                              src={CartIcon}
-                              onClick={() => {
-                                state.onAdd(info);
-                              }}
-                            />
-                          </div>
-                        )}
-                        <div className="product-specifics">
-                          <Link to={`/details/${info.id}`}>{info.name}</Link>
+                    <div className="main-container">
+                      {console.log(category)}
+                      {state.product}
 
-                          <p>
-                            {state.currency}
-                            {info.prices[state.amount].amount}
-                          </p>
+                      {category.products.map((info) => (
+                        <div key={info.id} className="items-container">
+                          <div className="img-container">
+                            <img
+                              id="image"
+                              className={
+                                !info.inStock
+                                  ? "out-of-stock-image"
+                                  : "main-image"
+                              }
+                              alt="product-img"
+                              src={info.gallery[0]}
+                            />{" "}
+                            {/* {console.log(info)} */}
+                            {!info.inStock && (
+                              <p className="out-of-stock">Out of Stock</p>
+                            )}
+                          </div>
+                          {info.inStock && (
+                            <div className={"cart-icon"}>
+                              <img
+                                id="cart-btn"
+                                alt="cart-icon"
+                                src={CircleIcon}
+                                onClick={() => {
+                                  state.onAdd(info);
+                                }}
+                              />
+                            </div>
+                          )}
+                          <div className="product-specifics">
+                            <Link to={`/details/${info.id}`}>{info.name}</Link>
+
+                            <p>
+                              {state.currency}
+                              {info.prices[state.amount].amount}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  </>
                 );
               }}
             </Query>

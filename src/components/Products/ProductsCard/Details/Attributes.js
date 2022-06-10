@@ -9,21 +9,24 @@ export default class Attributes extends Component {
           return (
             <div className="main-content" key={index}>
               <div className="attributes">
-                <p className="attr-name">{v.name}</p>
-                {v.items.map((attr, index) => (
-                  <button
-                    style={{
-                      backgroundColor: attr.value,
-                    }}
-                    className="attr"
-                    key={index}
-                    onClick={() =>
-                      this.props.onAttributePick(v, attr, this.props.product)
-                    }
-                  >
-                    {v.name !== "Color" && attr.displayValue}
-                  </button>
-                ))}
+                {v.name}:
+                <div>
+                  {v.items.map((attr, index) => (
+                    <button
+                      style={{
+                        backgroundColor: attr.value,
+                      }}
+                      className="attr"
+                      id={v.name}
+                      key={index}
+                      onClick={(e) =>
+                        this.props.onAttributePick(v, attr, e.target.id)
+                      }
+                    >
+                      {v.name !== "Color" && attr.value}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           );

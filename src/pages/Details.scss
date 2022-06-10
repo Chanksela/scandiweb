@@ -1,26 +1,21 @@
 @import "../../src//styles/config";
 .content {
-  border: 1px solid salmon;
   display: flex;
+  position: absolute;
+  overflow: hidden;
   height: 100vh;
+  width: 100%;
   justify-content: space-between;
   .images {
     width: 50%;
-    border: 1px solid green;
     .img-gallery {
       display: flex;
       flex-direction: row;
-      height: 100%;
-
-      .img-main {
-        height: 300px;
-        width: 100%;
-        border: red solid 5px;
-      }
+      // justify-content: space-between;
+      height: 100vh;
       .img-picker {
         display: flex;
         flex-direction: column;
-
         .imgs {
           display: flex;
           flex-direction: column;
@@ -33,11 +28,31 @@
       }
     }
   }
-  .info {
-    width: 40%;
-    border: 1px solid indigo;
-    .error {
-      color: red;
+  .info-container {
+    width: 48%;
+    .info-content {
+      margin: 5% 5%;
+      .brand-info {
+        margin-bottom: 10px;
+      }
+      .price-description {
+        margin: 5% 0;
+        .test {
+          margin-bottom: 10px;
+        }
+      }
+      #details-add-btn {
+        width: 292px;
+        height: 52px;
+        background-color: $green;
+        color: $white;
+        border: none;
+        font-weight: 600;
+        transition: 0.8s;
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

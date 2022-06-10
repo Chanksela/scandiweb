@@ -51,20 +51,25 @@ class Details extends Component {
                   />
                 </div>
               </div>
-              <div className="info">
-                {" "}
-                <h2>{product.name}</h2>
-                <h4>{product.brand}</h4>
-                <Attributes
-                  product={product}
-                  onAttributePick={this.props.onAttributePick}
-                />{" "}
-                <>
-                  <p>
-                    {this.props.currency}
-                    {product.prices[this.props.amount].amount}
-                  </p>
-                  <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
+              <div className="info-container">
+                <div className="info-content">
+                  <div className="brand-info">
+                    <h2>{product.name}</h2>
+                    <h4>{product.brand}</h4>
+                  </div>
+                  <Attributes
+                    product={product}
+                    onAttributePick={this.props.onAttributePick}
+                  />{" "}
+                  <div className="price-description">
+                    {" "}
+                    <p className="test">Price:</p>
+                    <p className="price">
+                      {this.props.currency}
+                      {product.prices[this.props.amount].amount}
+                    </p>
+                    <p> {product.description.replace(/(<([^>]+)>)/gi, "")}</p>{" "}
+                  </div>
                   <button
                     id="details-add-btn"
                     onClick={(e) => {
@@ -74,12 +79,12 @@ class Details extends Component {
                   >
                     {" "}
                     {!product.inStock ? (
-                      <p className="error">ITEM IS OUT OF STOCK</p>
+                      <p>ITEM IS OUT OF STOCK</p>
                     ) : (
                       "Add to Cart"
                     )}
                   </button>
-                </>
+                </div>
               </div>
             </div>
           );

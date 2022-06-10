@@ -1,0 +1,14 @@
+@import "../../styles/config";
+#clear-btn {
+  height: 43px;
+  width: 143px;
+  background-color: transparent;
+  border: 2px solid $black;
+  font-weight: 600;
+  transition: 0.8s;
+  &:hover {
+    cursor: pointer;
+    background-color: $black;
+    color: $white;
+  }
+}

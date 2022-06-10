@@ -45,7 +45,8 @@ class App extends Component {
   }
   // test for one functions for all attributes,
   //setState-ის მეორე პარამეტრის გადახედვაა საჭიწრო
-  onAttributePick(arg1, arg2) {
+  onAttributePick(arg1, arg2, id) {
+    console.log(id);
     if (arg1.name === "Color") {
       this.setState({ itemColor: arg2.value });
       // console.log(this.state.itemColor);
@@ -56,6 +57,7 @@ class App extends Component {
     }
     if (arg1.name === "Size") {
       this.setState({ size: arg2.displayValue });
+      console.log(this.state.size);
     }
     if (arg1.name === "With USB 3 ports") {
       this.setState({ usb: arg2.displayValue });
@@ -79,6 +81,8 @@ class App extends Component {
   // get item id from details page and add it to the itemsArray
   onAdd(productInfo, id) {
     console.log(id);
+    console.log(productInfo);
+    console.log(productInfo.attributes.length);
     // items with no attributes
     if (productInfo.attributes.length === 0) {
       const exist =
@@ -101,7 +105,6 @@ class App extends Component {
         });
       }
     }
-
     // items with 1 attributes
     if (productInfo.attributes.length === 1 && this.state.size !== "") {
       const exist =
@@ -109,10 +112,11 @@ class App extends Component {
         this.state.itemsArray.find(
           (item) =>
             (item.id === productInfo.id && item.size === this.state.size) ||
-            (productInfo.id && item.size === productInfo.size)
+            (item.id === productInfo.id && item.size === productInfo.size)
         );
 
       if (!exist && id === "details-add-btn") {
+        console.log("Doesn't Exist");
         this.setState({
           itemsArray: [
             ...this.state.itemsArray,
@@ -124,6 +128,7 @@ class App extends Component {
           ],
         });
       } else if (exist && id === "details-add-btn") {
+        console.log("Exist");
         this.setState({
           itemsArray: this.state.itemsArray.map((product) =>
             product.id === productInfo.id && product.size === this.state.size

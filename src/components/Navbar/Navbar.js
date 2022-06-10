@@ -14,7 +14,7 @@ export default class Navbar extends Component {
           <Links selectCategory={this.props.selectCategory} />
         </div>
         <div className="navbar-logo">
-          <img alt="logo" src={Logo} />
+          <img id="logo" alt="logo" src={Logo} />
         </div>
         <div className="navbar-cart-currency">
           <div className="navbar-currency">

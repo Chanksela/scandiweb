@@ -49,7 +49,11 @@ export default class CartItems extends Component {
               {/* {console.log(state)} */}
               {/* adds total price of added items */}
               <p>Total: {`${this.total(state)} ${state.currency}`}</p>
-              <Link to={"/cartitems"}>Shop</Link>
+              <button id="shop-btn">
+                <Link id="shop-link" to={"/cartitems"}>
+                  Shop
+                </Link>
+              </button>
               <ClearButton />
             </div>
           ) : (
