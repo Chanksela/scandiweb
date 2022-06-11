@@ -3,6 +3,7 @@ import { ProductConsumer } from "../../../services/contex";
 
 import CartIcon from "../../../Images/Vector.svg";
 import CartItems from "./CartItems";
+import CartCount from "./CartCount";
 export default class Cart extends Component {
   constructor() {
     super();
@@ -25,7 +26,7 @@ export default class Cart extends Component {
               onClick={() => this.handleCart()}
             />
             {state.itemsArray.length > 0 && (
-              <p className="cart-badge">{state.totalQty(state)}</p>
+              <CartCount class="cart-badge" state={state} />
             )}
             {this.state.cart && <CartItems />}
           </div>
