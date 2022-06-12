@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import PrevBtn from "../../../Images/Prev.png";
+import NextBtn from "../../../Images/Next.png";
 export default class CartImage extends Component {
   constructor() {
     super();
@@ -54,27 +55,28 @@ export default class CartImage extends Component {
             className="cart-img"
             src={this.props.product.gallery?.[this.state.index]}
           />{" "}
-          {this.props.product.gallery.length > 1 && (
-            <>
-              {" "}
-              <button
-                id="prev"
-                onClick={(e) =>
-                  this.slide(e.target.id, this.props.product.gallery)
-                }
-              >
-                PREV
-              </button>
-              <button
-                id="next"
-                onClick={(e) =>
-                  this.slide(e.target.id, this.props.product.gallery)
-                }
-              >
-                NEXT
-              </button>
-            </>
-          )}
+          <section className="slide-btn">
+            {this.props.product.gallery.length > 1 && (
+              <>
+                <img
+                  alt="product-img"
+                  src={PrevBtn}
+                  id="prev"
+                  onClick={(e) =>
+                    this.slide(e.target.id, this.props.product.gallery)
+                  }
+                />
+                <img
+                  alt="product-img"
+                  src={NextBtn}
+                  id="next"
+                  onClick={(e) =>
+                    this.slide(e.target.id, this.props.product.gallery)
+                  }
+                />
+              </>
+            )}
+          </section>
         </section>
       </>
     );

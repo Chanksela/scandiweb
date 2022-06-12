@@ -36,6 +36,25 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        .slide-btn {
+          position: absolute;
+          width: 50px;
+
+          display: flex;
+          flex-direction: row;
+          img {
+            width: 35%;
+            margin-top: 100%;
+          }
+          #next {
+            position: absolute;
+            margin-left: 150%;
+          }
+          #prev {
+            position: absolute;
+            margin-left: 105%;
+          }
+        }
       }
     }
   }
