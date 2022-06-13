@@ -7,7 +7,7 @@ export default class CartInfo extends Component {
     return (
       <>
         <div className="cart-info">
-          <section className="item-info-section">
+          <div className="item-info-section">
             <h3>{this.props.product.brand}</h3>
             <h4>{this.props.product.name}</h4>
             <p>
@@ -15,11 +15,12 @@ export default class CartInfo extends Component {
               {this.props.state.currency}
             </p>
             <CartAttributes product={this.props.product} />
-          </section>
-          <section className="item-image-section">
+          </div>
+          <div className="item-image-section">
             <CartImage state={this.props.state} product={this.props.product} />
-          </section>
+          </div>
         </div>
+        <div id="line"></div>
       </>
     );
   }

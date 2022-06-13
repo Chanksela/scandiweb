@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./CartPage.css";
 import { ProductConsumer } from "../services/contex";
-import CartImage from "../components/Navbar/Cart/CartImage";
 import CartInfo from "../components/Navbar/Cart/CartInfo";
 import CartPriceDetails from "../components/Navbar/Cart/CartPriceDetails";
-import ClearButton from "../components/Button/ClearButton";
+import Button from "../components/Button/Button";
+
 export default class CartItems extends Component {
   constructor() {
     super();
@@ -26,17 +26,24 @@ export default class CartItems extends Component {
       <ProductConsumer>
         {(state) => {
           return state.itemsArray.length > 0 ? (
-            <div className="cart-page">
-              {state.itemsArray.map((product, index) => (
-                <div key={index}>
-                  <CartInfo product={product} state={state} />
-                </div>
-              ))}{" "}
-              {/* adds total price of added items */}
-              <p>Total: {`${this.total(state)} ${state.currency}`}</p>
-              <CartPriceDetails state={state} total={this.total} />
-              <ClearButton />
-            </div>
+            <>
+              <h2>Cart</h2>
+              <div className="cart-page">
+                {state.itemsArray.map((product, index) => (
+                  <div key={index}>
+                    <CartInfo product={product} state={state} />
+                  </div>
+                ))}{" "}
+                {/* adds total price of added items */}
+                <p>Total: {`${this.total(state)} ${state.currency}`}</p>
+                <CartPriceDetails state={state} total={this.total} />
+                <Button
+                  id="clear-btn"
+                  function={state.clearCart}
+                  content="Clear All"
+                />
+              </div>
+            </>
           ) : (
             <p className="empty-cart">Cart is Empty</p>
           );

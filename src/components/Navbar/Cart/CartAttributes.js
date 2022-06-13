@@ -4,7 +4,12 @@ export default class CartAttributes extends Component {
   render() {
     return (
       <div className="cart-attributes">
-        {this.props.product.size && <p>Size: {this.props.product.size}</p>}
+        {this.props.product.size && (
+          <>
+            <p>Size:</p>
+            <p> {this.props.product.size}</p>
+          </>
+        )}
         {this.props.product.itemColor && (
           <>
             Color:
@@ -15,9 +20,17 @@ export default class CartAttributes extends Component {
           </>
         )}
         {this.props.product.capacity && (
-          <p>Capacity: {this.props.product.capacity}</p>
+          <>
+            <p>Capacity:</p>
+            <p>{this.props.product.capacity}</p>
+          </>
         )}
-        {this.props.product.usb && <p>USB: {this.props.product.usb}</p>}
+        {this.props.product.usb && (
+          <>
+            <p>USB:</p>
+            <p> {this.props.product.usb}</p>
+          </>
+        )}
         {this.props.product.touchID && (
           <p>Touch ID: {this.props.product.touchID}</p>
         )}

@@ -4,21 +4,12 @@ import { ProductConsumer } from "../../../services/contex";
 
 import CartCount from "./CartCount";
 import CartInfo from "./CartInfo";
-import ClearButton from "../../Button/ClearButton";
+import Button from "../../Button/Button";
 import CartAmount from "./CartAmount";
 export default class CartItems extends Component {
   constructor() {
     super();
     this.state = { index: 0 };
-    this.total = this.total.bind(this);
-  }
-  // sums the price of items
-  total(arg) {
-    return arg.itemsArray
-      .map((item) => item.prices[arg.amount].amount * item.qty)
-      .reduce((cur, item) => {
-        return cur + item;
-      }, 0);
   }
 
   render() {
@@ -39,13 +30,17 @@ export default class CartItems extends Component {
               <div className="cart-footer">
                 {" "}
                 {/* adds total price of added items */}
-                <CartAmount total={this.total} state={state} />
+                <CartAmount state={state} />
                 <button id="shop-btn">
                   <Link id="shop-link" to={"/cartitems"}>
                     Shop
                   </Link>
                 </button>
-                <ClearButton />
+                <Button
+                  id="clear-btn"
+                  function={state.clearCart}
+                  content="Clear All"
+                />
               </div>
             </div>
           ) : (
