@@ -12,18 +12,12 @@ export default class CartImage extends Component {
 
   slide(arg, arg2) {
     if (arg === "next") {
-      console.log("next");
-      console.log(arg);
-      console.log(arg2);
       this.setState({ index: this.state.index + 1 });
-      if (this.state.index >= arg2.length) {
+      if (this.state.index >= arg2.length - 1) {
         this.setState({ index: 0 });
       }
     }
     if (arg === "prev") {
-      console.log("prev");
-      console.log(arg);
-      console.log(arg2);
       this.setState({ index: this.state.index - 1 });
       if (this.state.index <= 0) {
         this.setState({ index: arg2.length - 1 });

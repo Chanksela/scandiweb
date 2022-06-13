@@ -44,7 +44,7 @@
       flex-direction: row;
       color: $black;
       .cart-icon {
-        height: 30px;
+        height: 25px;
       }
       .cart-badge {
         display: block;
@@ -135,7 +135,7 @@
                 flex-direction: row;
                 img {
                   width: 20%;
-                  margin-top: 50%;
+                  bottom: 5%;
                   &:hover {
                     cursor: pointer;
                   }
@@ -180,7 +180,6 @@
             color: $black;
             width: 100%;
             padding: 10px 50px;
-            border: red solid 1px;
           }
         }
 

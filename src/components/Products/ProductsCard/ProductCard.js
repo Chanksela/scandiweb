@@ -24,9 +24,7 @@ export default class ProductCard extends Component {
                   <>
                     <h1>{state.categories}</h1>
                     <div className="main-container">
-                      {console.log(category)}
                       {state.product}
-
                       {category.products.map((info) => (
                         <div key={info.id} className="items-container">
                           <div className="img-container">
@@ -59,7 +57,6 @@ export default class ProductCard extends Component {
                           )}
                           <div className="product-specifics">
                             <Link to={`/details/${info.id}`}>{info.name}</Link>
-
                             <p>
                               {state.currency}
                               {info.prices[state.amount].amount}

@@ -20,24 +20,26 @@ export default class Info extends Component {
             <p className="price">
               {this.props.currency}
               {this.props.product.prices[this.props.amount].amount}
-            </p>
+            </p>{" "}
+            <Button
+              id="details-add-btn"
+              function={(e) =>
+                this.props.onAdd(this.props.product, e.target.id)
+              }
+              content={
+                !this.props.product.inStock ? (
+                  <p>ITEM IS OUT OF STOCK</p>
+                ) : (
+                  "Add to Cart"
+                )
+              }
+              disabled={!this.props.product.inStock}
+            />
             <p>
               {" "}
               {this.props.product.description.replace(/(<([^>]+)>)/gi, "")}
             </p>{" "}
           </div>
-          <Button
-            id="details-add-btn"
-            function={(e) => this.props.onAdd(this.props.product, e.target.id)}
-            content={
-              !this.props.product.inStock ? (
-                <p>ITEM IS OUT OF STOCK</p>
-              ) : (
-                "Add to Cart"
-              )
-            }
-            disabled={!this.props.product.inStock}
-          />
         </div>
       </div>
     );

@@ -16,7 +16,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      id: "",
       product: [],
       itemsArray: [],
       categories: "all",
@@ -35,18 +34,19 @@ class App extends Component {
       selectCategory: this.selectCategory.bind(this),
       totalQty: this.totalQty.bind(this),
       currencyChange: this.currencyChange.bind(this),
-      getID: this.getID.bind(this),
+
       onAttributePick: this.onAttributePick.bind(this),
     };
   }
   getID(arg) {
-    this.setState({ id: arg.target.id });
+    this.setState({ id: arg });
+    console.log("Got ID");
     // console.log(this.state.id);
   }
   // test for one functions for all attributes,
   //setState-ის მეორე პარამეტრის გადახედვაა საჭიწრო
   onAttributePick(arg1, arg2, id) {
-    console.log(id);
+    // console.log(id);
     if (arg1.name === "Color") {
       this.setState({ itemColor: arg2.value });
       // console.log(this.state.itemColor);
@@ -57,7 +57,7 @@ class App extends Component {
     }
     if (arg1.name === "Size") {
       this.setState({ size: arg2.displayValue });
-      console.log(this.state.size);
+      // console.log(this.state.size);
     }
     if (arg1.name === "With USB 3 ports") {
       this.setState({ usb: arg2.displayValue });
@@ -78,11 +78,9 @@ class App extends Component {
       }, 0);
   }
 
-  // get item id from details page and add it to the itemsArray
+  // adding or increasing product
   onAdd(productInfo, id) {
-    console.log(id);
     console.log(productInfo);
-    console.log(productInfo.attributes.length);
     // items with no attributes
     if (productInfo.attributes.length === 0) {
       const exist =
@@ -114,9 +112,8 @@ class App extends Component {
             (item.id === productInfo.id && item.size === this.state.size) ||
             (item.id === productInfo.id && item.size === productInfo.size)
         );
-
       if (!exist && id === "details-add-btn") {
-        console.log("Doesn't Exist");
+        // console.log("Doesn't Exist");
         this.setState({
           itemsArray: [
             ...this.state.itemsArray,
@@ -128,7 +125,6 @@ class App extends Component {
           ],
         });
       } else if (exist && id === "details-add-btn") {
-        console.log("Exist");
         this.setState({
           itemsArray: this.state.itemsArray.map((product) =>
             product.id === productInfo.id && product.size === this.state.size
@@ -152,7 +148,6 @@ class App extends Component {
         });
       }
     }
-
     // items with 2 attributes
     if (
       productInfo.attributes.length === 2 &&
@@ -279,9 +274,8 @@ class App extends Component {
       }
     }
   }
-  // functions to decrease amount of items in cart by 1
+  // functions to decrease amount of product in cart by 1
   onRemove(productInfo) {
-    console.log(productInfo);
     // items with 0 attributes
     if (productInfo.attributes.length === 0) {
       if (productInfo && productInfo.qty > 1) {
@@ -380,7 +374,6 @@ class App extends Component {
       }
     }
   }
-
   // function for gettin currency and relevant price
   currencyChange(arg1, arg2) {
     this.setState({ currency: arg1.target.value }, () => {
@@ -413,6 +406,7 @@ class App extends Component {
                 element={
                   <Details
                     // states
+                    id={this.state.id}
                     amount={this.state.amount}
                     currency={this.state.currency}
                     product={this.state.product}

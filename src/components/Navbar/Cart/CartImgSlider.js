@@ -4,7 +4,7 @@ export default class CartImgSlider extends Component {
   render() {
     return (
       <div className="slide-btn">
-        {console.log(this.props.product.gallery)}
+        {/* {console.log(this.props.product.gallery)} */}
         {this.props.product.gallery.length > 1 && (
           <>
             <img

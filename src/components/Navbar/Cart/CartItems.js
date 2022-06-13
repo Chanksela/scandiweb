@@ -20,7 +20,7 @@ export default class CartItems extends Component {
             <div className="dropdown-cart">
               <div className="cart-scrollable">
                 {" "}
-                <CartCount state={state} />
+                <CartCount start="My Bag " end=", Items" state={state} />
                 {state.itemsArray.map((product, index) => (
                   <div key={index}>
                     <CartInfo product={product} state={state} />
