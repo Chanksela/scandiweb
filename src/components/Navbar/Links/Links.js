@@ -17,17 +17,17 @@ export default class Links extends Component {
                 if (error) return `Error! ${error.message}`;
                 const { categories } = data;
 
-                return categories.map((v) => (
-                  <ul className="navbar-ul" key={v.name}>
+                return categories.map((category) => (
+                  <ul className="navbar-ul" key={category.name}>
                     <li className="navbar-li">
                       <Link
-                        id={v.name}
-                        to="/"
+                        id={category.name}
+                        to={`/${category.name}`}
                         onClick={(e) => {
                           state.selectCategory(e.target.id);
                         }}
                       >
-                        {v.name}
+                        {category.name}
                       </Link>
                     </li>
                   </ul>

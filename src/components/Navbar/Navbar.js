@@ -11,11 +11,6 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="navbar">
-        <div className="test">
-          <Link to={"/"}>All </Link>
-          <Link to={"/clothes"}>Clothes</Link>
-          <Link to={"/tech"}>Tech</Link>
-        </div>
         <div className="navbar-categories">
           <Links selectCategory={this.props.selectCategory} />
         </div>

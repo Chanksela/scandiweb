@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import FullPage from "./pages/FullPage";
 import Details from "./pages/Details";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -20,7 +19,7 @@ class App extends Component {
     this.state = {
       product: [],
       itemsArray: [],
-      categories: "all",
+      category: "all",
       currency: "$",
       amount: 0,
       // attributes
@@ -40,6 +39,7 @@ class App extends Component {
       onAttributePick: this.onAttributePick.bind(this),
     };
   }
+
   getID(arg) {
     this.setState({ id: arg });
     console.log("Got ID");
@@ -387,7 +387,9 @@ class App extends Component {
 
   // get category from navbar links to display relevant products
   selectCategory(arg) {
-    this.setState({ categories: arg });
+    this.setState({ category: arg });
+    sessionStorage.setItem("page", arg);
+    console.log(sessionStorage.getItem("page"));
   }
 
   // clear all items from cart
@@ -403,6 +405,7 @@ class App extends Component {
             <Navbar />
             <Routes>
               <Route path="/" element={<AllPage />} />
+              <Route path="/all" element={<AllPage />} />
               <Route path="/clothes" element={<ClothesPage />} />
               <Route path="/tech" element={<TechPage />} />
               <Route
