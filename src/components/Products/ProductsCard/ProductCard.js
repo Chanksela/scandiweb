@@ -13,7 +13,7 @@ export default class ProductCard extends Component {
           return (
             <Query
               query={GQL.PRODUCTS}
-              variables={{ input: { title: state.categories } }}
+              variables={{ input: { title: state.category } }}
             >
               {({ error, loading, data }) => {
                 if (error) return `Error ${error.message}`;
@@ -22,7 +22,7 @@ export default class ProductCard extends Component {
                 console.log(category);
                 return (
                   <>
-                    <h1>{state.categories}</h1>
+                    <h1>{state.category}</h1>
                     <div className="main-container">
                       {state.product}
                       {category.products.map((info) => (
