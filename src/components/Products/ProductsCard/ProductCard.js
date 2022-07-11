@@ -19,7 +19,7 @@ export default class ProductCard extends Component {
                 if (error) return `Error ${error.message}`;
                 if (loading) return loading;
                 const { category } = data;
-
+                console.log(category);
                 return (
                   <>
                     <h1>{state.categories}</h1>
@@ -56,6 +56,7 @@ export default class ProductCard extends Component {
                             </div>
                           )}
                           <div className="product-specifics">
+                            <p>{info.brand}</p>
                             <Link to={`/details/${info.id}`}>{info.name}</Link>
                             <p>
                               {state.currency}

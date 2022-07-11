@@ -5,11 +5,17 @@ import Currency from "./Currency/Currency";
 import Cart from "./Cart/Cart";
 import "./Navbar.css";
 import Logo from "../../Images/Logo.png";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
     return (
       <div className="navbar">
+        <div className="test">
+          <Link to={"/"}>All </Link>
+          <Link to={"/clothes"}>Clothes</Link>
+          <Link to={"/tech"}>Tech</Link>
+        </div>
         <div className="navbar-categories">
           <Links selectCategory={this.props.selectCategory} />
         </div>

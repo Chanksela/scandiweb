@@ -35,6 +35,7 @@ const PRODUCTS = gql`
             id
           }
         }
+        brand
       }
     }
   }

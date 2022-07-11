@@ -7,6 +7,7 @@ export default class Info extends Component {
       <div className="info-container">
         <div className="info-content">
           <div className="brand-info">
+            {console.log(this.props.product)}
             <h2>{this.props.product.name}</h2>
             <h4>{this.props.product.brand}</h4>
           </div>
@@ -34,11 +35,13 @@ export default class Info extends Component {
                 )
               }
               disabled={!this.props.product.inStock}
+            />{" "}
+            {/* {this.props.product.description.replace(/(<([^>]+)>)/gi, "")} */}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: this.props.product.description,
+              }}
             />
-            <p>
-              {" "}
-              {this.props.product.description.replace(/(<([^>]+)>)/gi, "")}
-            </p>{" "}
           </div>
         </div>
       </div>

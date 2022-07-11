@@ -7,7 +7,9 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Navbar from "./components/Navbar/Navbar";
 import CartPage from "./pages/CartPage";
 import { ProductProvider } from "./services/contex";
-
+import AllPage from "./pages/AllPage";
+import ClothesPage from "./pages/ClothesPage";
+import TechPage from "./pages/TechPage";
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
@@ -400,7 +402,9 @@ class App extends Component {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route path="/" element={<FullPage />} />
+              <Route path="/" element={<AllPage />} />
+              <Route path="/clothes" element={<ClothesPage />} />
+              <Route path="/tech" element={<TechPage />} />
               <Route
                 path="/details/:id"
                 element={
@@ -419,6 +423,7 @@ class App extends Component {
                 }
               />
               <Route path="/cartitems" element={<CartPage />} />
+              <Route path="/all" element={<AllPage />} />
             </Routes>
           </BrowserRouter>
         </ApolloProvider>
