@@ -6,20 +6,24 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Navbar from "./components/Navbar/Navbar";
 import CartPage from "./pages/CartPage";
 import { ProductProvider } from "./services/contex";
-import AllPage from "./pages/AllPage";
-import ClothesPage from "./pages/ClothesPage";
-import TechPage from "./pages/TechPage";
+import PLP from "./pages/PLP";
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 class App extends Component {
+  componentWillMount() {
+    sessionStorage.getItem("page") === null
+      ? this.setState({ category: "all" })
+      : console.log("it's not null");
+    console.log(sessionStorage.getItem("page"));
+  }
   constructor() {
     super();
     this.state = {
       product: [],
       itemsArray: [],
-      category: "all",
+      category: sessionStorage.getItem("page"),
       currency: "$",
       amount: 0,
       // attributes
@@ -387,9 +391,11 @@ class App extends Component {
 
   // get category from navbar links to display relevant products
   selectCategory(arg) {
-    this.setState({ category: arg });
     sessionStorage.setItem("page", arg);
-    console.log(sessionStorage.getItem("page"));
+    this.setState({ category: sessionStorage.getItem("page") });
+    console.log(this.state.category);
+    // sessionStorage.setItem("page", arg);
+    //     console.log(sessionStorage.getItem("page"));
   }
 
   // clear all items from cart
@@ -404,10 +410,8 @@ class App extends Component {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route path="/" element={<AllPage />} />
-              <Route path="/all" element={<AllPage />} />
-              <Route path="/clothes" element={<ClothesPage />} />
-              <Route path="/tech" element={<TechPage />} />
+              <Route path="/" element={<PLP />} />
+
               <Route
                 path="/details/:id"
                 element={
@@ -426,7 +430,6 @@ class App extends Component {
                 }
               />
               <Route path="/cartitems" element={<CartPage />} />
-              <Route path="/all" element={<AllPage />} />
             </Routes>
           </BrowserRouter>
         </ApolloProvider>
