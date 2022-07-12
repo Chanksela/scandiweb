@@ -22,8 +22,8 @@ export default class Links extends Component {
                     <li className="navbar-li">
                       <Link
                         id={category.name}
-                        // to={`/${category.name}`}
-                        to="/"
+                        to={`/${category.name}`}
+                        // to="/"
                         onClick={(e) => {
                           state.selectCategory(e.target.id);
                         }}

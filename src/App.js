@@ -12,11 +12,12 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     sessionStorage.getItem("page") === null
       ? this.setState({ category: "all" })
       : console.log("it's not null");
     console.log(sessionStorage.getItem("page"));
+    console.log(window.location);
   }
   constructor() {
     super();
@@ -411,7 +412,7 @@ class App extends Component {
             <Navbar />
             <Routes>
               <Route path="/" element={<PLP />} />
-
+              <Route path={`/${this.state.category}`} element={<PLP />} />
               <Route
                 path="/details/:id"
                 element={
