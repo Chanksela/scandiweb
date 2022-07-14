@@ -1,7 +1,25 @@
-.navbar-ul {
-  list-style: none;
-  margin-left: 15px;
-  .navbar-li {
-    text-transform: uppercase;
-  }
+@import "../../../styles/config";
+// .navbar-ul {
+//   list-style: none;
+//   margin-left: 15px;
+//   .navbar-li {
+//     text-transform: uppercase;
+//   }
+//   .active {
+//     color: $green;
+//     text-decoration: underline;
+//     text-underline-offset: 5px;
+//   }
+// }
+a {
+  background-color: red;
+}
+.active {
+  background-color: red;
+  color: $green;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+body {
+  background-color: red;
 }

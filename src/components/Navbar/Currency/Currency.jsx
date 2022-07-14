@@ -15,7 +15,7 @@ export default class Navbar extends Component {
                 if (loading) return "Loading...";
                 if (error) return `ERROR! ${error.message}`;
                 const { currencies } = data;
-
+                console.log(currencies);
                 return (
                   <select
                     className="currency-select"
@@ -23,9 +23,11 @@ export default class Navbar extends Component {
                     id="currency"
                     onChange={(e) => state.currencyChange(e, currencies)}
                   >
-                    {currencies.map((v) => (
-                      <option key={v.label} value={v.symbol}>
-                        {v.symbol}
+                    {/* <option defaultValue="selected">{state.currency}</option> */}
+                    {currencies.map((currency) => (
+                      <option key={currency.label} value={currency.symbol}>
+                        {currency.symbol}
+                        {currency.label}
                       </option>
                     ))}
                   </select>

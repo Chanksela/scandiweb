@@ -1,1 +1,15 @@
-#clear-btn{height:43px;width:143px;background-color:transparent;border:2px solid #1d1f22;font-weight:600;-webkit-transition:0.8s;transition:0.8s}#clear-btn:hover{cursor:pointer;background-color:#1d1f22;color:#fff}
+#clear-btn {
+  height: 43px;
+  width: 143px;
+  background-color: transparent;
+  border: 2px solid #1d1f22;
+  font-weight: 600;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
+#clear-btn:hover {
+  cursor: pointer;
+  background-color: #1d1f22;
+  color: #ffffff;
+}

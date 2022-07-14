@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Details from "./pages/Details";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Navbar from "./components/Navbar/Navbar";
 import CartPage from "./pages/CartPage";
@@ -17,7 +17,6 @@ class App extends Component {
       ? this.setState({ category: "all" })
       : console.log("it's not null");
     console.log(sessionStorage.getItem("page"));
-    console.log(window.location);
   }
   constructor() {
     super();
@@ -395,6 +394,8 @@ class App extends Component {
     sessionStorage.setItem("page", arg);
     this.setState({ category: sessionStorage.getItem("page") });
     console.log(this.state.category);
+    console.log(window.location.pathname);
+
     // sessionStorage.setItem("page", arg);
     //     console.log(sessionStorage.getItem("page"));
   }
@@ -411,7 +412,7 @@ class App extends Component {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route path="/" element={<PLP />} />
+              <Route path="/" element={<Navigate replace to="/all" />} />
               <Route path={`/${this.state.category}`} element={<PLP />} />
               <Route
                 path="/details/:id"
