@@ -50,17 +50,6 @@
   margin-right: 1.5vw;
 }
 
-.navbar .navbar-cart-currency .navbar-currency {
-  margin-right: 1vw;
-}
-
-.navbar .navbar-cart-currency .navbar-currency .currency-select {
-  border: none;
-  background-color: transparent;
-  height: 5vh;
-  text-align: center;
-}
-
 .navbar .navbar-cart-currency .navbar-cart {
   display: -webkit-box;
   display: -ms-flexbox;

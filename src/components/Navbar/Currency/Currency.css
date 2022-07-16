@@ -1,0 +1,40 @@
+.navbar-currency {
+  margin-right: 1vw;
+}
+
+.navbar-currency .currency-select {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid red;
+  margin-top: 80px;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+}
+
+.navbar-currency .currency-select .options {
+  border: 1px solid red;
+}
+
+.navbar-currency .currency-select .default {
+  font-size: medium;
+}
+
+.navbar-currency .currency-select .options-active {
+  border: 1px solid red;
+  margin-top: 5px;
+}
+
+.navbar-currency .currency-select .options-active div {
+  margin: 5px 0;
+  font-size: small;
+}
+
+.navbar-currency .currency-select .options-disabled {
+  border: 1px solid blue;
+  display: none;
+}
