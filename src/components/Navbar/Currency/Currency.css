@@ -9,15 +9,10 @@
       -ms-user-select: none;
           user-select: none;
   border: 1px solid red;
-  margin-top: 80px;
   height: 100%;
   border: none;
   background-color: transparent;
   text-align: center;
-}
-
-.navbar-currency .currency-select .options {
-  border: 1px solid red;
 }
 
 .navbar-currency .currency-select .default {
@@ -26,7 +21,7 @@
 
 .navbar-currency .currency-select .options-active {
   border: 1px solid red;
-  margin-top: 5px;
+  z-index: 1000;
 }
 
 .navbar-currency .currency-select .options-active div {
@@ -35,6 +30,5 @@
 }
 
 .navbar-currency .currency-select .options-disabled {
-  border: 1px solid blue;
   display: none;
 }

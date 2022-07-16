@@ -32,7 +32,7 @@ export default class Navbar extends Component {
                   <div className="navbar-currency">
                     <div className="currency-select">
                       <div onClick={this.currencyHandler} className="default">
-                        Currency
+                        {state.currency}
                       </div>
                       <div
                         className={
@@ -41,9 +41,22 @@ export default class Navbar extends Component {
                             : "options-disabled"
                         }
                       >
-                        <div>$</div>
-                        <div>$$</div>
-                        <div>$$$</div>
+                        {currencies.map((currency) => (
+                          <div key={currency.label}>
+                            <div
+                              id={currency.symbol}
+                              onClick={(e) =>
+                                state.currencyChange(
+                                  e,
+                                  currencies,
+                                  this.currencyHandler()
+                                )
+                              }
+                            >
+                              {currency.label} {currency.symbol}
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>

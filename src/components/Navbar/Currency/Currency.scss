@@ -3,28 +3,24 @@
     cursor: pointer;
     user-select: none;
     border: 1px solid red;
-    margin-top: 80px;
     height: 100%;
     border: none;
     background-color: transparent;
     text-align: center;
-    .options {
-      border: 1px solid red;
-    }
+
     .default {
       font-size: medium;
     }
     .options-active {
       border: 1px solid red;
-      margin-top: 5px;
+      z-index: 1000;
+
       div {
         margin: 5px 0;
         font-size: small;
       }
     }
     .options-disabled {
-      border: 1px solid blue;
-
       display: none;
     }
   }

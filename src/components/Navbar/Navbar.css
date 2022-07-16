@@ -48,6 +48,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   margin-right: 1.5vw;
+  height: 30px;
 }
 
 .navbar .navbar-cart-currency .navbar-cart {
