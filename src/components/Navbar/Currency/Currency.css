@@ -20,8 +20,10 @@
 }
 
 .navbar-currency .currency-select .options-active {
+  position: fixed;
   border: 1px solid red;
   z-index: 1000;
+  top: 100px;
 }
 
 .navbar-currency .currency-select .options-active div {

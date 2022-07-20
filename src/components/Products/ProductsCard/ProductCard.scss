@@ -1,25 +1,35 @@
 @import "../../../styles/config";
+
 * {
+  a {
+    color: $black;
+  }
   h1 {
     display: flex;
     margin: 1rem 1rem;
     text-transform: capitalize;
   }
+
   .main-container {
     width: 100vw;
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
 
     .items-container {
+      margin-left: 10px;
+      border: 1px solid;
+      height: 100%;
       position: relative;
       margin: 1rem 0rem;
       float: left;
       display: flex;
       flex-direction: column;
       width: 33vw;
+      &:hover {
+        background-color: red;
+      }
       .cart-icon {
         user-select: none;
         background-color: transparent;
@@ -54,7 +64,6 @@
       position: relative;
       text-align: center;
       color: white;
-
       .out-of-stock-image {
         background: black;
         opacity: 0.5;
@@ -69,11 +78,10 @@
         transform: translate(-50%, -50%);
       }
     }
-
     img {
       display: block;
       margin: 0 auto;
-      height: 80%;
+      height: auto;
       width: 50%;
     }
   }
@@ -82,17 +90,7 @@
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
-    a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: $black;
-      transition: 1s;
-      transition-timing-function: ease;
-      &:hover {
-        font-size: large;
-        font-weight: bolder;
-      }
-    }
+
     p {
       margin: 0 15px;
     }

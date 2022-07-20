@@ -26,44 +26,47 @@ export default class ProductCard extends Component {
                     <div className="main-container">
                       {state.product}
                       {category.products.map((info) => (
-                        <div key={info.id} className="items-container">
-                          <div className="img-container">
-                            <img
-                              id="image"
-                              className={
-                                !info.inStock
-                                  ? "out-of-stock-image"
-                                  : "main-image"
-                              }
-                              alt="product-img"
-                              src={info.gallery[0]}
-                            />{" "}
-                            {/* {console.log(info)} */}
-                            {!info.inStock && (
-                              <p className="out-of-stock">Out of Stock</p>
-                            )}
-                          </div>
-                          {info.inStock && (
-                            <div className={"cart-icon"}>
+                        <Link to={`/details/${info.id}`}>
+                          <div key={info.id} className="items-container">
+                            <div className="img-container">
                               <img
-                                id="cart-btn"
-                                alt="cart-icon"
-                                src={CircleIcon}
-                                onClick={() => {
-                                  state.onAdd(info);
-                                }}
-                              />
+                                id="image"
+                                className={
+                                  !info.inStock
+                                    ? "out-of-stock-image"
+                                    : "main-image"
+                                }
+                                alt="product-img"
+                                src={info.gallery[0]}
+                              />{" "}
+                              {/* {console.log(info)} */}
+                              {!info.inStock && (
+                                <p className="out-of-stock">Out of Stock</p>
+                              )}
                             </div>
-                          )}
-                          <div className="product-specifics">
-                            <p>{info.brand}</p>
-                            <Link to={`/details/${info.id}`}>{info.name}</Link>
-                            <p>
-                              {state.currency}
-                              {info.prices[state.amount].amount}
-                            </p>
+                            {info.inStock && (
+                              <div className={"cart-icon"}>
+                                <img
+                                  id="cart-btn"
+                                  alt="cart-icon"
+                                  className="product-img"
+                                  src={CircleIcon}
+                                  onClick={() => {
+                                    state.onAdd(info);
+                                  }}
+                                />
+                              </div>
+                            )}
+                            <div className="product-specifics">
+                              <p>{info.brand}</p>
+                              <p>{info.name}</p>
+                              <p>
+                                {state.currency}
+                                {info.prices[state.amount].amount}
+                              </p>
+                            </div>
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   </>
