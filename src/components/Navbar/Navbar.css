@@ -85,13 +85,23 @@
           user-select: none;
 }
 
+.navbar .navbar-cart-currency .navbar-cart .overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
 .navbar .navbar-cart-currency .navbar-cart .dropdown-cart {
-  position: absolute;
+  position: fixed;
   height: 400px;
   width: 290px;
   right: 60px;
   top: 40px;
-  z-index: 1;
+  z-index: 2;
   background-color: #ffffff;
   padding: 0.75rem;
   border-radius: 0.25rem;

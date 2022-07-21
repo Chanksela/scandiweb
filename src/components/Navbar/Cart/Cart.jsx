@@ -28,7 +28,9 @@ export default class Cart extends Component {
             {state.itemsArray.length > 0 && (
               <CartCount class="cart-badge" state={state} />
             )}
-            {this.state.cart && <CartItems />}
+            {this.state.cart && (
+              <CartItems handleCart={this.handleCart.bind(this)} />
+            )}
           </div>
         )}
       </ProductConsumer>

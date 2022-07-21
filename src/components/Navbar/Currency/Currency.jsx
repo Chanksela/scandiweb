@@ -29,35 +29,33 @@ export default class Navbar extends Component {
                 const { currencies } = data;
                 console.log(currencies);
                 return (
-                  <div className="navbar-currency">
-                    <div className="currency-select">
-                      <div onClick={this.currencyHandler} className="default">
-                        {state.currency}
-                      </div>
-                      <div
-                        className={
-                          this.state.show
-                            ? "options-acvtive"
-                            : "options-disabled"
-                        }
-                      >
-                        {currencies.map((currency) => (
-                          <div key={currency.label}>
-                            <div
-                              id={currency.symbol}
-                              onClick={(e) =>
-                                state.currencyChange(
-                                  e,
-                                  currencies,
-                                  this.currencyHandler()
-                                )
-                              }
-                            >
-                              {currency.label} {currency.symbol}
-                            </div>
+                  <div className="currency-select">
+                    <div onClick={this.currencyHandler} className="default">
+                      {state.currency}
+                    </div>
+                    <div
+                      className={
+                        this.state.show
+                          ? "btn options-acvtive"
+                          : "btn options-disabled"
+                      }
+                    >
+                      {currencies.map((currency) => (
+                        <div key={currency.label} className="currency-options">
+                          <div
+                            id={currency.symbol}
+                            onClick={(e) =>
+                              state.currencyChange(
+                                e,
+                                currencies,
+                                this.currencyHandler()
+                              )
+                            }
+                          >
+                            {currency.label} {currency.symbol}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 );

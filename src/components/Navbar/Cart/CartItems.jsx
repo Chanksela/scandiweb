@@ -17,32 +17,35 @@ export default class CartItems extends Component {
       <ProductConsumer>
         {(state) => {
           return state.itemsArray.length > 0 ? (
-            <div className="dropdown-cart">
-              <div className="cart-scrollable">
-                {" "}
-                <CartCount start="My Bag " end=", Items" state={state} />
-                {state.itemsArray.map((product, index) => (
-                  <div key={index}>
-                    <CartInfo product={product} state={state} />
-                  </div>
-                ))}{" "}
+            <>
+              <div className="overlay" onClick={this.props.handleCart}></div>
+              <div className="dropdown-cart">
+                <div className="cart-scrollable">
+                  {" "}
+                  <CartCount start="My Bag " end=", Items" state={state} />
+                  {state.itemsArray.map((product, index) => (
+                    <div key={index}>
+                      <CartInfo product={product} state={state} />
+                    </div>
+                  ))}{" "}
+                </div>
+                <div className="cart-footer">
+                  {" "}
+                  {/* adds total price of added items */}
+                  <CartAmount state={state} />
+                  <button id="shop-btn">
+                    <Link id="shop-link" to={"/cartitems"}>
+                      Shop
+                    </Link>
+                  </button>
+                  <Button
+                    id="clear-btn"
+                    function={state.clearCart}
+                    content="Clear All"
+                  />
+                </div>
               </div>
-              <div className="cart-footer">
-                {" "}
-                {/* adds total price of added items */}
-                <CartAmount state={state} />
-                <button id="shop-btn">
-                  <Link id="shop-link" to={"/cartitems"}>
-                    Shop
-                  </Link>
-                </button>
-                <Button
-                  id="clear-btn"
-                  function={state.clearCart}
-                  content="Clear All"
-                />
-              </div>
-            </div>
+            </>
           ) : (
             <p className="empty-cart">Cart is Empty</p>
           );

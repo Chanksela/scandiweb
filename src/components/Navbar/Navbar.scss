@@ -30,10 +30,12 @@
     flex-direction: row;
     margin-right: 1.5vw;
     height: 30px;
+
     .navbar-cart {
       display: flex;
       flex-direction: row;
       color: $black;
+
       .cart-icon {
         height: 25px;
       }
@@ -52,13 +54,22 @@
         background: $black;
         user-select: none;
       }
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
       .dropdown-cart {
-        position: absolute;
+        position: fixed;
         height: 400px;
         width: 290px;
         right: 60px;
         top: 40px;
-        z-index: 1;
+        z-index: 2;
         background-color: $white;
         padding: 0.75rem;
         border-radius: 0.25rem;
