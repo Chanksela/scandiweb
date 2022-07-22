@@ -1,18 +1,30 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { Query } from "@apollo/client/react/components";
 import GQL from "../../../services/GQL";
 import { ProductConsumer } from "../../../services/contex";
 import "./Currency.css";
+
 export default class Navbar extends Component {
   constructor() {
     super();
+    this.box = React.createRef();
     this.state = {
       show: false,
       message: "Hello",
       test: "test",
     };
+    this.box = React.createRef();
     this.currencyHandler = this.currencyHandler.bind(this);
   }
+  componentDidMount() {
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+  handleOutsideClick = (event) => {
+    if (this.box && !this.box.current.contains(event.target)) {
+      console.log("you just clicked outside of box!");
+      this.setState({ show: !this.state.show });
+    }
+  };
   currencyHandler() {
     this.setState({ show: !this.state.show });
     console.log(this.state.show);
@@ -29,7 +41,7 @@ export default class Navbar extends Component {
                 const { currencies } = data;
                 console.log(currencies);
                 return (
-                  <div className="currency-select">
+                  <div ref={this.box} className="currency-select">
                     <div onClick={this.currencyHandler} className="default">
                       {state.currency}
                     </div>
