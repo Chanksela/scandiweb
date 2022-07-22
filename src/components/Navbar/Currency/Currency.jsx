@@ -22,7 +22,7 @@ export default class Navbar extends Component {
   handleOutsideClick = (event) => {
     if (this.box && !this.box.current.contains(event.target)) {
       console.log("you just clicked outside of box!");
-      this.setState({ show: !this.state.show });
+      this.setState({ show: false });
     }
   };
   currencyHandler() {
@@ -64,7 +64,7 @@ export default class Navbar extends Component {
                               )
                             }
                           >
-                            {currency.label} {currency.symbol}
+                            {currency.symbol} {currency.label}
                           </div>
                         </div>
                       ))}

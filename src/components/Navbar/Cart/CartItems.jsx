@@ -47,7 +47,10 @@ export default class CartItems extends Component {
               </div>
             </>
           ) : (
-            <p className="empty-cart">Cart is Empty</p>
+            <div>
+              <div className="overlay" onClick={this.props.handleCart}></div>
+              <p className="empty-cart">Cart is Empty</p>
+            </div>
           );
         }}
       </ProductConsumer>
