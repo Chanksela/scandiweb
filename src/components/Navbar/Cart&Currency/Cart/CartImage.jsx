@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import PrevBtn from "../../../Images/Prev.png";
-import NextBtn from "../../../Images/Next.png";
-import Button from "../../Button/Button";
+import PrevBtn from "../../../../Images/Prev.png";
+import NextBtn from "../../../../Images/Next.png";
+import Button from "../../../Button/Button";
 import CartImgSlider from "./CartImgSlider";
 export default class CartImage extends Component {
   constructor() {

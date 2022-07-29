@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "@apollo/client/react/components";
-import GQL from "../../../services/GQL";
-import { ProductConsumer } from "../../../services/contex";
+import GQL from "../../../../services/GQL";
+import { ProductConsumer } from "../../../../services/contex";
 import "./Currency.css";
 
 export default class Navbar extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { ProductConsumer } from "../../../services/contex";
+import { ProductConsumer } from "../../../../services/contex";
 
-import CartIcon from "../../../Images/Vector.svg";
+import CartIcon from "../../../../Images/Vector.svg";
 import CartItems from "./CartItems";
 import CartCount from "./CartCount";
 export default class Cart extends Component {

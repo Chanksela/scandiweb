@@ -6,6 +6,12 @@
 .navbar .navbar-categories {
   display: flex;
 }
-.navbar .navbar-cart-currency {
+.navbar .navbar-logo {
+  height: inherit;
+}
+.navbar .navbar-logo img {
+  height: 20%;
+}
+.navbar .cart-currency {
   display: flex;
 }

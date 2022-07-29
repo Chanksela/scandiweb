@@ -1,24 +1,29 @@
 .body {
-  right: 0;
-  bottom: 0;
+  position: relative;
   display: grid;
-  grid-template-columns: 100vw;
+  grid-template-columns: 100%;
   grid-template-rows: 40px auto;
   grid-template-areas: "navbar" "body";
 }
 
 .navbar {
   grid-area: navbar;
-  border: 1px solid black;
+  max-width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
 }
 
 .PLP {
   grid-area: body;
   margin: 10px;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 a {

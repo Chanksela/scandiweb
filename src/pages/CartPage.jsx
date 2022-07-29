@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./CartPage.css";
 import { ProductConsumer } from "../services/contex";
-import CartInfo from "../components/Navbar/Cart/CartInfo";
-import CartPriceDetails from "../components/Navbar/Cart/CartPriceDetails";
+import CartInfo from "../components/Navbar/Cart&Currency/Cart/CartInfo";
+import CartPriceDetails from "../components/Navbar/Cart&Currency/Cart/CartPriceDetails";
 import Button from "../components/Button/Button";
 
 export default class CartItems extends Component {

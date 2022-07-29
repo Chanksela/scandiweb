@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { ProductConsumer } from "../../../services/contex";
+import { ProductConsumer } from "../../../../services/contex";
 
 import CartCount from "./CartCount";
 import CartInfo from "./CartInfo";
-import Button from "../../Button/Button";
+import Button from "../../..//Button/Button";
 import CartAmount from "./CartAmount";
 export default class CartItems extends Component {
   constructor() {

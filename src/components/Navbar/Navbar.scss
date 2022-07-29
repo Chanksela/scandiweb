@@ -5,7 +5,13 @@
   .navbar-categories {
     display: flex;
   }
-  .navbar-cart-currency {
+  .navbar-logo {
+    height: inherit;
+    img {
+      height: 20%;
+    }
+  }
+  .cart-currency {
     display: flex;
   }
 }
