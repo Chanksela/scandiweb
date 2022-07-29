@@ -1,3 +1,25 @@
-img {
-  width: 100px;
+.content {
+  border: 1px solid red;
+  width: 100vw;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 60vw auto;
+  grid-template-rows: 20% 40% 10% auto;
+  grid-template-areas: "images info" "images info" "images info" "images info";
+}
+.content .images {
+  border: 1px solid;
+  grid-area: images;
+  display: flex;
+}
+.content .info-container {
+  border: 1px solid;
+  grid-area: info;
+}
+.content img {
+  width: 40px;
 }

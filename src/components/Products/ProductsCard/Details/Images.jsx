@@ -4,22 +4,22 @@ export default class Images extends Component {
   render() {
     return (
       <div className="images">
-        <div className="img-gallery">
-          <div className="img-picker">
-            {this.props.images.map((img, index) => {
-              return (
-                <div key={index}>
-                  <img
-                    id={index}
-                    onClick={(e) => this.props.onSelect(e)}
-                    className="imgs"
-                    alt="img"
-                    src={img}
-                  />
-                </div>
-              );
-            })}
-          </div>{" "}
+        <div className="img-picker">
+          {this.props.images.map((img, index) => {
+            return (
+              <div key={index}>
+                <img
+                  id={index}
+                  onClick={(e) => this.props.onSelect(e)}
+                  className="imgs"
+                  alt="img"
+                  src={img}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="img-view">
           <img
             alt="main-img"
             className="img-main"
