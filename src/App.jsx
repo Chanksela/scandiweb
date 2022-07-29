@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Details from "./pages/Details";
-
+import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Navbar from "./components/Navbar/Navbar";
@@ -407,35 +407,37 @@ class App extends Component {
 
   render() {
     return (
-      <ProductProvider value={this.state}>
-        <ApolloProvider client={client}>
-          <BrowserRouter>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Navigate replace to="/all" />} />
-              <Route path={`/${this.state.category}`} element={<PLP />} />
-              <Route
-                path="/details/:id"
-                element={
-                  <Details
-                    // states
-                    id={this.state.id}
-                    amount={this.state.amount}
-                    currency={this.state.currency}
-                    product={this.state.product}
-                    itemsArray={this.state.itemsArray}
-                    arg={this.props.arg}
-                    // functions
-                    onAdd={this.onAdd.bind(this)}
-                    onAttributePick={this.onAttributePick.bind(this)}
-                  />
-                }
-              />
-              <Route path="/cartitems" element={<CartPage />} />
-            </Routes>
-          </BrowserRouter>
-        </ApolloProvider>
-      </ProductProvider>
+      <div className="body">
+        <ProductProvider value={this.state}>
+          <ApolloProvider client={client}>
+            <BrowserRouter>
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Navigate replace to="/all" />} />
+                <Route path={`/${this.state.category}`} element={<PLP />} />
+                <Route
+                  path="/details/:id"
+                  element={
+                    <Details
+                      // states
+                      id={this.state.id}
+                      amount={this.state.amount}
+                      currency={this.state.currency}
+                      product={this.state.product}
+                      itemsArray={this.state.itemsArray}
+                      arg={this.props.arg}
+                      // functions
+                      onAdd={this.onAdd.bind(this)}
+                      onAttributePick={this.onAttributePick.bind(this)}
+                    />
+                  }
+                />
+                <Route path="/cartitems" element={<CartPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ApolloProvider>
+        </ProductProvider>
+      </div>
     );
   }
 }

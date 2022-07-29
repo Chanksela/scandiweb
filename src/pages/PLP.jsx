@@ -4,8 +4,8 @@ import ProductCard from "../components/Products/ProductsCard/ProductCard";
 export default class PLP extends Component {
   render() {
     return (
-      <div>
-        <ProductCard />
+      <div className="PLP">
+        <ProductCard />;
       </div>
     );
   }

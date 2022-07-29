@@ -23,7 +23,7 @@ export default class ProductCard extends Component {
                 return (
                   <>
                     <h1>{state.category}</h1>
-                    <div className="main-container">
+                    <div className="container">
                       {state.product}
                       {category.products.map((info) => (
                         <Link to={`/details/${info.id}`}>

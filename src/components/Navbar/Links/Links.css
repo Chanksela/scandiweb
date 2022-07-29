@@ -2,11 +2,9 @@
   list-style: none;
   margin-left: 15px;
 }
-
 .navbar-ul .navbar-li {
   text-transform: uppercase;
 }
-
 .navbar-ul .active {
   color: #5ece7b;
   text-decoration: underline;

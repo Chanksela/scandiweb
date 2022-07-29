@@ -14,20 +14,16 @@
   z-index: 2;
   position: relative;
 }
-
 .currency-select .default {
   font-size: medium;
 }
-
 .currency-select .options-active {
   position: fixed;
 }
-
 .currency-select .options-active div {
   margin: 5px 0;
   font-size: small;
 }
-
 .currency-select .options-disabled {
   display: none;
 }

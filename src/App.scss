@@ -1,0 +1,22 @@
+@import "./styles/config";
+.body {
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 100vw;
+  grid-template-rows: 40px auto;
+  grid-template-areas:
+    "navbar"
+    "body";
+}
+.navbar {
+  grid-area: navbar;
+  border: 1px solid black;
+}
+.PLP {
+  grid-area: body;
+}
+a {
+  text-decoration: none;
+  color: $black;
+}
