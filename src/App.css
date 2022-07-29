@@ -18,11 +18,7 @@
 
 .PLP {
   grid-area: body;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  margin: 10px;
 }
 
 a {

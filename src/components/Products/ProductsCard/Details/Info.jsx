@@ -17,12 +17,13 @@ export default class Info extends Component {
             onAttributePick={this.props.onAttributePick}
           />{" "}
           <div className="price-description">
-            {" "}
             <p className="test">Price:</p>
             <p className="price">
               {this.props.currency}
               {this.props.product.prices[this.props.amount].amount}
             </p>{" "}
+          </div>
+          <div>
             <Button
               id="details-add-btn"
               function={(e) =>
@@ -36,14 +37,13 @@ export default class Info extends Component {
                 )
               }
               disabled={!this.props.product.inStock}
-            />{" "}
-            {/* {this.props.product.description.replace(/(<([^>]+)>)/gi, "")} */}
-            <div
-              dangerouslySetInnerHTML={{
-                __html: this.props.product.description,
-              }}
             />
           </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: this.props.product.description,
+            }}
+          />
         </div>
       </div>
     );

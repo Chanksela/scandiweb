@@ -1,9 +1,9 @@
 .img-container img {
-  width: 100px;
+  width: 25vw;
 }
 
 h1 {
-  margin: 10px;
+  text-transform: capitalize;
 }
 
 .container {
@@ -13,10 +13,12 @@ h1 {
 }
 .container .items-container {
   position: relative;
-  margin: 10px;
-  border: 1px solid;
   height: 100%;
-  width: 30vw;
+  width: 33vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .container .items-container .cart-icon {
   display: none;
@@ -26,8 +28,13 @@ h1 {
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 99;
 }
 .container .items-container:hover .cart-icon:hover {
   transition: 1s;
   transform: scale(1.2, 1.2);
+}
+.container .items-container .product-specifics {
+  text-align: left;
+  width: 100%;
 }

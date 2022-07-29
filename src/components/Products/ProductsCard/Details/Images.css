@@ -12,5 +12,6 @@
 }
 
 .img-view .img-main {
-  width: 100%;
+  width: auto;
+  height: 500px;
 }
