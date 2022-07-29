@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Attributes from "./Attributes";
 import Button from "../../../Button/Button";
+import "./Info.css";
 export default class Info extends Component {
   render() {
     return (

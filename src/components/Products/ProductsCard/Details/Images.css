@@ -1,0 +1,16 @@
+.img-picker {
+  border: 1px solid;
+  width: 40%;
+  height: 100%;
+  display: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img-picker img {
+  margin: 20px 0;
+}
+
+.img-view .img-main {
+  width: 100%;
+}

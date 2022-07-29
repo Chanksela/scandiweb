@@ -18,10 +18,14 @@
     border: 1px solid;
     grid-area: images;
     display: flex;
+    align-items: center;
   }
   .info-container {
     border: 1px solid;
     grid-area: info;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   img {
     width: 40px;

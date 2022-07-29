@@ -15,10 +15,14 @@
   border: 1px solid;
   grid-area: images;
   display: flex;
+  align-items: center;
 }
 .content .info-container {
   border: 1px solid;
   grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .content img {
   width: 40px;
