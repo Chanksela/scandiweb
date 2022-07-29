@@ -1,4 +1,15 @@
 .currency-select {
+  border: 1px solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: auto;
   cursor: pointer;
   -webkit-user-select: none;
@@ -8,11 +19,14 @@
   height: 100%;
   margin-right: 10px;
   width: auto;
-  border: none;
-  background-color: red;
   text-align: center;
   z-index: 2;
-  position: relative;
+}
+
+.currency-select .btn {
+  position: absolute;
+  top: 8%;
+  right: 11%;
 }
 
 .currency-select .default {
@@ -30,10 +44,4 @@
 
 .currency-select .options-disabled {
   display: none;
-}
-
-.btn {
-  width: auto;
-  text-align: center;
-  border: 1px solid;
 }

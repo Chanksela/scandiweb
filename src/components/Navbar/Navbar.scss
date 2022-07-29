@@ -1,12 +1,9 @@
 @import "../../styles/config";
 .navbar {
-  margin-top: 10px;
-  height: 25px;
-  width: auto;
-  background-color: transparent;
+  border: 1px solid red;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   a {
     text-decoration: none;
     color: $black;
@@ -16,192 +13,17 @@
     }
   }
   .navbar-categories {
-    display: flex;
-    flex-direction: row;
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2%;
   }
 
-  .navbar-logo {
-    #logo {
-      width: auto;
-    }
-  }
   .navbar-cart-currency {
-    display: flex;
-    flex-direction: row;
-    margin-right: 1.5vw;
-    height: 30px;
-
-    .navbar-cart {
-      display: flex;
-      flex-direction: row;
-      color: $black;
-
-      .cart-icon {
-        height: 25px;
-      }
-      .cart-badge {
-        display: block;
-        position: absolute;
-        right: 5px;
-        margin-top: -5px;
-        width: 20px;
-        height: 20px;
-        line-height: 20px;
-        border-radius: 50%;
-        font-size: 15px;
-        color: $white;
-        text-align: center;
-        background: $black;
-        user-select: none;
-      }
-      .overlay {
-        background-color: rgba(0, 0, 0, 0.7);
-        position: fixed;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-      }
-      .dropdown-cart {
-        position: fixed;
-        height: 400px;
-        width: 290px;
-        right: 60px;
-        top: 40px;
-        z-index: 2;
-        background-color: $white;
-        padding: 0.75rem;
-        border-radius: 0.25rem;
-        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
-        overflow-y: hidden;
-        .cart-scrollable {
-          height: 330px;
-          overflow-y: scroll;
-          &::-webkit-scrollbar {
-            width: 8px;
-          }
-          &::-webkit-scrollbar-thumb {
-            background-color: $green;
-            border-radius: 50px;
-          }
-        }
-        .cart-footer {
-          margin: 5px 0px;
-        }
-        .cart-info {
-          display: flex;
-          justify-content: space-between;
-          .item-info-section {
-            width: 48%;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-          }
-          .item-image-section {
-            width: 48%;
-            height: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: right;
-            .itemQty {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-evenly;
-
-              p {
-                text-align: center;
-              }
-              button {
-                border: 1px solid $black;
-                width: 20px;
-                height: 20px;
-                background-color: transparent;
-                transition: 0.3s;
-                &:hover {
-                  cursor: pointer;
-                  background-color: $black;
-                  color: $white;
-                }
-              }
-            }
-            .image {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              .slide-btn {
-                position: sticky;
-                width: 50px;
-                display: flex;
-                flex-direction: row;
-                img {
-                  width: 20%;
-                  bottom: 5%;
-                  &:hover {
-                    cursor: pointer;
-                  }
-                }
-                #next {
-                  position: absolute;
-                  margin-left: 75%;
-                }
-                #prev {
-                  position: absolute;
-                  margin-left: 50%;
-                }
-              }
-            }
-          }
-        }
-        .color {
-          width: 30px;
-          height: 30px;
-        }
-
-        .cart-img {
-          width: 50px;
-        }
-        #shop-btn {
-          margin: 0 1px;
-          height: 43px;
-          width: 143px;
-          background-color: transparent;
-          border: 2px solid $black;
-          font-weight: 600;
-          transition: 0.8s;
-          &:hover {
-            cursor: pointer;
-            background-color: $black;
-            color: $white;
-            #shop-link {
-              color: $white;
-            }
-          }
-          #shop-link {
-            color: $black;
-            width: 100%;
-            padding: 10px 50px;
-          }
-        }
-
-        li {
-          list-style: none;
-        }
-      }
-    }
-
-    .empty-cart {
-      z-index: 2;
-      text-align: center;
-      position: absolute;
-      right: 0;
-      top: 6vh;
-      background-color: $white;
-      width: 10vw;
-      padding: 0.75rem;
-      border-radius: 0.25rem;
-      box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
-    }
+    display: inherit;
+    justify-content: space-around;
+    width: 10%;
+    align-items: center;
+    margin-right: 2%;
   }
 }

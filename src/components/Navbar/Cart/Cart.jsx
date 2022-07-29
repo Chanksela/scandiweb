@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { ProductConsumer } from "../../../services/contex";
-
 import CartIcon from "../../../Images/Vector.svg";
 import CartItems from "./CartItems";
 import CartCount from "./CartCount";
+import "./Cart.css";
 export default class Cart extends Component {
   constructor() {
     super();

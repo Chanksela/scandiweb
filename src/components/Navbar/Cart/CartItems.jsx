@@ -6,6 +6,8 @@ import CartCount from "./CartCount";
 import CartInfo from "./CartInfo";
 import Button from "../../Button/Button";
 import CartAmount from "./CartAmount";
+
+import "./CartItems.css";
 export default class CartItems extends Component {
   constructor() {
     super();

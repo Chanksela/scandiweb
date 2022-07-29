@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CartAttributes from "./CartAttributes";
 import CartImage from "./CartImage";
-
+import "./CartItems.css";
 export default class CartInfo extends Component {
   render() {
     return (
