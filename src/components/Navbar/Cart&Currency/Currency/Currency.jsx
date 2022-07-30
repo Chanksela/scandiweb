@@ -48,8 +48,8 @@ export default class Navbar extends Component {
                     <div
                       className={
                         this.state.show
-                          ? "btn options-acvtive"
-                          : "btn options-disabled"
+                          ? "crn-card options-acvtive"
+                          : "crn-card options-disabled"
                       }
                     >
                       {currencies.map((currency) => (
@@ -64,7 +64,8 @@ export default class Navbar extends Component {
                               )
                             }
                           >
-                            {currency.symbol} {currency.label}
+                            <div>{currency.symbol}</div>
+                            <div>{currency.label}</div>
                           </div>
                         </div>
                       ))}

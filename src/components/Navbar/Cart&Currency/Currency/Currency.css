@@ -1,20 +1,40 @@
 .currency-select {
-  height: auto;
+  position: relative;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  height: 100%;
+  height: 10%;
   margin-right: 10px;
   width: auto;
   border: none;
   text-align: center;
   z-index: 2;
-  position: relative;
 }
 .currency-select .default {
   font-size: medium;
+}
+.currency-select .crn-card {
+  width: 70px;
+  height: auto;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.currency-select .currency-options > div {
+  height: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.currency-select .currency-options > div:hover {
+  background-color: #eeeeee;
 }
 .currency-select .options-active {
   position: fixed;
@@ -25,10 +45,4 @@
 }
 .currency-select .options-disabled {
   display: none;
-}
-
-.btn {
-  width: auto;
-  text-align: center;
-  border: 1px solid;
 }

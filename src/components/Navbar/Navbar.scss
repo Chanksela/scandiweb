@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  margin: 0 40px;
   align-items: center;
   .navbar-categories {
     display: flex;
@@ -13,5 +14,7 @@
   }
   .cart-currency {
     display: flex;
+    justify-content: space-between;
+    width: 50px;
   }
 }
