@@ -1,15 +1,14 @@
 @import "../../../styles/config";
-.navbar-categories {
-  .navbar-ul {
-    list-style: none;
-    margin-left: 15px;
-    .navbar-li {
-      text-transform: uppercase;
-    }
-    .active {
-      color: $green;
-      text-decoration: underline;
-      text-underline-offset: 5px;
-    }
+
+.navbar-ul {
+  list-style: none;
+  margin-left: 15px;
+  .navbar-li {
+    text-transform: uppercase;
+  }
+  .active {
+    color: $green;
+    text-decoration: underline;
+    text-underline-offset: 5px;
   }
 }

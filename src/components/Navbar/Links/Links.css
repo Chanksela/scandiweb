@@ -1,11 +1,11 @@
-.navbar-categories .navbar-ul {
+.navbar-ul {
   list-style: none;
   margin-left: 15px;
 }
-.navbar-categories .navbar-ul .navbar-li {
+.navbar-ul .navbar-li {
   text-transform: uppercase;
 }
-.navbar-categories .navbar-ul .active {
+.navbar-ul .active {
   color: #5ece7b;
   text-decoration: underline;
   text-underline-offset: 5px;

@@ -26,8 +26,8 @@ export default class ProductCard extends Component {
                     <div className="container">
                       {state.product}
                       {category.products.map((info) => (
-                        <div key={info.id}>
-                          <Link to={`/details/${info.id}`}>
+                        <Link to={`/details/${info.id}`} className="test">
+                          <div key={info.id}>
                             <div className="items-container">
                               <div className="img-container">
                                 <img
@@ -40,7 +40,6 @@ export default class ProductCard extends Component {
                                   alt="product-img"
                                   src={info.gallery[0]}
                                 />{" "}
-                                {/* {console.log(info)} */}
                                 {!info.inStock && (
                                   <p className="out-of-stock">Out of Stock</p>
                                 )}
@@ -68,8 +67,8 @@ export default class ProductCard extends Component {
                                 </p>
                               </div>
                             </div>
-                          </Link>
-                        </div>
+                          </div>
+                        </Link>
                       ))}
                     </div>
                   </>
