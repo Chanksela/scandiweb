@@ -16,14 +16,17 @@ export default class Navbar extends Component {
     this.box = React.createRef();
     this.currencyHandler = this.currencyHandler.bind(this);
   }
-  componentDidMount() {
-    document.addEventListener("click", this.handleOutsideClick);
-  }
-  handleOutsideClick = (event) => {
-    if (this.box && !this.box.current.contains(event.target)) {
+  handleOutsideClick = (e) => {
+    // console.log("box: ", this.box);
+    // console.log("click target: ", e.target);
+    if (this.box && !this.box?.current.contains(e.target)) {
       this.setState({ show: false });
     }
   };
+  componentDidMount() {
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
   currencyHandler() {
     this.setState({ show: !this.state.show });
   }
@@ -61,7 +64,7 @@ export default class Navbar extends Component {
                               )
                             }
                           >
-                            <div id={currency.symbol}>
+                            <div className="currency" id={currency.symbol}>
                               {currency.symbol}
                               {currency.label}
                             </div>

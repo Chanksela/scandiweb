@@ -380,9 +380,10 @@ class App extends Component {
   }
   // function for gettin currency and relevant price
   currencyChange(arg1, arg2) {
-    this.setState({ currency: arg1.target.id });
-    this.setState({
-      amount: arg2.findIndex((x) => x.symbol === this.state.currency),
+    this.setState({ currency: arg1.target.id }, () => {
+      this.setState({
+        amount: arg2.findIndex((x) => x.symbol === this.state.currency),
+      });
     });
 
     console.log("arg1: ", arg1.target.id, "arg2: ", arg2);
