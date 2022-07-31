@@ -21,13 +21,11 @@ export default class Navbar extends Component {
   }
   handleOutsideClick = (event) => {
     if (this.box && !this.box.current.contains(event.target)) {
-      console.log("you just clicked outside of box!");
       this.setState({ show: false });
     }
   };
   currencyHandler() {
     this.setState({ show: !this.state.show });
-    console.log(this.state.show);
   }
   render() {
     return (
@@ -39,7 +37,7 @@ export default class Navbar extends Component {
                 if (loading) return "Loading...";
                 if (error) return `ERROR! ${error.message}`;
                 const { currencies } = data;
-                console.log(currencies);
+
                 return (
                   <div ref={this.box} className="currency-select">
                     <div onClick={this.currencyHandler} className="default">
@@ -55,7 +53,6 @@ export default class Navbar extends Component {
                       {currencies.map((currency) => (
                         <div key={currency.label} className="currency-options">
                           <div
-                            id={currency.symbol}
                             onClick={(e) =>
                               state.currencyChange(
                                 e,
@@ -64,8 +61,10 @@ export default class Navbar extends Component {
                               )
                             }
                           >
-                            <div>{currency.symbol}</div>
-                            <div>{currency.label}</div>
+                            <div id={currency.symbol}>
+                              {currency.symbol}
+                              {currency.label}
+                            </div>
                           </div>
                         </div>
                       ))}

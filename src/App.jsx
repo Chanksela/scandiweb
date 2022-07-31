@@ -13,10 +13,8 @@ const client = new ApolloClient({
 });
 class App extends Component {
   componentDidMount() {
-    sessionStorage.getItem("page") === null
-      ? this.setState({ category: "all" })
-      : console.log("it's not null");
-    console.log(sessionStorage.getItem("page"));
+    sessionStorage.getItem("page") === null &&
+      this.setState({ category: "all" });
   }
   constructor() {
     super();
@@ -381,12 +379,13 @@ class App extends Component {
     }
   }
   // function for gettin currency and relevant price
-  currencyChange(arg1, arg2, arg3) {
-    this.setState({ currency: arg1.target.id }, () => {
-      this.setState({
-        amount: arg2.findIndex((x) => x.symbol === this.state.currency),
-      });
+  currencyChange(arg1, arg2) {
+    this.setState({ currency: arg1.target.id });
+    this.setState({
+      amount: arg2.findIndex((x) => x.symbol === this.state.currency),
     });
+
+    console.log("arg1: ", arg1.target.id, "arg2: ", arg2);
   }
 
   // get category from navbar links to display relevant products

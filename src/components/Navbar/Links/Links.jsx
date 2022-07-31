@@ -17,7 +17,6 @@ export default class Links extends Component {
                   if (loading) return "Loading...";
                   if (error) return `Error! ${error.message}`;
                   const { categories } = data;
-                  console.log(categories);
 
                   {
                     return categories.map((category) => (

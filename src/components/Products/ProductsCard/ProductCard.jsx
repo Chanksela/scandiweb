@@ -19,15 +19,18 @@ export default class ProductCard extends Component {
                 if (error) return `Error ${error.message}`;
                 if (loading) return loading;
                 const { category } = data;
-                console.log(category);
                 return (
                   <>
                     <h1>{state.category}</h1>
                     <div className="container">
                       {state.product}
                       {category.products.map((info) => (
-                        <Link to={`/details/${info.id}`} className="test">
-                          <div key={info.id}>
+                        <Link
+                          key={info.id}
+                          to={`/details/${info.id}`}
+                          className="test"
+                        >
+                          <div>
                             <div className="items-container">
                               <div className="img-container">
                                 <img
@@ -63,6 +66,7 @@ export default class ProductCard extends Component {
                                 <p>{info.name}</p>
                                 <p>
                                   {state.currency}
+                                  {/* {console.log(state.amount)} */}
                                   {info.prices[state.amount].amount}
                                 </p>
                               </div>
