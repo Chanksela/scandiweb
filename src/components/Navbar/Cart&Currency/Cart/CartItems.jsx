@@ -6,6 +6,9 @@ import CartCount from "./CartCount";
 import CartInfo from "./CartInfo";
 import Button from "../../..//Button/Button";
 import CartAmount from "./CartAmount";
+
+import "./CartItems.css";
+
 export default class CartItems extends Component {
   constructor() {
     super();
@@ -49,7 +52,7 @@ export default class CartItems extends Component {
           ) : (
             <div>
               <div className="overlay" onClick={this.props.handleCart}></div>
-              <p className="empty-cart">Cart is Empty</p>
+              <p className="empty-cart">Empty</p>
             </div>
           );
         }}
