@@ -65,8 +65,8 @@ export default class Navbar extends Component {
                             }
                           >
                             <div className="currency" id={currency.symbol}>
-                              {currency.symbol}
-                              {currency.label}
+                              <div id={currency.symbol}>{currency.symbol}</div>
+                              <div id={currency.symbol}>{currency.label}</div>
                             </div>
                           </div>
                         </div>

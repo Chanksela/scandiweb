@@ -1,7 +1,3 @@
-.parent {
-  border: 1px solid red;
-}
-
 .currency-select {
   position: relative;
   cursor: pointer;
@@ -40,7 +36,9 @@
 .currency-select .currency-options > div .currency {
   width: 100%;
   height: 100%;
-  border: 1px solid;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .currency-select .currency-options > div:hover {
   background-color: #eeeeee;
